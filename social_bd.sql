@@ -45,10 +45,24 @@ CONSIDERAÇÕES:
                   Aqui estará escrito o directório onde está a ser guardada a imagem da capa (ex.: users/pedro/imagens/capa.png)
                   É NOT NULL porque se o utilizador não colocar uma imagem personalizada, o valor predefinido será uma imagem default (ex.: users/img_capa_default.png)
                   
-    apagado_u	    INT(11)  NOT NULL
-                  0 = Valor por defeito, indica que o utilizador está activo
-                  1 = Significa que o utilizador eliminou a própria conta
-                  2 = Banido da rede social pelo administrador
+    apagado_u	    INT(11)  NOT NULL   Valor por defeito: 0
+                  0 = Utilizador está activp
+                  1 = O utilizador eliminou a própria conta              
+                  2 = Banido: Incitação à violência ou discurso de ódio
+                  3 = Banido: Racismo
+                  4 = Banido: Publicidade ou SPAM
+                  5 = Banido: 
+                  6 = Banido: 
+                  7 = Banido: 
+                  8 = Banido: 
+                  9 = Banido: 
+                  10 = Banido: 
+                  11 = Banido: 
+                  
+==================================================
+                 TABELA   t_posts
+==================================================
+
 
 */
 
