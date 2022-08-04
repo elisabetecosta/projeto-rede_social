@@ -22,7 +22,7 @@ CONSIDERAÇÕES:
 2) Todos os campos estão definidos como NOT NULL, inclusive o das fotos.
 
 ==================================================
-                 TABELA   t_posts
+                 TABELA   t_users
 ==================================================
 
     id_user       DOUBLE(sem limite)  PK  AI   NOT NULL
@@ -51,19 +51,59 @@ CONSIDERAÇÕES:
                   2 = Banido: Incitação à violência ou discurso de ódio
                   3 = Banido: Racismo
                   4 = Banido: Publicidade ou SPAM
-                  5 = Banido: 
-                  6 = Banido: 
-                  7 = Banido: 
-                  8 = Banido: 
-                  9 = Banido: 
-                  10 = Banido: 
-                  11 = Banido: 
                   
 ==================================================
                  TABELA   t_posts
 ==================================================
 
+    id_post       DOUBLE(sem limite)  PK  AI   NOT NULL
+                  Uma rede social poderá ter milhões de posts, razão pela qual o ID está definido como DOUBLE ao invés de INT.
+                  
+    id_user       DOUBLE(sem limite)  FK  NOT NULL
+                  Chave estrangeira proveniente da tabela t_users
+                  Identifica qual dos utilizadores da tabela t_user publicou o post.
+                  
+    texto         varchar(255)
+                  Cada post tem um limite de caracteres de 255.
+                  ATENÇÃO: Só texto. Não inclui smileys ou emoticons.
+                  
+    foto_id       Colocamos o ID da foto?
+                  - Nem todos os posts têm uma imagem.
+                  - Há posts que podem ter mais do que uma imagem.
+                  
+    apagado_p     INT(11)  NOT NULL   Valor por defeito: 0
+                  0 = O post está activo
+                  1 = Post apagado pelo autor do post              
+                  2 = Post apagado: Incitação à violência ou discurso de ódio
+                  3 = Post apagado: Racismo
+                  4 = Post apagado: Publicidade ou SPAM
 
+==================================================
+                 TABELA   t_comentarios
+==================================================
+
+    id_comment    DOUBLE(sem limite)  PK  AI   NOT NULL
+                  Uma rede social poderá ter milhões de posts, razão pela qual o ID está definido como DOUBLE ao invés de INT.
+                  
+    id_user       DOUBLE(sem limite)  FK  NOT NULL
+                  Chave estrangeira proveniente da tabela t_users
+                  Identifica qual dos utilizadores da tabela t_user publicou o comentário. 
+                  
+    id_post       DOUBLE(sem limite)  FK  NOT NULL
+                  Chave estrangeira proveniente da tabela t_posts
+                  Identifica o post a que o comentário diz respeito.
+                  
+  texto_comment   VARCHAR(255)	 NOT NULL
+                  Corpo do comentário em formato de texto.
+                  ATENÇÃO: Só texto. Não inclui smileys ou emoticons.
+                   
+    apagado_c     INT(11)  NOT NULL   Valor por defeito: 0
+                  0 = O comentário está activo
+                  1 = Comentário apagado pelo autor do post              
+                  2 = Comentário apagado: Incitação à violência ou discurso de ódio
+                  3 = Comentário apagado: Racismo
+                  4 = Comentário apagado: Publicidade ou SPAM
+  
 */
 
 
