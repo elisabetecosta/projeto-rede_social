@@ -2,10 +2,13 @@ VERSÃO 1.0
 Ficheiro: social_bd.sql
 URL: https://github.com/elisabetecosta/projeto-rede_social/blob/main/social_bd.sql
 Data: 04/08/2022
+
 A versão primária da base de dados possui apenas três tabelas: t_posts, t_comentarios e t_users
+
 CONSIDERAÇÕES:
 1) Uma rede social poderá ter milhões de utilizadores, posts e comentários, razão pela qual o ID de cada uma destas tabelas está definido como DOUBLE ao invés de INT.
 2) Todos os campos estão definidos como NOT NULL, à excepção das fotos na tabela t_posts.
+
 ==================================================
                  TABELA   t_users
 ==================================================
@@ -30,7 +33,7 @@ CONSIDERAÇÕES:
                   É NOT NULL porque se o utilizador não colocar uma imagem personalizada, o valor predefinido será uma imagem default (ex.: users/img_capa_default.png)
                   
     apagado_u	    INT(11)  NOT NULL   Valor por defeito: 0
-                  0 = Utilizador está activp
+                  0 = Utilizador está activo
                   1 = O utilizador eliminou a própria conta              
                   2 = Banido: Incitação à violência ou discurso de ódio
                   3 = Banido: Racismo
