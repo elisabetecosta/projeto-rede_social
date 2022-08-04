@@ -1,0 +1,86 @@
+VERSÃO 1.0
+Ficheiro: social_bd.sql
+URL: https://github.com/elisabetecosta/projeto-rede_social/blob/main/social_bd.sql
+Data: 04/08/2022
+A versão primária da base de dados possui apenas três tabelas: t_posts, t_comentarios e t_users
+CONSIDERAÇÕES:
+1) Uma rede social poderá ter milhões de utilizadores, posts e comentários, razão pela qual o ID de cada uma destas tabelas está definido como DOUBLE ao invés de INT.
+2) Todos os campos estão definidos como NOT NULL, inclusive o das fotos.
+==================================================
+                 TABELA   t_users
+==================================================
+    id_user       DOUBLE(sem limite)  PK  AI   NOT NULL
+                  Uma rede social poderá ter milhões de utilizadores, razão pela qual o ID está definido como DOUBLE ao invés de INT.
+                
+    nick          VARCHAR(15)  NOT NULL
+                  Este campo diz respeito ao nickname do utilizador que está visível para todos verem
+                
+    email         VARCHAR(50)  NOT NULL
+                  Endereço de email usado pel utilizador para se registar na rede social, não será visivel publicamente
+                
+    password      VARCHAR(255)  NOT NULL
+                  Tem tamanho 255 porque será encriptada com uma função de encriptação em PHP
+                
+    foto_perfil   VARCHAR(300)  NOT NULL 
+                  Aqui estará escrito o directório onde está a ser guardada a imagem (ex.: users/pedro/imagens/perfil.png)
+                  É NOT NULL porque se o utilizador não colocar uma imagem personalizada, o valor predefinido será uma imagem default (ex.: users/foto_perfil_default.png)
+                
+    foto_capa     VARCHAR(300)  NOT NULL 
+                  Aqui estará escrito o directório onde está a ser guardada a imagem da capa (ex.: users/pedro/imagens/capa.png)
+                  É NOT NULL porque se o utilizador não colocar uma imagem personalizada, o valor predefinido será uma imagem default (ex.: users/img_capa_default.png)
+                  
+    apagado_u	    INT(11)  NOT NULL   Valor por defeito: 0
+                  0 = Utilizador está activp
+                  1 = O utilizador eliminou a própria conta              
+                  2 = Banido: Incitação à violência ou discurso de ódio
+                  3 = Banido: Racismo
+                  4 = Banido: Publicidade ou SPAM
+                  
+==================================================
+                 TABELA   t_posts
+==================================================
+    id_post       DOUBLE(sem limite)  PK  AI   NOT NULL
+                  Uma rede social poderá ter milhões de posts, razão pela qual o ID está definido como DOUBLE ao invés de INT.
+                  
+    id_user       DOUBLE(sem limite)  FK  NOT NULL
+                  Chave estrangeira proveniente da tabela t_users
+                  Identifica qual dos utilizadores da tabela t_user publicou o post.
+                  
+    texto         varchar(255)
+                  Cada post tem um limite de caracteres de 255.
+                  ATENÇÃO: Só texto. Não inclui smileys ou emoticons.
+                  
+    foto_id       Colocamos o ID da foto?
+                  - Nem todos os posts têm uma imagem.
+                  - Há posts que podem ter mais do que uma imagem.
+                  
+    apagado_p     INT(11)  NOT NULL   Valor por defeito: 0
+                  0 = O post está activo
+                  1 = Post apagado pelo autor do post              
+                  2 = Post apagado: Incitação à violência ou discurso de ódio
+                  3 = Post apagado: Racismo
+                  4 = Post apagado: Publicidade ou SPAM
+==================================================
+                 TABELA   t_comentarios
+==================================================
+    id_comment    DOUBLE(sem limite)  PK  AI   NOT NULL
+                  Uma rede social poderá ter milhões de posts, razão pela qual o ID está definido como DOUBLE ao invés de INT.
+                  
+    id_user       DOUBLE(sem limite)  FK  NOT NULL
+                  Chave estrangeira proveniente da tabela t_users
+                  Identifica qual dos utilizadores da tabela t_user publicou o comentário. 
+                  
+    id_post       DOUBLE(sem limite)  FK  NOT NULL
+                  Chave estrangeira proveniente da tabela t_posts
+                  Identifica o post a que o comentário diz respeito.
+                  
+  texto_comment   VARCHAR(255)	 NOT NULL
+                  Corpo do comentário em formato de texto.
+                  ATENÇÃO: Só texto. Não inclui smileys ou emoticons.
+                   
+    apagado_c     INT(11)  NOT NULL   Valor por defeito: 0
+                  0 = O comentário está activo
+                  1 = Comentário apagado pelo autor do post              
+                  2 = Comentário apagado: Incitação à violência ou discurso de ódio
+                  3 = Comentário apagado: Racismo
+                  4 = Comentário apagado: Publicidade ou SPAM
