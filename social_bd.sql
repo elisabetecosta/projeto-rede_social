@@ -7,6 +7,53 @@
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.29
 
+
+/*
+VERSÃO 1.0
+Ficheiro: social_bd.sql
+URL: https://github.com/elisabetecosta/projeto-rede_social/blob/main/social_bd.sql
+Data: 04/08/2022
+
+
+A versão primária da base de dados possui apenas três tabelas: t_posts, t_comentarios e t_users
+
+CONSIDERAÇÕES:
+1) Uma rede social poderá ter milhões de utilizadores, posts e comentários, razão pela qual o ID de cada uma destas tabelas está definido como DOUBLE ao invés de INT.
+2) Todos os campos estão definidos como NOT NULL, inclusive o das fotos.
+
+==================================================
+                 TABELA   t_posts
+==================================================
+
+    id_user       DOUBLE(sem limite)  PK  AI   NOT NULL
+                  Uma rede social poderá ter milhões de utilizadores, razão pela qual o ID está definido como DOUBLE ao invés de INT.
+                
+    nick          VARCHAR(15)  NOT NULL
+                  Este campo diz respeito ao nickname do utilizador que está visível para todos verem
+                
+    email         VARCHAR(50)  NOT NULL
+                  Endereço de email usado pel utilizador para se registar na rede social, não será visivel publicamente
+                
+    password      VARCHAR(255)  NOT NULL
+                  Tem tamanho 255 porque será encriptada com uma função de encriptação em PHP
+                
+    foto_perfil   VARCHAR(300)  NOT NULL 
+                  Aqui estará escrito o directório onde está a ser guardada a imagem (ex.: users/pedro/imagens/perfil.png)
+                  É NOT NULL porque se o utilizador não colocar uma imagem personalizada, o valor predefinido será uma imagem default (ex.: users/foto_perfil_default.png)
+                
+    foto_capa     VARCHAR(300)  NOT NULL 
+                  Aqui estará escrito o directório onde está a ser guardada a imagem da capa (ex.: users/pedro/imagens/capa.png)
+                  É NOT NULL porque se o utilizador não colocar uma imagem personalizada, o valor predefinido será uma imagem default (ex.: users/img_capa_default.png)
+                  
+    apagado_u	    INT(11)  NOT NULL
+                  0 = Valor por defeito, indica que o utilizador está activo
+                  1 = Significa que o utilizador eliminou a própria conta
+                  2 = Banido da rede social pelo administrador
+
+*/
+
+
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
