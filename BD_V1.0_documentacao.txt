@@ -1,9 +1,12 @@
-VERSÃO 1.0
+VERSÃO 1.2
 Ficheiro: social_bd.sql
 URL: https://github.com/elisabetecosta/projeto-rede_social/blob/main/social_bd.sql
-Data: 04/08/2022
+Data: 21/08/2022
 
-A versão primária da base de dados possui apenas três tabelas: t_posts, t_comentarios e t_users
+Esta é a segunda versão da nossa base de dados.
+- Houve a necessidade de criar duas tabelas para os utilizadores: uma tem os dados essenciais à gestão da base de dados (t_users), outra tem informação suplementar que pode ser facilmente personalizada pelo utilizador (t_perfis)
+- Agregámos dois níveis de comentátrios aos posts. Assim, a tabela t_posts é "pai" da tabela de comentário t_com1 (child) e "avô" da tabela t_com2 (grandchild).
+- A tabela t_privado define se um post está público ou se está visível para todos os utilizadores. Não diz respeito à privacidade dos dados do utilizador em si mesmos.
 
 CONSIDERAÇÕES:
 1) Uma rede social poderá ter milhões de utilizadores, posts e comentários, razão pela qual o ID de cada uma destas tabelas está definido como DOUBLE ao invés de INT.
@@ -15,33 +18,75 @@ CONSIDERAÇÕES:
     id_user       DOUBLE(sem limite)  PK  AI   NOT NULL
                   Uma rede social poderá ter milhões de utilizadores, razão pela qual o ID está definido como DOUBLE ao invés de INT.
                 
-    nick          VARCHAR(15)  NOT NULL
-                  Este campo diz respeito ao nickname do utilizador que está visível para todos verem
+    handle_user   VARCHAR(15)  NOT NULL 
+                  Este campo diz respeito ao @nomeUnico do utilizador que está visível para todos verem.
                 
     email         VARCHAR(50)  NOT NULL
-                  Endereço de email usado pel utilizador para se registar na rede social, não será visivel publicamente
+                  Endereço de email usado pelo utilizador para se registar na rede social, não será visivel publicamente
                 
     password      VARCHAR(255)  NOT NULL
                   Tem tamanho 255 porque será encriptada com uma função de encriptação em PHP
+
+    estado_user   INT(11)  NOT NULL
+                  Valor por defeito: 0
+                  0 = O utilizador está activo e o perfil é visível
+                  1 = O utilizador eliminou a própria conta              
+                  2 = O utilizador foi banido: Incitação à violência ou discurso de ódio
+                  3 = O utilizador foi banido: Racismo
+                  4 = O utilizador foi banido: Publicidade ou SPAM
+
+    data_regis    DATETIME   NOT NULL
+                  Contém a data e hora exactas em que o utilizador registou-se no site e criou conta. Útil para implementar funcionalidades futuras.
+
+    tipo_user     int(11)   NOT NULL
+                  Valor por defeito: 0
+                  0 = Utilizador comum
+                  1 = Moderador de comentários
                 
-    foto_perfil   VARCHAR(300)  NOT NULL 
+    obs_mod       VARCHAR(255) NULL
+                  Este campo é preenchido pela moderação com observações importantes sobre o utilizador, caso ele tenha um histório de comportamento questionável.
+                  Caso seja banido, esta caixa de texto documentará com mais detalhe a situação. Isto facilita também a recuperação de contas.
+
+==================================================
+                 TABELA   t_perfis
+==================================================
+    id_perfil     DOUBLE(sem limite)  PK  AI   NOT NULL
+                  Uma rede social poderá ter milhões de utilizadores, razão pela qual o ID de perfil está definido como DOUBLE ao invés de INT.
+
+    id_user       DOUBLE(sem limite)  FK  NOT NULL
+                  Chave estrangeira, recebe os dados vindos da chave primária da tabela t_users.
+
+    nickname      VARCHAR(45)   NOT NULL
+                  Nickname público do utilizador que aparece em letras maiores no perfil.
+                  Difere do @handle na medida em que pode ser personalizado pelo utilizador.
+                  Aparece geralmente ao lado ou por cima do @handle
+
+    avatar_img    VARCHAR(300)  NOT NULL 
                   Aqui estará escrito o directório onde está a ser guardada a imagem (ex.: users/pedro/imagens/perfil.png)
                   É NOT NULL porque se o utilizador não colocar uma imagem personalizada, o valor predefinido será uma imagem default (ex.: users/foto_perfil_default.png)
                 
-    foto_capa     VARCHAR(300)  NOT NULL 
+    capa_img      VARCHAR(300)  NOT NULL 
                   Aqui estará escrito o directório onde está a ser guardada a imagem da capa (ex.: users/pedro/imagens/capa.png)
                   É NOT NULL porque se o utilizador não colocar uma imagem personalizada, o valor predefinido será uma imagem default (ex.: users/img_capa_default.png)
-                  
-    apagado_u	    INT(11)  NOT NULL   Valor por defeito: 0
-                  0 = Utilizador está activo
-                  1 = O utilizador eliminou a própria conta              
-                  2 = Banido: Incitação à violência ou discurso de ódio
-                  3 = Banido: Racismo
-                  4 = Banido: Publicidade ou SPAM
-                  
-==================================================
-                 TABELA   t_posts
-==================================================
+
+    genero        CHAR(45)
+                  Valor por defeito: Indeterminado
+                  Masculino, Feminino, Indeterminado
+
+    data_nasc     DATE   NOT NULL
+                  Data de nascimento do utilizador. É importante definir como campo obrigatório de preencher, para não aceitar menores de idade no site.
+
+    perfil_desc   VARCHAR(255)   NOT NULL
+                  Caixa de texto com uma breve descrição do utilizador, seus interesses ou qualquer coisa que deseje ver no perfil em formato de texto.
+                  Naturalmente, pode ser personalizado pelo utilizador em qualquer altura.
+
+    data_updated  DATETIME
+                  Data e hora da última actualização dos dados do perfil efectuada pelo utilizador. Só aparece ao utilizador, quando vai editar.
+                  Recebe a data actual a partir do momento que o utilizador clica em "submit" e envia os novos dados.
+
+=============================================================================
+                 TABELA   t_posts  (PARENT)
+=============================================================================
     id_post       DOUBLE(sem limite)  PK  AI   NOT NULL
                   Uma rede social poderá ter milhões de posts, razão pela qual o ID está definido como DOUBLE ao invés de INT.
                   
@@ -49,27 +94,41 @@ CONSIDERAÇÕES:
                   Chave estrangeira proveniente da tabela t_users
                   Identifica qual dos utilizadores da tabela t_user publicou o post.
                   
-    texto         varchar(255)
+    texto         VARCHAR(255)
                   Cada post tem um limite de caracteres de 255.
                   ATENÇÃO: Só texto. Não inclui smileys ou emoticons.
+                  Pode haver necessidade de mudar isto no futuro, se realmente quisermos que os utilizadores usem o site para partilhar código.
                   
-    foto_id       Colocamos o ID da foto?
-                  - Nem todos os posts têm uma imagem.
-                  - Há posts que podem ter mais do que uma imagem.
+    id_foto       DOUBLE  FK  NULL
+                  Se o utilizador fizer upload de uma imagem, a tabela t_fotos guardará o seu directório e o post a que está vinculado.
                   
-    apagado_p     INT(11)  NOT NULL   Valor por defeito: 0
+    estado_p      INT(11)  NOT NULL
+                  Valor por defeito: 0
                   0 = O post está activo
                   1 = Post apagado pelo autor do post              
                   2 = Post apagado: Incitação à violência ou discurso de ódio
                   3 = Post apagado: Racismo
                   4 = Post apagado: Publicidade ou SPAM
-==================================================
-                 TABELA   t_comentarios
-==================================================
-    id_comment    DOUBLE(sem limite)  PK  AI   NOT NULL
+
+    privado      INT(11)  NOT NULL
+                 Valor por defeito: 0
+                 0 = O post é público
+                 1 = O post é privado
+                     Define-se quais são os utilizadores que podem ver os posts, estabelecendo uma relação entre as tabelas t_posts e t_privado (usar SELECT DISTINCT e JOIN)
+                     Exemplo prático: https://stackoverflow.com/questions/14449023/mysql-private-posts-display
+
+
+    data_pub     DATETIME   NOT NULL
+                 Data e hora da publicação do post. Recebe a hora actual quando o utilizador clica em "submit" e envia os dados que preencheu no formulário.
+                 
+
+=============================================================================
+                 TABELA   t_com1   (comentários nivel 1 CHILD)
+=============================================================================
+    id_com1       DOUBLE(sem limite)  PK  AI   NOT NULL
                   Uma rede social poderá ter milhões de posts, razão pela qual o ID está definido como DOUBLE ao invés de INT.
                   
-    id_user       DOUBLE(sem limite)  FK  NOT NULL
+    id_autor      DOUBLE(sem limite)  FK  NOT NULL
                   Chave estrangeira proveniente da tabela t_users
                   Identifica qual dos utilizadores da tabela t_user publicou o comentário. 
                   
@@ -77,13 +136,111 @@ CONSIDERAÇÕES:
                   Chave estrangeira proveniente da tabela t_posts
                   Identifica o post a que o comentário diz respeito.
                   
-  texto_comment   VARCHAR(255)	 NOT NULL
+    texto_com1    VARCHAR(255)	 NOT NULL
                   Corpo do comentário em formato de texto.
                   ATENÇÃO: Só texto. Não inclui smileys ou emoticons.
                    
-    apagado_c     INT(11)  NOT NULL   Valor por defeito: 0
+    estado_com1   INT(11)  NOT NULL   Valor por defeito: 0
                   0 = O comentário está activo
                   1 = Comentário apagado pelo autor do post              
                   2 = Comentário apagado: Incitação à violência ou discurso de ódio
                   3 = Comentário apagado: Racismo
                   4 = Comentário apagado: Publicidade ou SPAM
+
+    data_com1    DATETIME   NOT NULL
+                 Data e hora da publicação do comentário. Recebe a hora actual quando o utilizador clica em "submit" e envia os dados que preencheu no formulário.
+
+
+=============================================================================
+                 TABELA   t_com2   (comentários nivel 2 GRANDCHILD)
+=============================================================================
+
+    id_com2       DOUBLE(sem limite)  PK  AI   NOT NULL
+                  Uma rede social poderá ter milhões de posts, razão pela qual o ID está definido como DOUBLE ao invés de INT.
+                  
+    id_autor      DOUBLE(sem limite)  FK  NOT NULL
+                  Chave estrangeira proveniente da tabela t_users
+                  Identifica qual dos utilizadores da tabela t_user publicou o comentário. 
+                  
+    id_com1       DOUBLE(sem limite)  FK  NOT NULL
+                  Chave estrangeira proveniente da tabela t_com1 
+                  Identifica o comentário (nivel 1) a que este comentário (nivel 2) diz respeito.
+                  
+    texto_com2    VARCHAR(255)	 NOT NULL
+                  Corpo do comentário em formato de texto.
+                  ATENÇÃO: Só texto. Não inclui smileys ou emoticons.
+                   
+    estado_com2   INT(11)  NOT NULL   Valor por defeito: 0
+                  0 = O comentário está activo
+                  1 = Comentário apagado pelo autor do post              
+                  2 = Comentário apagado: Incitação à violência ou discurso de ódio
+                  3 = Comentário apagado: Racismo
+                  4 = Comentário apagado: Publicidade ou SPAM
+
+    data_com2    DATETIME   NOT NULL
+                 Data e hora da publicação do comentário. Recebe a hora actual quando o utilizador clica em "submit" e envia os dados que preencheu no formulário.
+
+=============================================================================
+                 TABELA   t_fotos  (imagens dos posts)
+=============================================================================
+   
+   id_foto       DOUBLE   PK  AI  NOT NULL
+                 Identifica a fotografia ou imagem única.
+
+   id_post       DOUBLE   FK  AI  NOT NULL
+                 Chave estrangeira que identifica o post a que a fotografia está vinculada (id da tabela t_posts)
+
+   imagem        VARCHAR(255)  NOT NULL
+                 Contém o directório onde está guardada a imagem que o utilizador fez upload ao clicar em "submit" no formulário de criar post.
+                 (exemplo:  "./users/pedro/galeria/foto1.png")
+
+   estado_img     INT(11)  NOT NULL   Valor por defeito: 0
+                  0 = A imagem está visivel e aceite
+                  1 = Imagem apagada pelo autor do post              
+                  2 = Imagem apagada: Pornografia ou conteúdo impróprio
+                  3 = Imagem apagada: Direitos de Autor reivindicados por terceiros.
+		  4 = Imagem apagada: Racismo, descriminação ou discurso de ódio
+           
+    data_pub     DATETIME
+                 Data e hora em que a fotografia foi publicada.
+                 ATENÇÃO: Neste momento, este campo está redundante porque vai sempre coincidir com a data de publicação do post. Mas se implementarmos a opção de apenas upar fotos, sem ter qualquer post vinculado, este campo vai ser útil.
+
+=============================================================================
+                 TABELA   t_favs  
+=============================================================================
+
+
+    id_fav       DOUBLE(Sem limite)   PK  AI  NOT NULL
+                 Cada post tem o seu próprio botão de "favorito".
+
+ id_favoritador  DOUBLE  FK  NOT NULL
+                 Chave estrangeira que identifica o utilizador que favoritou o post. Recebe os dados da chave primária da tabela t_users.
+
+    id_post      DOUBLE  FK  NOT NULL
+                 Chave estrangeira que identifica o post a que o favorito diz respeito. Recebe os dados da chave primária da tabela t_posts.
+
+    estado_fav   TINYINT(1)
+                 Valor por defeito: 0 (não favoritado)
+                 0 = Não favoritado
+                 1 = Favoritado
+
+    data_fav     DATETIME
+                 Data e hora em que o valor do estado_fav passou a 1.
+                 Importante para mostrar nas notificações do utilizador quando recebeu o Favorito.
+                 
+=============================================================================
+                 TABELA   t_privado
+=============================================================================
+
+    id_privado   DOUBLE (sem limite)  PK  AI  NOT NULL
+                 Identifica a relação
+
+    id_post      DOUBLE  FK  NOT NULL
+                 Chave estrangeira que identifica o post (recebe da tabela t_posts o id do post)
+
+id_user_autorizado  DOUBLE  FK   NOT NULL
+                 Chave estrangeira que identifica o utilizador que pode ver o post (recebe da tabela t_users o id do utilizador)
+
+
+                     Define-se quais são os utilizadores que podem ver os posts, estabelecendo uma relação entre as tabelas t_posts e t_privado (usar SELECT DISTINCT e JOIN)
+                     Exemplo prático: https://stackoverflow.com/questions/14449023/mysql-private-posts-display
