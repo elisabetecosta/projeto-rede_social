@@ -3,14 +3,12 @@ Ficheiro: social_bd.sql
 URL: https://github.com/elisabetecosta/projeto-rede_social/blob/main/social_bd.sql
 Data: 21/08/2022
 
-Esta é a segunda versão da nossa base de dados.
-- Houve a necessidade de criar duas tabelas para os utilizadores: uma tem os dados essenciais à gestão da base de dados (t_users), outra tem informação suplementar que pode ser facilmente personalizada pelo utilizador (t_perfis)
-- Agregámos dois níveis de comentátrios aos posts. Assim, a tabela t_posts é "pai" da tabela de comentário t_com1 (child) e "avô" da tabela t_com2 (grandchild).
-- A tabela t_privado define se um post está público ou se está visível para todos os utilizadores. Não diz respeito à privacidade dos dados do utilizador em si mesmos.
+CONSIDERAÇÕES DA VERSÃO 1.2:
 
-CONSIDERAÇÕES:
-1) Uma rede social poderá ter milhões de utilizadores, posts e comentários, razão pela qual o ID de cada uma destas tabelas está definido como DOUBLE ao invés de INT.
-2) Todos os campos estão definidos como NOT NULL, à excepção das fotos na tabela t_posts.
+Esta é a segunda versão da nossa base de dados.
+1) Houve a necessidade de criar duas tabelas para os utilizadores: uma tem os dados essenciais à gestão da base de dados (t_users), outra tem informação suplementar que pode ser facilmente personalizada pelo utilizador (t_perfis)
+2) Agregámos dois níveis de comentátrios aos posts. Assim, a tabela t_posts é "pai" da tabela de comentário t_com1 (child) e "avô" da tabela t_com2 (grandchild).
+3) A tabela t_privado define se um post está público ou se está visível para todos os utilizadores. Não diz respeito à privacidade dos dados do utilizador em si mesmos.
 
 ==================================================
                  TABELA   t_users
