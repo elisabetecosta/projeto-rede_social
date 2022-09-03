@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22-Ago-2022 às 00:02
+-- Tempo de geração: 03-Set-2022 às 21:05
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -26,31 +26,16 @@ USE `social_bd`;
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `t_com1`
+-- Estrutura da tabela `t_comments`
 --
 
-CREATE TABLE `t_com1` (
-  `id_com1` double NOT NULL,
-  `id_autor` double NOT NULL,
+CREATE TABLE `t_comments` (
+  `id_comment` double NOT NULL,
+  `id_author` double NOT NULL,
   `id_post` double NOT NULL,
-  `texto_com1` varchar(255) NOT NULL,
-  `estado_com1` int(11) NOT NULL DEFAULT 0,
-  `data_com1` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `t_com2`
---
-
-CREATE TABLE `t_com2` (
-  `id_com2` double NOT NULL,
-  `id_autor` double NOT NULL,
-  `id_com1` double NOT NULL,
-  `texto_com2` varchar(255) NOT NULL,
-  `estado_com2` int(11) NOT NULL DEFAULT 0,
-  `data_com2` datetime NOT NULL
+  `text_comment` varchar(255) NOT NULL,
+  `status_comment` tinyint(2) NOT NULL DEFAULT 0,
+  `publish_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -61,42 +46,36 @@ CREATE TABLE `t_com2` (
 
 CREATE TABLE `t_favs` (
   `id_fav` double NOT NULL,
-  `id_favoritador` double NOT NULL,
+  `id_user` double NOT NULL,
   `id_post` double NOT NULL,
-  `estado_fav` tinyint(1) NOT NULL DEFAULT 0,
+  `status_fav` tinyint(2) NOT NULL DEFAULT 0,
   `data_fav` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `t_fotos`
+-- Estrutura da tabela `t_follows`
 --
 
-CREATE TABLE `t_fotos` (
-  `id_foto` double NOT NULL,
-  `id_post` double NOT NULL,
-  `imagem` varchar(255) NOT NULL,
-  `estado_img` int(11) NOT NULL DEFAULT 0,
-  `data_pub` datetime NOT NULL
+CREATE TABLE `t_follows` (
+  `id_follow` double NOT NULL,
+  `id_follower` double NOT NULL,
+  `id_followed` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `t_perfis`
+-- Estrutura da tabela `t_media`
 --
 
-CREATE TABLE `t_perfis` (
-  `id_perfil` double NOT NULL,
-  `id_user` double NOT NULL,
-  `nickname` varchar(45) NOT NULL,
-  `avatar_img` varchar(255) NOT NULL,
-  `capa_img` varchar(255) NOT NULL,
-  `genero` char(45) NOT NULL,
-  `data_nasc` date NOT NULL,
-  `perfil_desc` varchar(255) NOT NULL,
-  `data_updated` datetime NOT NULL
+CREATE TABLE `t_media` (
+  `id_media` double NOT NULL,
+  `id_post` double NOT NULL,
+  `type` enum('vid','pic','lnk','txt') NOT NULL,
+  `media` varchar(255) NOT NULL,
+  `status` tinyint(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -108,23 +87,41 @@ CREATE TABLE `t_perfis` (
 CREATE TABLE `t_posts` (
   `id_post` double NOT NULL,
   `id_user` double NOT NULL,
-  `texto` varchar(255) NOT NULL,
-  `id_foto` double DEFAULT NULL,
-  `estado_p` int(11) NOT NULL DEFAULT 0,
-  `privado` int(11) NOT NULL DEFAULT 0,
-  `data_pub` datetime NOT NULL
+  `text` varchar(255) NOT NULL,
+  `status_post` tinyint(2) NOT NULL DEFAULT 0,
+  `private` tinyint(2) NOT NULL DEFAULT 0,
+  `publish_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `t_privado`
+-- Estrutura da tabela `t_private`
 --
 
-CREATE TABLE `t_privado` (
-  `id_privado` double NOT NULL,
+CREATE TABLE `t_private` (
+  `id_private` double NOT NULL,
   `id_post` double NOT NULL,
-  `id_user_autorizado` double NOT NULL
+  `id_authorized_user` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `t_profiles`
+--
+
+CREATE TABLE `t_profiles` (
+  `id_profile` double NOT NULL,
+  `id_user` double NOT NULL,
+  `nickname` varchar(45) NOT NULL,
+  `avatar_pic` varchar(255) NOT NULL,
+  `banner_pic` varchar(255) NOT NULL,
+  `genre` char(45) NOT NULL,
+  `birthdate` date NOT NULL,
+  `profile_title` varchar(20) NOT NULL DEFAULT 'Sobre mim',
+  `profile_desc` varchar(255) NOT NULL,
+  `last_updated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -138,9 +135,9 @@ CREATE TABLE `t_users` (
   `handle_user` varchar(15) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `estado_user` int(11) NOT NULL DEFAULT 0,
-  `data_regis` datetime NOT NULL,
-  `tipo_user` int(11) NOT NULL DEFAULT 0,
+  `status_user` tinyint(2) NOT NULL DEFAULT 0,
+  `regis_date` datetime NOT NULL,
+  `type_user` tinyint(2) NOT NULL DEFAULT 0,
   `obs_mod` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -149,56 +146,57 @@ CREATE TABLE `t_users` (
 --
 
 --
--- Índices para tabela `t_com1`
+-- Índices para tabela `t_comments`
 --
-ALTER TABLE `t_com1`
-  ADD PRIMARY KEY (`id_com1`),
-  ADD KEY `id_autor` (`id_autor`),
+ALTER TABLE `t_comments`
+  ADD PRIMARY KEY (`id_comment`),
+  ADD KEY `id_autor` (`id_author`),
   ADD KEY `id_post` (`id_post`);
-
---
--- Índices para tabela `t_com2`
---
-ALTER TABLE `t_com2`
-  ADD PRIMARY KEY (`id_com2`),
-  ADD KEY `id_autor` (`id_autor`),
-  ADD KEY `id_com1` (`id_com1`);
 
 --
 -- Índices para tabela `t_favs`
 --
 ALTER TABLE `t_favs`
   ADD PRIMARY KEY (`id_fav`),
-  ADD KEY `id_favoritador` (`id_favoritador`),
+  ADD KEY `id_favoritador` (`id_user`),
   ADD KEY `id_post` (`id_post`);
 
 --
--- Índices para tabela `t_fotos`
+-- Índices para tabela `t_follows`
 --
-ALTER TABLE `t_fotos`
-  ADD PRIMARY KEY (`id_foto`),
-  ADD KEY `id_post` (`id_post`);
+ALTER TABLE `t_follows`
+  ADD PRIMARY KEY (`id_follow`),
+  ADD KEY `id_follower` (`id_follower`),
+  ADD KEY `id_followed` (`id_followed`);
 
 --
--- Índices para tabela `t_perfis`
+-- Índices para tabela `t_media`
 --
-ALTER TABLE `t_perfis`
-  ADD PRIMARY KEY (`id_perfil`),
-  ADD KEY `id_user` (`id_user`);
+ALTER TABLE `t_media`
+  ADD PRIMARY KEY (`id_media`),
+  ADD KEY `id_post` (`id_post`);
 
 --
 -- Índices para tabela `t_posts`
 --
 ALTER TABLE `t_posts`
   ADD PRIMARY KEY (`id_post`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_foto` (`id_foto`);
+  ADD KEY `id_user` (`id_user`);
 
 --
--- Índices para tabela `t_privado`
+-- Índices para tabela `t_private`
 --
-ALTER TABLE `t_privado`
-  ADD PRIMARY KEY (`id_privado`);
+ALTER TABLE `t_private`
+  ADD PRIMARY KEY (`id_private`),
+  ADD KEY `id_authorized_user` (`id_authorized_user`),
+  ADD KEY `id_post` (`id_post`);
+
+--
+-- Índices para tabela `t_profiles`
+--
+ALTER TABLE `t_profiles`
+  ADD PRIMARY KEY (`id_profile`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Índices para tabela `t_users`
@@ -211,16 +209,10 @@ ALTER TABLE `t_users`
 --
 
 --
--- AUTO_INCREMENT de tabela `t_com1`
+-- AUTO_INCREMENT de tabela `t_comments`
 --
-ALTER TABLE `t_com1`
-  MODIFY `id_com1` double NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `t_com2`
---
-ALTER TABLE `t_com2`
-  MODIFY `id_com2` double NOT NULL AUTO_INCREMENT;
+ALTER TABLE `t_comments`
+  MODIFY `id_comment` double NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `t_favs`
@@ -229,10 +221,16 @@ ALTER TABLE `t_favs`
   MODIFY `id_fav` double NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `t_fotos`
+-- AUTO_INCREMENT de tabela `t_follows`
 --
-ALTER TABLE `t_fotos`
-  MODIFY `id_foto` double NOT NULL AUTO_INCREMENT;
+ALTER TABLE `t_follows`
+  MODIFY `id_follow` double NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `t_media`
+--
+ALTER TABLE `t_media`
+  MODIFY `id_media` double NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `t_posts`
@@ -241,10 +239,10 @@ ALTER TABLE `t_posts`
   MODIFY `id_post` double NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `t_privado`
+-- AUTO_INCREMENT de tabela `t_private`
 --
-ALTER TABLE `t_privado`
-  MODIFY `id_privado` double NOT NULL AUTO_INCREMENT;
+ALTER TABLE `t_private`
+  MODIFY `id_private` double NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `t_users`
@@ -257,16 +255,10 @@ ALTER TABLE `t_users`
 --
 
 --
--- Limitadores para a tabela `t_com1`
+-- Limitadores para a tabela `t_comments`
 --
-ALTER TABLE `t_com1`
-  ADD CONSTRAINT `t_com1_ibfk_1` FOREIGN KEY (`id_post`) REFERENCES `t_posts` (`id_post`);
-
---
--- Limitadores para a tabela `t_com2`
---
-ALTER TABLE `t_com2`
-  ADD CONSTRAINT `t_com2_ibfk_1` FOREIGN KEY (`id_com1`) REFERENCES `t_com1` (`id_com1`);
+ALTER TABLE `t_comments`
+  ADD CONSTRAINT `t_comments_ibfk_1` FOREIGN KEY (`id_post`) REFERENCES `t_posts` (`id_post`);
 
 --
 -- Limitadores para a tabela `t_favs`
@@ -275,22 +267,41 @@ ALTER TABLE `t_favs`
   ADD CONSTRAINT `t_favs_ibfk_1` FOREIGN KEY (`id_post`) REFERENCES `t_posts` (`id_post`);
 
 --
--- Limitadores para a tabela `t_fotos`
+-- Limitadores para a tabela `t_follows`
 --
-ALTER TABLE `t_fotos`
-  ADD CONSTRAINT `t_fotos_ibfk_1` FOREIGN KEY (`id_post`) REFERENCES `t_posts` (`id_post`);
+ALTER TABLE `t_follows`
+  ADD CONSTRAINT `t_follows_ibfk_1` FOREIGN KEY (`id_follower`) REFERENCES `t_users` (`id_user`);
 
 --
--- Limitadores para a tabela `t_perfis`
+-- Limitadores para a tabela `t_media`
 --
-ALTER TABLE `t_perfis`
-  ADD CONSTRAINT `t_perfis_ibfk_1` FOREIGN KEY (`id_perfil`) REFERENCES `t_users` (`id_user`);
+ALTER TABLE `t_media`
+  ADD CONSTRAINT `t_media_ibfk_1` FOREIGN KEY (`id_post`) REFERENCES `t_posts` (`id_post`);
 
 --
 -- Limitadores para a tabela `t_posts`
 --
 ALTER TABLE `t_posts`
   ADD CONSTRAINT `t_posts_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `t_users` (`id_user`);
+
+--
+-- Limitadores para a tabela `t_private`
+--
+ALTER TABLE `t_private`
+  ADD CONSTRAINT `t_private_ibfk_1` FOREIGN KEY (`id_post`) REFERENCES `t_posts` (`id_post`),
+  ADD CONSTRAINT `t_private_ibfk_2` FOREIGN KEY (`id_authorized_user`) REFERENCES `t_users` (`id_user`);
+
+--
+-- Limitadores para a tabela `t_profiles`
+--
+ALTER TABLE `t_profiles`
+  ADD CONSTRAINT `t_profiles_ibfk_1` FOREIGN KEY (`id_profile`) REFERENCES `t_users` (`id_user`);
+
+--
+-- Limitadores para a tabela `t_users`
+--
+ALTER TABLE `t_users`
+  ADD CONSTRAINT `t_users_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `t_follows` (`id_followed`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
