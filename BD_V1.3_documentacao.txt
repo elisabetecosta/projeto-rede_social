@@ -222,3 +222,18 @@ id_authorized_user  DOUBLE  FK   NOT NULL
 
                      Define-se quais são os utilizadores que podem ver os posts, estabelecendo uma relação entre as tabelas t_posts e t_privado (usar SELECT DISTINCT e JOIN)
                      Exemplo prático: https://stackoverflow.com/questions/14449023/mysql-private-posts-display
+
+=============================================================================
+                 TABELA   t_follows 
+=============================================================================
+
+     id_follow   DOUBLE
+                 Identifica a relação de "seguir" entre dois utilizadores (seguido e seguir)
+
+     id_follower DOUBLE
+		 Chave estrangeira oriúnda da tabela "t_users" e que diz respeito ao "id_user" que clicou no botão de "seguir" e que quer seguir outro utilizador
+
+     id_followed DOUBLE
+		Chave estrangeira oriúnda da tabela "t_users" e que diz respeito ao "id_user" que foi "seguido" pelo utilizador identificado em id_follower
+
+	NOTA: A nível de código um utilizador nunca vai conseguir seguir-se a si próprio, mas mesmo que teoricamente isto fosse possível, não há conflito
