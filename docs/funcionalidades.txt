@@ -1,0 +1,14 @@
+- dashboard
+- perfil
+- publicação de posts
+- comentar em posts de outros
+- upload de fotos
+- seguir outras pessoas
+- favoritos/bookmarks
+- chat
+- sistema de notificações
+- pesquisa avançada por nome, localização, etc
+
+
+
+-area com galeria de jogos (funcionalidade avançada, implementar mais tarde)

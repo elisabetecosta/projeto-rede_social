@@ -1,0 +1,21 @@
+Registo
+- Inserir data de registo e tipo de utilizador de forma automatica na base de dados
+- Validar a confirmação da password
+- Impedir duplicação de email (validação ou alteração de tipo de dado na tabela)
+- Validar idade
+- Validar termos de utilização
+- Validar o preenchimento dos campos
+- Exibir dicas de preenchimento dos campos
+- Dividir formulário em 2 partes
+- Encriptar password
+- Adicionar logo
+- Estilizar com CSS
+
+
+Login 
+- Consultar: https://youtu.be/WysUkUJTinU?t=1529
+- Validar o preenchimento dos campos
+- Implementar validação do lembrar-me
+- Adicionar logo
+- Adicionar imagem do lado direito
+- Estilizar com CSS

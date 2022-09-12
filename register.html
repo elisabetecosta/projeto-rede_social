@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar conta</title>
+    <link href="styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>    
+    <header>
+        <img src="" alt="logo" id="logo">
+        <h1>Criar conta</h1>
+    </header>
+
+    <div class="form">
+        <form name="form-register" action="register.php" method="post">
+            E-mail: <input type="text" size="20" maxlength="50" name="email" required><br><br>
+            Password: <input type="password" size="20" maxlength="255" name="password" required><br><br>
+            Confirmar password: <!--Pesquisar como implementar--><br><br>
+
+            Nome de utilizador: <input type="text" size="20" maxlength="15" name="handle" required><br><br>
+            Nome de perfil: <input type="text" size="20" maxlength="45" name="name" required><br><br>
+            Data de nascimento: <input type="date" size="11" name="birthdate" required><br><br>
+
+            <input type="checkbox" name="terms" value="1" />&nbsp;Aceito os termos de utilização e política de privacidade<br><br><br><br>
+            
+            <input class="btn-submit" type="submit" name="submit" value="Criar conta"><br><br><br><br>
+            <span>Já tens uma conta? Inicia sessão <a href="index.html">aqui</a>.</span>
+        </form>
+    </div>
+</body>
+</html>

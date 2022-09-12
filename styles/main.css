@@ -4,7 +4,7 @@
     --color-hover: #393e46;
     --color-basic: #ffffff;
     --font-title: 'Montserrat', sans-serif;
-    --font-text: 'Open Sans', sans-serif;
+    --font-text: 'Poppins', sans-serif;
 }
 
 body {
@@ -21,9 +21,6 @@ h1 {
     color: var(--color-default);    
 }
 
-.bt-submit {
-    background-color: var(--color-main);
-    color: var(--color-basic);
-    border: none;
-    border-radius: 3px;
+.btn-submit {
+    /*botoes de submissao dos formularios*/
 }
