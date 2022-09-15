@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar conta</title>
     <link href="styles/main.css" rel="stylesheet" type="text/css">
+    <link href="styles/form.css" rel="stylesheet" type="text/css">
+    <script src="scripts/main.js" type="text/javascript"></script>
 </head>
 <body>    
     <header>
@@ -14,18 +16,31 @@
     </header>
 
     <div class="form">
-        <form name="form-register" action="register.php" method="post">
-            E-mail: <input type="text" size="20" maxlength="50" name="email" required><br><br>
-            Password: <input type="password" size="20" maxlength="255" name="password" required><br><br>
-            Confirmar password: <!--Pesquisar como implementar--><br><br>
+        <form name="f_reg" action="register.php" method="post" onsubmit="return validate()">
+            <!--Secção 1 do formulário-->
+            <div class="input-group1">
+                <label class="label" for="email">E-mail </label>
+                <input class="input" type="text" size="20" maxlength="50" name="email" id="email" placeholder="123@email.pt" required><br><br>
+                <label class="label" for="password">Password </label>
+                <input class="input" type="password" size="20" maxlength="255" name="password" id="password" placeholder="********" required><br><br>
+                <label class="label" for="cpassword">Confirmar password </label>
+                <input class="input" type="password" size="20" maxlength="255" name="cpassword" id="cpassword" placeholder="********" required><br><br>
+            </div>
 
-            Nome de utilizador: <input type="text" size="20" maxlength="15" name="handle" required><br><br>
-            Nome de perfil: <input type="text" size="20" maxlength="45" name="name" required><br><br>
-            Data de nascimento: <input type="date" size="11" name="birthdate" required><br><br>
 
-            <input type="checkbox" name="terms" value="1" />&nbsp;Aceito os termos de utilização e política de privacidade<br><br><br><br>
+            <!--Secção 2 do formulário-->
+            <div class="input-group2">
+                <label class="label" for="handle">Nome de utilizador </label>
+                <input class="input" type="text" size="20" maxlength="15" name="handle" id="handle" placeholder="@xata94" required><br><br>
+                <label class="label" for="name">Nome de perfil </label>
+                <input class="input" type="text" size="20" maxlength="45" name="name" id="name" placeholder="Xateada" required><br><br>
+                <label class="label" for="birthdate">Data de nascimento </label>
+                <input class="input" type="date" size="11" name="birthdate" id="birthdate" required><br><br>
+                <input type="checkbox" name="terms" id="terms" value="1" />
+                <label for="terms">&nbsp;Aceito os termos de utilização e política de privacidade</label><br><br><br><br>
+            </div>
             
-            <input class="btn-submit" type="submit" name="submit" value="Criar conta"><br><br><br><br>
+            <input class="btn-submit" type="submit" name="submit" id="submit" value="Criar conta"><br><br><br><br>
             <span>Já tens uma conta? Inicia sessão <a href="index.html">aqui</a>.</span>
         </form>
     </div>

@@ -1,15 +1,25 @@
 Registo
-- Inserir data de registo e tipo de utilizador de forma automatica na base de dados
-- Validar a confirmação da password
-- Impedir duplicação de email (validação ou alteração de tipo de dado na tabela)
-- Validar idade
-- Validar termos de utilização
-- Validar o preenchimento dos campos
-- Exibir dicas de preenchimento dos campos
-- Dividir formulário em 2 partes
-- Encriptar password
-- Adicionar logo
-- Estilizar com CSS
+    Feito:
+    - Inserir data de registo de forma automatica na base de dados
+
+    Por fazer:
+    Consultar:https://www.geeksforgeeks.org/form-validation-using-html-javascript/
+    https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation
+    - Validar o preenchimento dos campos
+    - Validar a confirmação da password
+    - Impedir duplicação de email (validação ou alteração de tipo de dado na tabela)
+    - Validar idade
+    - Validar termos de utilização
+    - Adicionar @ por default na base de dados e no campo do formulario
+    - Adicionar o campo género ao formulário?
+    - Exibir dicas de preenchimento dos campos
+    - Dividir formulário em 2 partes
+    - Encriptar password, estudar sobre como o https encripta todos os dados
+    - Adicionar logo
+    - Estilizar com CSS
+
+
+
 
 
 Login 

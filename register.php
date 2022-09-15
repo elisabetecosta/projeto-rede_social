@@ -26,8 +26,8 @@
 
                 //Cria a instrução sql que insere um novo registo na tabela users
                 $user_query = "INSERT INTO users 
-                (handle, email, password) VALUES 
-                (:handle, :email, :password)";
+                (handle, email, password, regis_date) VALUES 
+                (:handle, :email, :password, NOW())";
 
                 //Faz a ligação entre os dados inseridos no formulário e os campos da tabela 
                 $user_reg = $connection->prepare($user_query);
@@ -54,7 +54,7 @@
                 $profile_reg->execute();
 
                 //Redireciona para a página de Login
-                header("Location: index.html");
+                //header("Location: index.html");
 
             }
 
@@ -62,7 +62,7 @@
                 echo "Erro: Registo não foi efetuado com sucesso!";
 
                 //Redireciona para a página de Login
-                header("Location: index.html");
+                //header("Location: index.html");
             }
 
             //Cria a instrução sql que insere um novo registo com os dados recebidos do formulário através do método POST
