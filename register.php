@@ -64,29 +64,6 @@
                 //Redireciona para a página de Login
                 //header("Location: index.html");
             }
-
-            //Cria a instrução sql que insere um novo registo com os dados recebidos do formulário através do método POST
-            // $sql = "INSERT INTO users (handle, email, password) 
-            // VALUES ('$_POST[handle]', '$_POST[email]', '$_POST[password]')";
-
-            // $sql2 = "INSERT INTO profiles (user_id, name, birthdate)
-            // VALUES (:user_id, '$_POST[name]', '$_POST[birthdate]')";
-
-
-            // // Caso consiga executar a ação, mostra a mensagem de sucesso[apos testes remover if e echo e deixar so o comando mysqli_query]
-            // if (mysqli_query($connection, $sql))
-            // echo "<h3> Registo em users efetuado com sucesso! <h3/>";
-
-            // if (mysqli_query($connection, $sql2))
-            // echo "<h3> Registo em profiles efetuado com sucesso! <h3/>";
-
-
-            
-            //TESTAR PARA ESCREVER MENOS CODIGO E UTILIZAR UMA SO VARIAVEL
-            // mysqli_multi_query($connection, $sql);
-
-
-            //mysqli_close($connection);
         ?>
             
     </body>

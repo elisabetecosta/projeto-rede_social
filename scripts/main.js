@@ -1,59 +1,119 @@
-//Função principal que chama todas as funções de validação
-function validate() {
-    validateFields();
-    //validateEmail(); //verifica se o email é valido e se existe na base de dados 
-    confirmPassword();
-    //validateHandle(); //verifica se o nome de utilizador existe na base de dados 
-    validateAge(); //verifica se o utilizador tem mais do que x anos de idade
-    //validateTerms(); //verifica se o utilizador deu check na caixa de termos
+//Variáveis relativas aos campos do formulário
+const form = document.getElementById('regForm');
+const email = document.getElementById('email');
+const pass = document.getElementById('pass');
+const cPass = document.getElementById('cPass');
+const handle = document.getElementById('handle');
+const profileName = document.getElementById('profileName');
+const birthdate = document.getElementById('birthdate');
+
+//Executa o que está dentro da função quando o formulário for submetido
+form.addEventListener('submit', (event) => {
+    //Impede que a página recarregue
+    event.preventDefault(); 
+
+    checkInputs();
+});
+
+
+//Função que atribui a classe error e exibe a mensagem de erro
+function errorValidation(input, message) {
+    //O parentElement retorna o pai do input, que é a div com a classe form-control
+    const formControl = input.parentElement; 
+    const small = formControl.querySelector('small');
+
+    //Substitui a mensagem por default pela passada como parâmetro na função
+    small.innerText = message;
+
+    //Reatribui a classe form-control error à variável formControl
+    formControl.className = 'form-control error';
 }
 
 
+//Função que atribui a classe de success
+function successValidation(input) {
+    const formControl = input.parentElement; 
+    formControl.className = 'form-control success';
+}
 
-//Função que verifica se todos campos foram preenchidos
-function validateFields() {
-    //Cria as variáveis dos respetivos campos
-    let email = document.f_reg.email.value;
-    let password = document.f_reg.password.value;
-    
 
-    //Estrutura condicional que verifica se todos os campos foram preenchidos 
-    if(email == "") {
-        window.alert("Deve inserir um email válido!"); //substituir por aviso ao lado do campo
+function checkInputs() {
+    //O método Trim corta os espaços em branco e devolve apenas o texto
+    const emailValue = email.value.trim();
+    const passValue = pass.value.trim();
+    const cPassValue = cPass.value.trim();
+    const handleValue = handle.value.trim();
+    const profileNameValue = profileName.value.trim();
+    const birthdateValue = birthdate.value.trim();
+
+    //Se o campo estiver vazio ou os dados inseridos não forem válidos chama a função errorValidation, caso contrário chama a função successValidation
+    if(emailValue === '') {
+        errorValidation(email, 'Este campo não pode ficar vazio!');
         email.focus();
-        return false;
+
+    } else {
+        successValidation(email);
     }
 
-    else if (password == "") {
-        password.focus();
-        return false;
+
+    if(passValue === '') {
+        errorValidation(pass, 'Este campo não pode ficar vazio!');
+        pass.focus();
+
+    } else if(passValue.length < 8) {
+        errorValidation(pass, 'A palavra-passe deve ter pelo menos 8 caracteres!');
+        pass.focus();
+
+    } else {
+        successValidation(pass);
     }
 
-    else {
-        return true;
+
+    if(cPassValue === '') {
+        errorValidation(cPass, 'Este campo não pode ficar vazio!');
+        cPass.focus();
+
+    } else if(cPassValue != passValue) {
+        errorValidation(cPass, 'As palavras-passe não são iguais!');
+        cPass.focus();
+
+    } else {
+        successValidation(cPass);
+    }
+
+
+    if(handleValue === '') {
+        errorValidation(handle, 'Este campo não pode ficar vazio!');
+        handle.focus();
+
+    } else {
+        successValidation(handle);
+    }
+
+
+    if(profileNameValue === '') {
+        errorValidation(profileName, 'Este campo não pode ficar vazio!');
+        profileName.focus();
+
+    } else {
+        successValidation(profileName);
+    }
+
+
+    if(birthdateValue === '') {
+        errorValidation(birthdate, 'Este campo não pode ficar vazio!');
+        birthdate.focus();
+
+    } else {
+        validateAge(birthdateValue);
     }
 }
-
-
-
-//Função que compara as passwords e só permite que o formulário seja submetido se elas forem iguais
-function confirmPassword() {
-    if(document.f_reg.cpassword != document.f_reg.password) {
-        window.alert("As passwords não coincidem!");
-        document.f_reg.cpassword.focus();
-    }
-
-    else {
-        return true;
-    }
-}
-
 
 
 //Função que verifica se o utilizador é maior de idade
-function validateAge() {
-    let birthdate = document.f_reg.birthdate.value; //recebe o valor do input
-    let date = new Date(birthdate); //converte para o formato de data
+function validateAge(input) {
+    //Converte o valor do input para o formato de data
+    let date = new Date(input);
     
     //Calcula a diferença em meses com a data atual
     let month_diff = Date.now() - date.getTime();  
@@ -69,13 +129,9 @@ function validateAge() {
       
     //Verifica se o utilizador tem menos de 18 anos
     if(age < 18) {
-        window.alert("Tens de ter pelo menos 18 anos para te registares no nosso site!");
-        return false;
-    }
-    else {
-        return true;
-    }
+        errorValidation(birthdate, 'Não é permitido o registo de menores de 18!');
 
-
-    //https://www.javatpoint.com/calculate-age-using-javascript
+    } else {
+        successValidation(birthdate);
+    }
 }

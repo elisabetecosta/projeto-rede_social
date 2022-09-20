@@ -1,17 +1,20 @@
+Consultar:https://www.geeksforgeeks.org/form-validation-using-html-javascript/
+https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation
+//https://www.youtube.com/watch?v=FnLcuEYIqZw
+//https://www.youtube.com/playlist?list=PLmY5AEiqDWwBcg9x20NXof8EMPiUGfWr7
+
 Registo
     Feito:
     - Inserir data de registo de forma automatica na base de dados
-
-    Por fazer:
-    Consultar:https://www.geeksforgeeks.org/form-validation-using-html-javascript/
-    https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation
     - Validar o preenchimento dos campos
     - Validar a confirmação da password
-    - Impedir duplicação de email (validação ou alteração de tipo de dado na tabela)
     - Validar idade
+
+    Por fazer:
+    - Validar o tipo de input (email, numeros, etc, utilizar o geeksforgeeks)
+    - Impedir duplicação de email e handle(validação ou alteração de tipo de dado na tabela)
     - Validar termos de utilização
     - Adicionar @ por default na base de dados e no campo do formulario
-    - Adicionar o campo género ao formulário?
     - Exibir dicas de preenchimento dos campos
     - Dividir formulário em 2 partes
     - Encriptar password, estudar sobre como o https encripta todos os dados
