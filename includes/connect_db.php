@@ -13,7 +13,8 @@
         $connection = new PDO("mysql:host=$server;dbname=" . $db, $user, $password);
 
         //echo "Conexão à base de dados realizada com sucesso!";
-
+    
+    //Devolve uma mensagem de erro se não conseguir conectar-se à base de dados
     } catch(PDOException $error) {
 
         echo "Erro: Conexão à base de dados não foi realizada com sucesso! Erro obtido: " . $error->getMessage();

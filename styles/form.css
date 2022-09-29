@@ -68,6 +68,18 @@ h1 {
     padding: 15px;
 }
 
+.form-control.terms {
+    display: block;
+}
+
+.terms input {
+    flex-basis: 2%;
+}
+
+.terms label {
+    color: #000000;
+}
+
 .form-control.success input {
     border: 3px solid #4ECA64;
 }
@@ -118,6 +130,7 @@ h1 {
     font-weight: 600;
     width: 100%;
     margin-top: 5px;
+    margin-bottom: 10px;
     cursor: pointer;
 }
 
