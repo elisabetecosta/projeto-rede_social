@@ -14,16 +14,15 @@ Registo
     - Impedir duplicação de email e handle
 
     Por fazer:
-    - Definir número mínimo e tipo de caracteres para o handle
+    - Definir número mínimo e tipo de caracteres para o handle (letras, numeros, _ , -) / minimo 5 maximo 15
     - Adicionar @ por default na base de dados e no campo do formulario
-    - Exibir dicas de preenchimento dos campos (talvez não seja necessário por causa das validações)
     - Validar formulário também através de html e php para garantir a integridade dos dados (o utilizador pode desativar o javascript)
-    - Encriptar password, estudar sobre como o https encripta todos os dados
-    - Dividir formulário em 2 partes (https://formvalidation.io/guide/examples/multiple-steps-wizard/)
+    - Dividir formulário em 2 partes
     - Adicionar logo
     - Resolver problema dos icones svg que não são exibidos
     - Estilizar com CSS
     - Enviar e-mail com link de confirmação do registo (deixar pra mais tarde)
+    - Encriptar password, estudar sobre como o https encripta todos os dados
 
 
 Login 

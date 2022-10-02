@@ -18,12 +18,14 @@
     $handle_result = $handle_check->rowCount();
 
     //Se não existir nenhum registo, devolve uma string de texto vazia
-    if($handle_result == 0) {
+    if($handle_result == 0) 
+    {
         echo "";
     }
 
     //Caso contrário, devolve uma mensagem de erro
-    else {
+    else 
+    {
         echo "Este nome de utilizador já se encontra registado!";
     }
 ?>

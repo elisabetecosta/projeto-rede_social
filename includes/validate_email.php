@@ -18,12 +18,14 @@
     $email_result = $email_check->rowCount();
 
     //Se não existir nenhum registo, devolve uma string de texto vazia
-    if($email_result == 0) {
+    if($email_result == 0) 
+    {
         echo "";
     }
 
     //Caso contrário, devolve uma mensagem de erro
-    else {
+    else 
+    {
         echo "Este endereço de e-mail já se encontra registado!";
     }
 ?>
