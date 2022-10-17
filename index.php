@@ -6,7 +6,7 @@ session_start();
 ob_start();
 
 //Estabelece a conexão à base de dados
-include_once 'includes/connect_db.php';
+include_once 'server/includes/connect_db.php';
 
 //Recebe os dados do formulário
 $data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
@@ -80,7 +80,7 @@ if (!empty($data['submitBtn'])) {
             if ($data['password'] == $user_row['password']) {
                 $_SESSION['user_id'] = $user_row['user_id'];
                 $_SESSION['name'] = $user_row['name'];
-                header("Location: profile.php");
+                header("Location: server/profile.php");
                 //echo "Utilizador com sessão iniciada!";
             } else {
                 $errors['password'] = "<p style='color: red;'>E-mail ou palavra-passe inválidos!</p>";
@@ -151,7 +151,7 @@ if (!empty($data['submitBtn'])) {
                     <span>&#x1F6C8; <a href="#">Esqueci-me da password</a></span><br><br>
 
                     <button type="submit" name="submitBtn" id="submitBtn" value="Iniciar sessão">Iniciar sessão</button><br><br>
-                    <span>Ainda não tens uma conta? Regista-te <a href="register.php">aqui</a>.</span>
+                    <span>Ainda não tens uma conta? Regista-te <a href="server/register.php">aqui</a>.</span>
                 </form>
             </div>
         </div>
