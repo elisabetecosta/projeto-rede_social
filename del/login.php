@@ -1,66 +1,69 @@
-<!DOCTYPE html>
-<html lang="pt">
-    <head>
-        <meta charset="UTF-8">
-        <title>Iniciar sessão</title>
-        <link href="styles/main.css" rel="stylesheet" type="text/css">
-    </head>
-    
-    <body>
-        <?php
-            include 'includes/connect_db.php';
+<?php
+    //Inicia ou recupera a atual sessão
+    session_start();
 
-            // Verifica se existe a sessão
-            if (session_status() !== PHP_SESSION_ACTIVE) 
+    //Inicia o buffer e bloqueia qualquer saída para o navegador para evitar erros de redirecionamento
+    ob_start();
+
+    //Estabelece a conexão à base de dados
+    include_once 'includes/connect_db.php';
+
+    //Recebe os dados do formulário
+    $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
+    //Verifica se o utilizador clicou no botão de submissão do formulário
+    if(!empty($dados['submitBtn'])) 
+    {
+        //var_dump($dados);
+
+        //Cria a instrução SQL que seleciona o utilizador correspondente ao inserido no formulário
+        $user_query = "SELECT user_id, email, password 
+        FROM users 
+        WHERE email = :email 
+        LIMIT 1";
+
+        //A base de dados prepara a query
+        $user_result = $connection->prepare($user_query);
+
+        //Faz a ligação entre os dados inseridos no formulário e os campos da tabela
+        $user_result->bindParam(':email', $dados['email'], PDO::PARAM_STR);
+
+        //Executa a query
+        $user_result->execute();
+
+        //Verifica se os dados coincidem e se o utilizador existe na base de dados
+        if(($user_result) AND ($user_result->rowCount() != 0)) 
+        {
+            //Procura o utilizador e devolve o resultado
+            $user_row = $user_result->fetch(PDO::FETCH_ASSOC);
+
+            //var_dump($user_row);
+
+            //Verifica se a palavra-passe inserida corresponde à armazenada na base de dados
+            if($dados['password'] == $user_row['password']) 
             {
-
-                // Cria a instrução sql para adicionar
-                $sql = "SELECT * FROM users WHERE
-                user_email = '$_POST[email]'";
-
-                $result = mysqli_query($connection, $sql) or die (mysqli_error($connection));
-                $lign = mysqli_fetch_assoc($result);
-
-                if (strcmp($_POST['password'], $lign['password'])==0)
-                {
-                    echo "<h2>Login efetuado com sucesso!</h2>";
-
-                    session_start();
-                    $_SESSION['user_id']=$lign['user_id'];
-                    $_SESSION['user_email']=$lign['user_email'];
-                    header('Location: login2.php');
-
-                    ?>
-
-                    <input type="button" value="Colocar Post" onclick="window.open('inserirP.php', '_self')">
-                    <input type="button" value="Listar Posts" onclick="window.open('listarP.php', '_self')">
-                    <input type="button" value="Meus Posts" onclick="window.open('meusP.php', '_self')">
-
-                    <?php
-                }
-                    else
-                    {
-                        echo "<h2>Dados de login inválidos!</h2>";
-                    } // else da verificação da variável de sessão
-                    
-            } // fecha o if da variável sessão
-
-            else
-            {
-                echo "<h2>Bem-vindo " .$lign['name'] ."!</h2>";
-                ?>
-
-                <!--REDIRECIONA PARA A PAGINA DE PERFIL-->
-
-                <?php
-                //fim do else da verificação da sessão
-            }
-
-            mysqli_close($connection);
-            ?>
-
-            <input type="button" value="Voltar a tentar" onclick="window.open('index.html', '_self')">
-            <input type="button" value="Criar conta" onclick="window.open('register.html', '_self')">
+                $_SESSION['user_id'] = $user_row['user_id'];
+                $_SESSION['name'] = $user_row['name'];
+                header("Location: profile.php");
+                //echo "Utilizador com sessão iniciada!";
+            } 
             
-    </body>
-</html>
+            else {
+                $_SESSION['msg'] = "<small style='color: red'>Erro: E-mail ou palavra-passe inválidos!</small>";
+            }
+        } 
+        
+        else 
+        {
+            $_SESSION['msg'] = "<small style='color: red'>Erro: E-mail ou palavra-passe inválidos!</small>";
+        }        
+    }
+
+
+    //Se a a variável de mensagem tiver sido iniciada, imprime o que está dentro e depois remove a variável
+    if(isset($_SESSION['msg'])) 
+    {
+        echo $_SESSION['msg'];
+        unset($_SESSION['msg']);
+    }
+?>

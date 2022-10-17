@@ -1,4 +1,33 @@
-Consultar:https://www.geeksforgeeks.org/form-validation-using-html-javascript/
+ESTRUTURA DE PASTAS
+-root
+    -del 
+    -docs
+    -images
+    -scripts
+    -server
+        -ajax
+            -validate_email
+            -validate_handle
+            -outros ficheiros de requesicoes 
+        -includes
+            -connect_db.php
+            -validate.php
+            -base de dados??
+            -outros ficheiros que sejam para incluir dentro de outros ficheiros
+        -register.php
+        -login.php
+        -logout.php
+        -profile.php
+        -php files in general
+    -styles
+    -index
+
+
+
+
+Consultar:
+https://youtu.be/WysUkUJTinU?t=1529
+https://www.geeksforgeeks.org/form-validation-using-html-javascript/
 https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation
 https://www.youtube.com/watch?v=FnLcuEYIqZw
 https://www.youtube.com/playlist?list=PLmY5AEiqDWwBcg9x20NXof8EMPiUGfWr7
@@ -12,14 +41,13 @@ Registo
     - Validar o tipo de input do email utilizando regex
     - Validar termos de utilização
     - Impedir duplicação de email e handle
+    - Definir número mínimo e tipo de caracteres para o handle (letras, numeros, _ , -) / minimo 5 maximo 15
+    - Validar formulário através de javascript e php para garantir a integridade dos dados (o utilizador pode desativar o javascript)
 
     Por fazer:
-    - Definir número mínimo e tipo de caracteres para o handle (letras, numeros, _ , -) / minimo 5 maximo 15
     - Adicionar @ por default na base de dados e no campo do formulario
-    - Validar formulário também através de html e php para garantir a integridade dos dados (o utilizador pode desativar o javascript)
     - Dividir formulário em 2 partes
     - Adicionar logo
-    - Resolver problema dos icones svg que não são exibidos
     - Estilizar com CSS
     - Enviar e-mail com link de confirmação do registo (deixar pra mais tarde)
     - Encriptar password, estudar sobre como o https encripta todos os dados
@@ -27,10 +55,9 @@ Registo
 
 Login 
     Feito:
+        - Validações em javascript e php
 
     Por fazer:
-        - Consultar: https://youtu.be/WysUkUJTinU?t=1529
-        - Validar o preenchimento dos campos
         - Implementar validação do lembrar-me
         - Adicionar logo
         - Adicionar imagem do lado direito

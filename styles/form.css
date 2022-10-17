@@ -1,8 +1,6 @@
 /*Estilos dos formulários*/
 /* https://uiverse.io/ */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -89,19 +87,21 @@ h1 {
 }
 
 .form-control i {
-    height: 5px;
-    width: 5px;
+    height: 10px;
+    width: 10px;
 }
 
-.form-control.error i.img-error {
+.form-control.error i.fa-circle-xmark {
     visibility: visible;
+    color: #DB5A5A;
 }
 
-.form-control.success i.img-success {
+.form-control.success i.fa-circle-check {
     visibility: visible;
+    color: #4ECA64;
 }
 
-.form-control.error small{
+.form-control.error small {
     color: #DB5A5A;
     visibility: visible;
 }

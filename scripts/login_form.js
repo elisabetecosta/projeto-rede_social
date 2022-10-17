@@ -1,12 +1,7 @@
 //Variáveis relativas aos campos do formulário
-const form = document.getElementById('regForm');
+const form = document.getElementById('loginForm');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
-const passwordTwo = document.getElementById('passwordTwo');
-const handle = document.getElementById('handle');
-const profileName = document.getElementById('profileName');
-const birthdate = document.getElementById('birthdate');
-const terms = document.getElementById('terms');
 
 
 //Executa o que está dentro da função quando um input perde o foco
@@ -47,16 +42,9 @@ function checkInputs() {
     //O método Trim corta os espaços em branco e devolve apenas o texto
     const emailValue = email.value.trim();
     const passwordValue = password.value.trim();
-    const passwordTwoValue = passwordTwo.value.trim();
-    const handleValue = handle.value.trim();
-    const profileNameValue = profileName.value.trim();
-    const birthdateValue = birthdate.value.trim();
 
     //Javascript regex que valida o formato de e-mail
     const regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;
-
-    //Javascript regex que valida o formato do nome de utilizador
-    const regHandle = /^[A-Za-z][A-Za-z0-9_-]{5,15}$/g;
 
 
     //Se o campo estiver vazio ou os dados inseridos não cumprirem com os requisitos chama a função errorValidation, caso contrário chama a função successValidation
@@ -67,111 +55,23 @@ function checkInputs() {
     } else if (!regEmail.test(emailValue)) {
         errorValidation(email, 'Insira um endereço de e-mail válido!');
         return false;
+    } 
 
-    } else {
-        checkEmail(email, emailValue);
-    }
 
     if (passwordValue === '') {
         errorValidation(password, 'Este campo não pode ficar vazio!');
         return false;
 
-    } else if (passwordValue.length < 8) {
-        errorValidation(password, 'A palavra-passe deve ter pelo menos 8 caracteres!');
-        return false;
-
     } else {
-        successValidation(password);
-    }
-
-
-    if (passwordTwoValue === '') {
-        errorValidation(passwordTwo, 'Este campo não pode ficar vazio!');
-        return false;
-
-    } else if (passwordTwoValue != passwordValue) {
-        errorValidation(passwordTwo, 'As palavras-passe não são iguais!');
-        return false;
-
-    } else {
-        successValidation(passwordTwo);
-    }
-
-
-    if (handleValue === '') {
-        errorValidation(handle, 'Este campo não pode ficar vazio!');
-        return false;
-
-     } else if (!regHandle.test(handleValue)) {
-        errorValidation(handle, 'Este campo deve conter entre 5 e 15 caracteres (a-Z, 0-9, _, -)');
-         return false;
-
-    } else {
-        checkHandle(handle, handleValue);
-    }
-
-
-    if (profileNameValue === '') {
-        errorValidation(profileName, 'Este campo não pode ficar vazio!');
-        return false;
-
-    } else {
-        successValidation(profileName);
-    }
-
-
-    if (birthdateValue === '') {
-        errorValidation(birthdate, 'Este campo não pode ficar vazio!');
-        return false;
-
-    } else {
-        validateAge(birthdateValue);
-    }
-
-
-    if (terms.checked) {
-        successValidation(terms);
-
-    } else {
-        errorValidation(terms, 'Tem de aceitar os termos para concluir o registo!');
-        return false;
+        checkUser(password, emailValue, passwordValue);
     }
 
     return true;
 }
 
 
-//Função que verifica se o utilizador é maior de idade
-function validateAge(input) {
-    //Converte o valor do input para o formato de data
-    let date = new Date(input);
-
-    //Calcula a diferença em meses com a data atual
-    let month_diff = Date.now() - date.getTime();
-
-    //Converte a difença em formato de data
-    let age_dt = new Date(month_diff);
-
-    //Extrai o ano da data
-    let year = age_dt.getUTCFullYear();
-
-    //Calcula a idade do utilizador  
-    let age = Math.abs(year - 1970);
-
-    //Verifica se o utilizador tem menos de 18 anos
-    if (age < 18) {
-        errorValidation(birthdate, 'Não é permitido o registo de menores de 18!');
-        return false;
-
-    } else {
-        successValidation(birthdate);
-        return true;
-    }
-}
-
-
-//Função que verifica se o e-mail inserido já se encontra registado
-function checkEmail(input, inputValue) {
+//Função que verifica se o utilizador se encontra registado
+function checkUser(input, inputValue1, inputValue2) {
     //Variável que permite que o browser comunique com o servidor
     let request;
 
@@ -200,10 +100,10 @@ function checkEmail(input, inputValue) {
     }
 
     //Variável que contém o endereço do ficheiro php responsável pelo processamento dos dados
-    let url = "includes/validate_email.php";
+    let url = "includes/validate_user.php";
 
     //Variável que armazena os dados inseridos pelo utilizador para serem enviados para o ficheiro php
-    let vars = "email=" + inputValue;
+    let vars = "email=" + inputValue1 + "&password=" + inputValue2;
 
     //Função que define o método (post ou get), o url e o tipo de pedido (true para pedidos assíncronos)
     request.open("POST", url, true);
@@ -223,7 +123,6 @@ function checkEmail(input, inputValue) {
             //Se a resposta não estiver vazia, significa que recebeu uma mensagem de erro
             if(return_data !== '') {
                 errorValidation(input, return_data);
-                //input.focus();
                 return false;
 
             //Caso contrário, pode chamar a função successValidation
@@ -234,59 +133,6 @@ function checkEmail(input, inputValue) {
     }
 
     //Envia os dados para serem processados pelo ficheiro php
-    request.send(vars);
-
-    return true;
-}
-
-
-//Função que verifica se o handle inserido já se encontra registado
-function checkHandle(input, inputValue) {
-
-    let request;
-
-    try {
-        request = new XMLHttpRequest();
-    }
-
-    catch (tryMicrosoft) {
-
-        try {
-            request = new ActiveXObject("Msxml2.XMLHTTP");
-        }
-
-        catch (otherMicrosoft) {
-            try {
-                request = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-
-            catch (failed) {
-                request = null;
-            }
-        }
-    }
-
-    let url = "includes/validate_handle.php";
-    let vars = "handle=" + inputValue;
-    request.open("POST", url, true);
-
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-    request.onreadystatechange = function () {
-        if (request.readyState == 4 && request.status == 200) {
-
-            let return_data =  request.responseText;
-
-            if(return_data !== '') {
-                errorValidation(input, return_data);
-                //input.focus();
-                return false;
-            } else {
-                successValidation(input);
-            }
-        }
-    }
-
     request.send(vars);
 
     return true;

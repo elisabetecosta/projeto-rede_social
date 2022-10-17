@@ -11,9 +11,10 @@
 
 body {
     background-color: var(--color-basic);
+    font-family: 'Poppins', sans-serif;
 }
 
-.container {
+.header {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -21,8 +22,4 @@ body {
 
 h1 {
     color: var(--color-default);    
-}
-
-.btn-submit {
-    /*botoes de submissao dos formularios*/
 }
