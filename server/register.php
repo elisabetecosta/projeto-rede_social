@@ -206,9 +206,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar conta</title>
     <!--Importação do ficheiro css-->
-    <link href="styles/form.css" rel="stylesheet" type="text/css">
+    <link href="../styles/form.css" rel="stylesheet" type="text/css">
     <!--Importação do ficheiro javascript-->
-    <script src="./scripts/registry_form.js" type="text/javascript" defer></script>
+    <script src="../scripts/registry_form.js" type="text/javascript" defer></script>
 
     <!--Importação das fontes-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -220,7 +220,7 @@
 
 <body>
     <header class="header">
-        <img src="images/logo.svg" alt="logo" id="logo">
+        <img src="../images/logo.svg" alt="logo" id="logo">
     </header>
 
     <div class="container">
@@ -291,7 +291,7 @@
             </div>
 
             <button type="submit" name="submitBtn" id="submitBtn" value="Criar conta">Criar conta</button>
-            <span>Já tens uma conta? Inicia sessão <a href="index.php">aqui</a>.</span>
+            <span>Já tens uma conta? Inicia sessão <a href="../index.php">aqui</a>.</span>
         </form>
     </div>
 </body>

@@ -1,6 +1,6 @@
 <?php
     //Estabelece a conexão à base de dados
-    include_once 'connect_db.php';
+    include_once '../includes/connect_db.php';
 
     //Variáveis que recebem os dados enviados através dos inputs
     $email= $_POST['email'];

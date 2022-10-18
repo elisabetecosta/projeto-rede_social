@@ -100,7 +100,7 @@ function checkUser(input, inputValue1, inputValue2) {
     }
 
     //Variável que contém o endereço do ficheiro php responsável pelo processamento dos dados
-    let url = "includes/validate_user.php";
+    let url = "../server/ajax/validate_user.php";
 
     //Variável que armazena os dados inseridos pelo utilizador para serem enviados para o ficheiro php
     let vars = "email=" + inputValue1 + "&password=" + inputValue2;

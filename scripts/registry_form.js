@@ -200,7 +200,7 @@ function checkEmail(input, inputValue) {
     }
 
     //Variável que contém o endereço do ficheiro php responsável pelo processamento dos dados
-    let url = "includes/validate_email.php";
+    let url = "../server/ajax/validate_email.php";
 
     //Variável que armazena os dados inseridos pelo utilizador para serem enviados para o ficheiro php
     let vars = "email=" + inputValue;
@@ -266,7 +266,7 @@ function checkHandle(input, inputValue) {
         }
     }
 
-    let url = "includes/validate_handle.php";
+    let url = "../server/ajax/validate_handle.php";
     let vars = "handle=" + inputValue;
     request.open("POST", url, true);
 

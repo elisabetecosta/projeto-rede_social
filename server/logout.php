@@ -10,5 +10,5 @@
     $_SESSION['msg'] = "<small style='color: green'>Sessão terminada com sucesso!</small>";
 
     //Após terminar a sessão, redireciona para o index
-    header("Location: index.php");
+    header("Location: ../index.php");
 ?>

@@ -8,6 +8,6 @@
     //Verifica se existem as variáveis de sessão, e se não existirem redireciona para uma página de erro
     if((!isset ($_SESSION['user_id']) == true) AND (!isset ($_SESSION['handle']) == true))
     {
-        header("Location: access_error.html");
+        header("Location: ../access_error.html");
     }
 ?>
