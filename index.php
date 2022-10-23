@@ -80,7 +80,7 @@ if (!empty($data['submitBtn'])) {
             if ($data['password'] == $user_row['password']) {
                 $_SESSION['user_id'] = $user_row['user_id'];
                 $_SESSION['name'] = $user_row['name'];
-                header("Location: server/profile.php");
+                header("Location: server/posts.php");
                 //echo "Utilizador com sessão iniciada!";
             } else {
                 $errors['password'] = "<p style='color: red;'>E-mail ou palavra-passe inválidos!</p>";
