@@ -32,7 +32,7 @@ include '../components/head.php';
 
 //Gera a barra de navegação superior [navbar.php] com os dados da variável $userData e com os seguintes links:
 $homeURL = "main.php";              //link do logotipo XATA
-$profileURL = "profile.php";        //link do avatar do user (avatar pequenino)
+$profileURL = "../server/posts.php";        //link do avatar do user (avatar pequenino)
 $notifsURL = "notifications.php";   //link do icone de notificações (sineta)
 $configURL = "config.php";          //link do ícone de configurações (roda dentada)
 $logoutURL = "logout.php";          //link do botão de logout
@@ -133,16 +133,8 @@ include '../components/navbar.php';
         if (!$full) $string = array_slice($string, 0, 1);
         return $string ? implode(', ', $string) : 'agora mesmo';
     }
-
-    //Função que impede o utilizador de publicar um post vazio ou com mais do que 255 caracteres em Javacript 
+   
     
-
-
-
-    include '../components/profile_content.php';
-    // O script AJAX que permite publicar o post está em: ./scripts/newpost.js
-    // Optámos por este método para submeter dados sem sair da mesma página e para mostrar o novo post imediatamente, juntamente com outros
-        
     // Falta:  
     // 1) Impedir o utilizador de publicar um post vazio ou com mais do que 255 caracteres em Javacript (client side) e PHP (server side)
     // 2) Adicionar a funcionalidade de Lazy loading em JQuery/AJAX/PHP para carregar mais posts em tempo real
@@ -152,7 +144,7 @@ include '../components/navbar.php';
     // include 'footer.php'
 
     ?>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="../scripts/newpost.js"></script>
+<!--         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="../scripts/newpost.js"></script> -->
 </body>
 </html>
