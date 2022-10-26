@@ -5,6 +5,8 @@ include 'includes/validate.php';
 //Estabelece a conexão com a base de dados
 include_once 'includes/connect_db.php';
 
+//============== PARA INICIAR A SESSÃO DO UTILIZADOR =================
+
 //Acede aos dados do utilizador com sessão iniciada
 $getProfile = $connection->prepare('SELECT users.handle, profiles.name, profiles.avatar, profiles.cover, profiles.title, profiles.desc
                                     FROM users
@@ -13,37 +15,34 @@ $getProfile = $connection->prepare('SELECT users.handle, profiles.name, profiles
                                     WHERE users.user_id = :uid');
 $getProfile->bindParam(':uid', $_SESSION['user_id']);
 $getProfile->execute();
-$userData = $getProfile->fetch(PDO::FETCH_ASSOC);
+$session = $getProfile->fetch(PDO::FETCH_ASSOC);
     /*A variável $userData contém:
-                                $userData=['user_id'] = ID do utilizador
-                                $userData=['handle'] = @username do utilizador
-                                $userData=['name'] = Nome escolhido pelo do utilizador
-                                $userData=['avatar'] = avatar do utilizador (avatar.png)
-                                $userData=['cover'] = capa do utilizador (header_photo.png)
-    */ 
+                                $session['user_id'] = ID do utilizador
+                                $session['handle'] = @username do utilizador
+                                $session['name'] = Nome escolhido pelo do utilizador
+                                $session['avatar'] = avatar do utilizador (avatar.png)
+                                $session['cover'] = capa do utilizador (header_photo.png)
+*/ 
 
-//============== O HTML PROPRIAMENTE DITO COMEÇA AQUI =================
-//Gera o cabeçalho do HTML [head.php]
-$language = "pt-PT";
-$charset = "UTF-8";
-$metaTags = "xata, perfil, rede social";
-$title = "{$userData['name']} ({$userData['handle']})"; //Título da página = Nome do utilizador (@handle)
-include '../components/head.php';
-
+//============== LINKS DA BARRA DE NAVEGAÇÃO SUPERIOR =================
 //Gera a barra de navegação superior [navbar.php] com os dados da variável $userData e com os seguintes links:
 $homeURL = "main.php";              //link do logotipo XATA
 $profileURL = "../server/posts.php";        //link do avatar do user (avatar pequenino)
 $notifsURL = "notifications.php";   //link do icone de notificações (sineta)
 $configURL = "config.php";          //link do ícone de configurações (roda dentada)
 $logoutURL = "logout.php";          //link do botão de logout
-include '../components/navbar.php';    
+
+
+
+//Tenho de fazer uma função de maneira a que as variáveis dos componentes inicializem em função do handle
 
 //============== O PERFIL DO UTILIZADOR COMEÇA AQUI =================
+
     //Cria a header do perfil do utilizador (Capa e Avatar)
-    $sessionHandle = $userData['handle'];
-    $sessionCover = $userData['cover'];
-    $sessionAvatar = $userData['avatar'];
-    $sessionName =  $userData['name'];
+    $handle = $session['handle'];
+    $cover = $session['cover'];
+    $avatar = $session['avatar'];
+    $name =  $session['name'];
 
     //Query que acede ao número total de Publicações deste utilizador
     $getPostCount = $connection->prepare('SELECT COUNT(post_id) AS posts FROM posts WHERE user_id = :uid');
@@ -74,14 +73,13 @@ include '../components/navbar.php';
     $faves = $counterFaves['faves'];                //Número de favoritos
     $following = $counterFollowing['following'];    //Número de users que segue
     $followers = $counterFollowers['followers'];    //Número de seguidores
-    include '../components/profile_header.php';
+
 
 //============== O CONTEÚDO ALTERNA ENTRE PUBLICAÇÕES, FAVORITOS, SEGUINDO E SEGUIDORES COM UM CLIQUE NAS STATS  =================
 
-   //==== Caixa de apresentação "Sobre mim"
-   $title = $userData['title'];          // "Sobre mim" ou o título personalizado pelo utilizador
-   $description = $userData['desc'];     // Descrição do perfil escrita pelo utilizador
-   $uid = $_SESSION['user_id'];
+    //==== Caixa de apresentação "Sobre mim"
+    $desc_title = $session['title'];     // "Sobre mim" ou o título personalizado pelo utilizador
+    $description = $session['desc'];     // Descrição do perfil escrita pelo utilizador
 
     //==== Galeria de imagens
     //Carrega apenas as últimas 4 imagens publicadas por este utilizador (usamos a data de publicação/actualização da tabela posts)
@@ -133,17 +131,6 @@ include '../components/navbar.php';
         if (!$full) $string = array_slice($string, 0, 1);
         return $string ? implode(', ', $string) : 'agora mesmo';
     }
-    
-    // Falta:  
-    // 1) Impedir o utilizador de publicar um post vazio ou com mais do que 255 caracteres em Javacript (client side) e PHP (server side)
-    // 2) Adicionar a funcionalidade de Lazy loading em JQuery/AJAX/PHP para carregar mais posts em tempo real
-    // 3) Modificar os contadores (Posts, Favoritos, Seguindo e Seguidores) para actualizarem em tempo real (JQuery/AJAX/PHP)
-    // 4) Secção de Favoritos, Seguindo e Seguidores na mesma página
-
-    // include 'footer.php'
-
     ?>
-
-        <!-- <script src="../scripts/newpost.js"></script>  -->
 </body>
 </html>
