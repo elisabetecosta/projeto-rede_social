@@ -133,8 +133,6 @@ include '../components/navbar.php';
         if (!$full) $string = array_slice($string, 0, 1);
         return $string ? implode(', ', $string) : 'agora mesmo';
     }
-   
-  
     
     // Falta:  
     // 1) Impedir o utilizador de publicar um post vazio ou com mais do que 255 caracteres em Javacript (client side) e PHP (server side)
@@ -146,6 +144,6 @@ include '../components/navbar.php';
 
     ?>
 
-        <script src="../scripts/newpost.js"></script> 
+        <!-- <script src="../scripts/newpost.js"></script>  -->
 </body>
 </html>
