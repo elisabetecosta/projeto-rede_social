@@ -3,7 +3,7 @@
 include 'includes/validate.php';
 
 //Estabelece a conexão com a base de dados
-include 'includes/connect_db.php';
+include_once 'includes/connect_db.php';
 
 //Acede aos dados do utilizador com sessão iniciada
 $getProfile = $connection->prepare('SELECT users.handle, profiles.name, profiles.avatar, profiles.cover, profiles.title, profiles.desc
@@ -134,6 +134,7 @@ include '../components/navbar.php';
         return $string ? implode(', ', $string) : 'agora mesmo';
     }
    
+  
     
     // Falta:  
     // 1) Impedir o utilizador de publicar um post vazio ou com mais do que 255 caracteres em Javacript (client side) e PHP (server side)
@@ -144,7 +145,7 @@ include '../components/navbar.php';
     // include 'footer.php'
 
     ?>
-<!--         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="../scripts/newpost.js"></script> -->
+
+        <script src="../scripts/newpost.js"></script> 
 </body>
 </html>
