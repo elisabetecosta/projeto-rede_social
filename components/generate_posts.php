@@ -24,7 +24,7 @@
                     <span class="post-frame">
                         <h3>Nova publicação</h3>
                         <form id="newpost_box" method="POST" action="publish.php">
-                            <textarea name="newpost-text" class="newpost_text" id="newpost_text"></textarea><br>
+                            <textarea name="newpost-text" class="newpost_text" id="newpost_text"></textarea>
                             <input class="btn right" type="submit" value="Publicar" />
                         </form>
                     <span>
