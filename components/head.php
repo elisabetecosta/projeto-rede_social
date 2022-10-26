@@ -1,3 +1,11 @@
+<?php
+    //============== DEFINIÇÕES DO CABEÇALHO DO HTML =================
+    $language = "pt-PT";
+    $charset = "UTF-8";
+    $metaTags = "xata, perfil, rede social";
+    $title = "{$session['name']} ({$session['handle']})"; //Título da página = Nome do utilizador (@handle)
+?>
+
 <!DOCTYPE html>
 <html lang="<?php echo ($language); ?>">
 <head>

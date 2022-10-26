@@ -1,17 +1,17 @@
 <main class="profile-container">
     <div class="profile-cover">
-        <img src='../users/<?php echo $sessionHandle; ?>/<?php echo $sessionCover; ?>' />
+        <img src='../users/<?php echo $handle; ?>/<?php echo $cover; ?>' />
     </div>
 
     <div class="profile-content profile-info">
         <div class="profile-wrapper">
             <span class="profile-avatar">
-                <a href="profile.php"><img src='../users/<?php echo $sessionHandle; ?>/<?php echo $sessionAvatar ?>' /></a></span>
+                <a href="profile.php"><img src='../users/<?php echo $handle; ?>/<?php echo $avatar ?>' /></a></span>
             <span class="profile-name">
                 <!-- Nome do Utilizador -->
-                <h2><?php echo $sessionName; ?></a></h2>
+                <h2><?php echo $name; ?></a></h2>
                 <!-- @handle do utilizador -->
-                <h4>@<?php echo $sessionHandle; ?></h4>
+                <h4>@<?php echo $handle; ?></h4>
             </span>
             <span class="profile-stats">
             <!-- Estatísticas do utilizador: número de posts, número de favoritos, número de pessoas que segue, número de seguidores -->
