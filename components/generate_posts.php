@@ -4,9 +4,9 @@
             <!-- Coluna lateral (Sobre mim e Galeria) -->
             <span class="sidebar-col">
                 <div class="sidebar-box">
-                    <h3><?php echo $desc_title; ?></h3>
+                    <h3><?php echo $user_title; ?></h3>
                     <!-- Descrição de perfil escrita pelo utilizador -->
-                    <p><?php echo $description; ?></p>
+                    <p><?php echo $user_desc; ?></p>
                 </div>
                 <div class="sidebar-box">
                     <h3><?php echo $gallerytitle ?></h3> 
