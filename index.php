@@ -39,20 +39,21 @@ if (!empty($data['submitBtn'])) {
     //Faz as validações dos campos
 
     if (empty($data['email'])) {
-        $errors['email'] = "<p style='color: red;'>Este campo não pode ficar vazio!</p>";
+        $errors['email'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>Este campo não pode ficar vazio!</p>";
     } else {
 
         $email = test_input($data['email']);
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors['email'] = "<p style='color: red;'>Insira um endereço de e-mail válido!</p>";
+            $errors['email'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>Insira um endereço de e-mail válido!</p>";
         }
     }
 
 
     if (empty($data['password'])) {
-        $errors['password'] = "<p style='color: red;'>Este campo não pode ficar vazio!</p>";
+        $errors['password'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>Este campo não pode ficar vazio!</p>";
     } else {
+
         //Cria a instrução SQL que seleciona o utilizador correspondente ao inserido no formulário
         $user_query = "SELECT user_id, email, password 
             FROM users 
@@ -83,12 +84,12 @@ if (!empty($data['submitBtn'])) {
                 header("Location: server/posts.php");
                 //echo "Utilizador com sessão iniciada!";
             } else {
-                $errors['password'] = "<p style='color: red;'>E-mail ou palavra-passe inválidos!</p>";
+                $errors['password'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>E-mail ou palavra-passe inválidos!</p>";
             }
         } 
         
         else {
-            $errors['password'] = "<p style='color: red;'>E-mail ou palavra-passe inválidos!</p>";
+            $errors['password'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>E-mail ou palavra-passe inválidos!</p>";
         }
     }
 }
@@ -104,9 +105,10 @@ if (!empty($data['submitBtn'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <!--Importação do ficheiro css-->
-    <link href="./styles/form.css" rel="stylesheet" type="text/css">
+    <link href="./styles/login_form.css" rel="stylesheet" type="text/css">
     <!--Importação do ficheiro javascript-->
     <script src="./scripts/login_form.js" type="text/javascript" defer></script>
+   
 
     <!--Importação das fontes-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -117,49 +119,53 @@ if (!empty($data['submitBtn'])) {
 </head>
 
 <body>
+    <div class="header">
+        <img src="./images/logo.svg" alt="logo" id="logo" />
+    </div>
+
     <div class="container">
-
         <div class="left-side">
-            <div class="header">
-                <img src="images/logo_0092caff.svg" alt="logo" id="logo" />
-                <h1>Bem-vindo!</h1>
-            </div>
-
             <div class="form">
+            <h1>Bem-vindo!</h1>
                 <form id="loginForm" name="loginForm" class="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return checkInputs()">
                     <div class="form-control">
                         <label class="label" for="email">E-mail </label>
                         <input class="input" type="text" size="20" maxlength="50" name="email" id="email" placeholder="123@email.pt" value="<?php echo $email; ?>">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <i class="fa-solid fa-circle-xmark"></i>
 
                         <small>Error message</small>
                         <div class="php-error"><?php echo $errors['email']; ?></div>
                     </div>
 
                     <div class="form-control">
-                        <label class="label" for="password">Palavra-passe </label>
-                        <input class="input" type="password" size="20" maxlength="255" name="password" id="password" placeholder="********">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <i class="fa-solid fa-circle-xmark"></i>
+                        <div class="password-container">
+                            <label class="label" for="password">Palavra-passe </label>
+                            <input class="input" type="password" size="20" maxlength="255" name="password" id="password" placeholder="********">
+                            <i class="fa-solid fa-eye" id="eye" onclick="showPassword()"></i>
+                            <i class="fa-solid fa-eye-slash" id="eye-slash" onclick="showPassword()"></i>
+                        </div>
 
                         <small>Error message</small>
                         <div class="php-error"><?php echo $errors['password']; ?></div>
                     </div>
 
-                    <input type="checkbox" name="remember-me" value="1" />&nbsp;Lembrar-me
-                    <span>&#x1F6C8; <a href="#">Esqueci-me da password</a></span><br><br>
+                    <div class="extra">
+                        <input type="checkbox" name="remember" id="remember">
+                        <label for="remember">&nbsp;Lembrar-me</label>
+                        <span><i class="fa-solid fa-circle-info"></i> <a href="#">Esqueci-me da palavra-passe</a></span>
+                    </div>
 
-                    <button type="submit" name="submitBtn" id="submitBtn" value="Iniciar sessão">Iniciar sessão</button><br><br>
+                    <button type="submit" name="submitBtn" id="submitBtn" value="Iniciar sessão">Iniciar sessão</button>
                     <span>Ainda não tens uma conta? Regista-te <a href="server/register.php">aqui</a>.</span>
                 </form>
             </div>
         </div>
 
         <div class="right-side">
-            <img src="./images/login-cover.png" alt="image" height="300px">
-            <!--imagem deve ser otimizada-->
+            <img class="cover" src="./images/login-cover.png" alt="imagem de capa">
         </div>
+    </div>
+
+     
 </body>
 
 </html>

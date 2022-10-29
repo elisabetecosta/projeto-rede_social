@@ -1,3 +1,13 @@
+
+https://www.w3schools.com/css/css3_mediaqueries_ex.asp
+
+        A adição da funçao de exibir password impede a validaçao em javascript da mesma por causa da div extra
+
+        imagem de cover do form de Login
+        rever video de criar form de registo pra resolver o bug do else no caso de erro no registo
+        remover comentarios do codigo antigo
+
+
 Consultar:
 https://youtu.be/WysUkUJTinU?t=1529
 https://www.geeksforgeeks.org/form-validation-using-html-javascript/
@@ -16,12 +26,13 @@ Registo
     - Impedir duplicação de email e handle
     - Definir número mínimo e tipo de caracteres para o handle (letras, numeros, _ , -) / minimo 5 maximo 15
     - Validar formulário através de javascript e php para garantir a integridade dos dados (o utilizador pode desativar o javascript)
-
-    Por fazer:
-    - Adicionar @ por default na base de dados e no campo do formulario
-    - Dividir formulário em 2 partes
     - Adicionar logo
     - Estilizar com CSS
+
+    Por fazer:
+    - Adicionar @ no campo do formulario 
+    - Dividir formulário em 2 partes (https://www.w3schools.com/howto/howto_js_form_steps.asp), aumentar padding dos inputs para 20px
+
     - Enviar e-mail com link de confirmação do registo (deixar pra mais tarde)
     - Encriptar password, estudar sobre como o https encripta todos os dados
 
@@ -29,12 +40,10 @@ Registo
 Login 
     Feito:
         - Validações em javascript e php
-
-    Por fazer:
-        - BUG1: Mensagens de erro em php overlapping com javascript
-        - BUG2: Campo handle não está a fazer a validação em ajax
-        - Implementar validação do lembrar-me
         - Adicionar logo
         - Adicionar imagem do lado direito
-        - Adicionar link para recuperação da palavra-passe
         - Estilizar com CSS
+
+    Por fazer:
+        - Implementar validação do lembrar-me
+        - Adicionar link para recuperação da palavra-passe

@@ -1,0 +1,194 @@
+/*Estilos gerais comuns a todo o site como tamanhos e tipos de letra, cores, etc*/
+:root {
+    --color-main: #0092ca;
+    --color-default: #222831;
+    --color-hover: #393e46;
+    --color-basic: #ffffff;
+    --color-grey: #808A99;
+    --color-blank: #E8F0F6;
+    --font-title: 'Montserrat', sans-serif;
+    --font-text: 'Poppins', sans-serif;
+}
+
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--color-basic);
+    font-family: var(--font-text);
+    min-height: 100vh;
+}
+
+.header {
+    margin: 30px 40px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap; /*  remover apos otimizar imagem e definir media queries? */
+    margin: 10px;
+    border-radius: 5px;
+    max-width: 100%;
+}
+
+h1 {
+    font-size: 1.88rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--color-default);
+}
+
+/* Estilos do formulário */
+.form {
+    padding: 30px;
+}
+
+.form-control {
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.form-control label {
+    display: inline-block;
+    margin-bottom: 5px;
+    color: var(--color-grey);
+}
+
+.form-control input {
+    border: 2px solid var(--color-grey);
+    border-radius: 5px;
+    outline: 0;
+    display: block;
+    font-size: 14px;
+    width: 100%;
+    padding: 15px;
+}
+
+/* .form-control.success input {
+    border: 3px solid #4ECA64;
+}
+
+.form-control.error input {
+    border: 3px solid #DB5A5A;
+} */
+
+/* .form-control i {
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    top: 47px;
+    right: 25px;
+    visibility: hidden;
+}
+
+.form-control.error i.fa-circle-xmark {
+    visibility: visible;
+    color: #DB5A5A;
+}
+
+.form-control.success i.fa-circle-check {
+    visibility: visible;
+    color: #4ECA64;
+} */
+
+.form-control.error small {
+    color: #DB5A5A;
+    visibility: visible;
+}
+
+.form-control small {
+    visibility: hidden;
+    position: absolute;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #DB5A5A;
+}
+
+.password-container {
+    position: relative;
+}
+
+.password-container i {
+    visibility: visible;
+    position: absolute;
+    right: 6%;
+    top: 60%;
+    color: var(--color-grey);
+    cursor: pointer;
+}
+
+.password-container #eye {
+    display: none;
+}
+
+.form button {
+    display: block;
+    margin: 20px auto;
+    padding: 0.5rem 2.5rem;
+    font-family: var(--font-text);
+    font-size: 0.938rem;
+    font-weight: 500;
+    color: var(--color-basic);
+    background-color: var(--color-main);
+    border-radius: 1.55rem;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--color-main);
+}
+
+.form button:hover {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-main);
+    background-color: var(--color-basic);
+    border-color: var(--color-main);
+    transition: 0.3s;
+}
+
+.extra {
+    margin-top: -15px;
+    font-size: 0.8rem;
+}
+
+span i {
+    margin-left: 20px;
+    color: var(--color-main);
+}
+
+a {
+    color: var(--color-main);
+    text-decoration: none;
+}
+
+
+
+
+
+/* Alterar conforme necessario apos otimizar imagem */
+
+img.cover {
+    height: 300px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 992px) {
+
+    img.cover {
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    img.cover {
+        display: none;
+    }
+}

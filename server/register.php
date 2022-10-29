@@ -4,7 +4,7 @@
 
     //Recebe os dados do formulário
     $data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-    //var_dump($data);
+    // var_dump($data);
 
     //Inicializa as variáveis antes do formulário ser submetido para que os dados inseridos pelo utilizador não sejam perdidos na submissão se ocorrer um erro
     $email = $handle = $profileName = $birthdate = $terms = '';
@@ -38,13 +38,13 @@
         //Faz as validações dos campos
 
         if (empty($data['email'])) {
-            $errors['email'] = "<p style='color: red;'>Este campo não pode ficar vazio!</p>";
+            $errors['email'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>Este campo não pode ficar vazio!</p>";
         } else {
 
             $email = test_input($data['email']);
 
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $errors['email'] = "<p style='color: red;'>Insira um endereço de e-mail válido!</p>";
+                $errors['email'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>Insira um endereço de e-mail válido!</p>";
             } else {
 
                 $email = test_input($data['email']);
@@ -63,41 +63,41 @@
 
                 //Se existir algum registo, devolve uma mensagem de erro
                 if ($email_result != 0) {
-                    $errors['email'] = "<p style='color: red;'>Este endereço de e-mail já se encontra registado!</p>";
+                    $errors['email'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>Este endereço de e-mail já se encontra registado!</p>";
                 }
             }
         }
 
 
         if (empty($data['password'])) {
-            $errors['password'] = "<p style='color: red;'>Este campo não pode ficar vazio!</p>";
+            $errors['password'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>Este campo não pode ficar vazio!</p>";
         } else {
             $password = test_input($data['password']);
 
             if (strlen($data['password']) < 8) {
-                $errors['password'] = "<p style='color: red;'>A palavra-passe deve ter pelo menos 8 caracteres!</p>";
+                $errors['password'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>A palavra-passe deve ter pelo menos 8 caracteres!</p>";
             }
         }
 
 
         if (empty($data['passwordTwo'])) {
-            $errors['passwordTwo'] = "<p style='color: red;'>Este campo não pode ficar vazio!</p>";
+            $errors['passwordTwo'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>Este campo não pode ficar vazio!</p>";
         } else {
             $passwordTwo = test_input($data['passwordTwo']);
 
             if ($data['passwordTwo'] != $data['password']) {
-                $errors['passwordTwo'] = "<p style='color: red;'>As palavras-passe não são iguais!</p>";
+                $errors['passwordTwo'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>As palavras-passe não são iguais!</p>";
             }
         }
 
 
         if (empty($data['handle'])) {
-            $errors['handle'] = "<p style='color: red;'>Este campo não pode ficar vazio!</p>";
+            $errors['handle'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>Este campo não pode ficar vazio!</p>";
         } else {
             $handle = test_input($data['handle']);
 
-            if (!preg_match('/^[A-Za-z][A-Za-z0-9_-]{5,15}$/', $data['handle'])) {
-                $errors['handle'] = "<p style='color: red;'>Este campo deve conter entre 5 e 15 caracteres (a-Z, 0-9, _, -)</p>";
+            if (!preg_match('/^[A-Za-z][A-Za-z0-9_-]{4,15}$/', $data['handle'])) {
+                $errors['handle'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>Este campo deve conter entre 5 e 15 caracteres (a-Z, 0-9, _, -)</p>";
             } else {
 
                 $handle = test_input($data['handle']);
@@ -116,19 +116,19 @@
 
                 //Se existir algum registo, devolve uma mensagem de erro
                 if($handle_result != 0) {
-                    $errors['handle'] = "<p style='color: red;'>Este nome de utilizador já se encontra registado!</p>";
+                    $errors['handle'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>Este nome de utilizador já se encontra registado!</p>";
                 }
             }
         }
 
 
         if (empty($data['profileName'])) {
-            $errors['profileName'] = "<p style='color: red;'>Este campo não pode ficar vazio!</p>";
+            $errors['profileName'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>Este campo não pode ficar vazio!</p>";
         }
 
 
         if (empty($data['birthdate'])) {
-            $errors['birthdate'] = "<p style='color: red;'>Este campo não pode ficar vazio!</p>";
+            $errors['birthdate'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>Este campo não pode ficar vazio!</p>";
         } else {
             $birthdate = test_input($data['birthdate']);
             $today = date("Y-m-d");
@@ -136,13 +136,13 @@
             $age = $diff->format('%y');
 
             if ($age < 18) {
-                $errors['birthdate'] = "<p style='color: red;'>Não é permitido o registo de menores de 18!</p>";
+                $errors['birthdate'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>Não é permitido o registo de menores de 18!</p>";
             }
         }
 
 
         if (!isset($data['terms'])) {
-            $errors['terms'] = "<p style='color: red;'>Tem de aceitar os termos para concluir o registo!</p>";
+            $errors['terms'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>Tem de aceitar os termos para concluir o registo!</p>";
         }
 
 
@@ -206,7 +206,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar conta</title>
     <!--Importação do ficheiro css-->
-    <link href="../styles/form.css" rel="stylesheet" type="text/css">
+    <link href="../styles/registry_form.css" rel="stylesheet" type="text/css">
     <!--Importação do ficheiro javascript-->
     <script src="../scripts/registry_form.js" type="text/javascript" defer></script>
 
@@ -230,6 +230,7 @@
             <div class="form-control">
                 <label class="label" for="email">E-mail </label>
                 <input class="input" type="text" size="20" maxlength="50" name="email" id="email" placeholder="123@email.pt" value="<?php echo $email; ?>">
+                
                 <i class="fa-solid fa-circle-check"></i>
                 <i class="fa-solid fa-circle-xmark"></i>
                 <small>Error message</small>
@@ -239,6 +240,7 @@
             <div class="form-control">
                 <label class="label" for="password">Palavra-passe </label>
                 <input class="input" type="password" size="20" maxlength="255" name="password" id="password" placeholder="********">
+
                 <i class="fa-solid fa-circle-check"></i>
                 <i class="fa-solid fa-circle-xmark"></i>
                 <small>Error message</small>
@@ -248,6 +250,7 @@
             <div class="form-control">
                 <label class="label" for="passwordTwo">Confirmar palavra-passe </label>
                 <input class="input" type="password" size="20" maxlength="255" name="passwordTwo" id="passwordTwo" placeholder="********">
+
                 <i class="fa-solid fa-circle-check"></i>
                 <i class="fa-solid fa-circle-xmark"></i>
                 <small>Error message</small>
@@ -256,9 +259,13 @@
 
 
             <!--Secção 2 do formulário-->
+            
             <div class="form-control">
                 <label class="label" for="handle">Nome de utilizador </label>
-                <input class="input" type="text" size="20" maxlength="15" name="handle" id="handle" placeholder="@xata94" value="<?php echo $handle; ?>">
+                <input class="input" type="text" size="20" maxlength="15" name="handle" id="handle" value="<?php echo $handle; ?>">
+                <i class="fa-solid fa-at"></i>
+
+
                 <i class="fa-solid fa-circle-check"></i>
                 <i class="fa-solid fa-circle-xmark"></i>
                 <small>Error message</small>
@@ -268,6 +275,7 @@
             <div class="form-control">
                 <label class="label" for="profileName">Nome de perfil </label>
                 <input class="input" type="text" size="20" maxlength="45" name="profileName" id="profileName" placeholder="Xateada" value="<?php echo $profileName; ?>">
+
                 <i class="fa-solid fa-circle-check"></i>
                 <i class="fa-solid fa-circle-xmark"></i>
                 <small>Error message</small>
@@ -277,15 +285,17 @@
             <div class="form-control">
                 <label class="label" for="birthdate">Data de nascimento </label>
                 <input class="input" type="date" size="11" name="birthdate" id="birthdate" value="<?php echo $birthdate; ?>">
-                <i class="fa-solid fa-circle-check"></i>
-                <i class="fa-solid fa-circle-xmark"></i>
+
                 <small>Error message</small>
                 <div class="php-error"><?php echo $errors['birthdate']; ?></div>
             </div>
 
             <div class="form-control terms">
-                <input type="checkbox" name="terms" id="terms">
-                <label for="terms">&nbsp;Aceito os termos de utilização e política de privacidade</label>
+                <span>
+                    <input type="checkbox" name="terms" id="terms-input">
+                    <label for="terms" id="terms-label">&nbsp;Aceito os termos de utilização e política de privacidade</label>
+                </span>
+
                 <small>Error message</small>
                 <div class="php-error"><?php echo $errors['terms']; ?></div>
             </div>

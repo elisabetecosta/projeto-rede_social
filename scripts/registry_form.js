@@ -56,7 +56,7 @@ function checkInputs() {
     const regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;
 
     //Javascript regex que valida o formato do nome de utilizador
-    const regHandle = /^[A-Za-z][A-Za-z0-9_-]{5,15}$/g;
+    const regHandle = /^[A-Za-z][A-Za-z0-9_-]{4,15}$/g;
 
 
     //Se o campo estiver vazio ou os dados inseridos não cumprirem com os requisitos chama a função errorValidation, caso contrário chama a função successValidation
