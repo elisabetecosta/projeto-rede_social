@@ -1,12 +1,11 @@
 /*Estilos gerais comuns a todo o site como tamanhos e tipos de letra, cores, etc*/
 :root {
     --color-main: #0092ca;
+    --color-active: #1cb3ef;
     --color-default: #222831;
-    --color-hover: #393e46;
     --color-basic: #ffffff;
     --color-grey: #808A99;
     --color-blank: #E8F0F6;
-    --font-title: 'Montserrat', sans-serif;
     --font-text: 'Poppins', sans-serif;
 }
 
@@ -20,7 +19,6 @@
 /* Começa aqui o código geral*/
 body {
     background-color: var(--color-blank);
-    /* Cor de fundo de todo o site */
     font-family: var(--font-text);
     font-size: 1.07rem;
     color: var(--color-default);
@@ -28,12 +26,6 @@ body {
 
 html {
     scroll-behavior: smooth;
-}
-
-.container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
 }
 
 h1 {
@@ -52,7 +44,6 @@ h1 {
     border-style: solid;
     border-color: var(--color-main);
 }
-
 .btn:hover {
     cursor: pointer;
     font-weight: 600;
@@ -65,11 +56,10 @@ h1 {
 
 header {
     width: 100%;
-    height: 4rem;
+    height: 3.6rem;
     display: flex;
-    position: fixed;    /*acompanha o scroll down*/
     justify-content: flex-start;
-    align-items: center;
+    position: fixed;    /*acompanha o scroll down*/
     align-content: stretch;
     background-color: var(--color-basic);
     overflow: hidden;
@@ -83,17 +73,13 @@ nav {
     height: inherit;
     display: flex;
     align-items: center;
-    flex-wrap: nowrap;
-    order: 0;
     z-index: 2;
 }
 
 .navbar div {
-    margin-left: auto;
+    margin-left: auto;  /*Alinha os links de navegação à direita*/
     z-index: 2;
-    /*Alinha os links de navegação à direita*/
 }
-
 .navbar section:first-child {
     margin-left: 5rem;
 }
@@ -101,21 +87,18 @@ nav {
 /* Barra de procurar */
 .search input {
     height: 2.375rem;
-    border-radius: 1.18rem;
-    /* Cantos perfeitamente arredondados: sempre metade do height (no mínimo) */
+    border-radius: 1.18rem; /* Cantos perfeitamente arredondados: sempre metade do height (no mínimo) */
     border: none;
     background-color: var(--color-blank);
     padding: 2px 23px 2px 23px;
     width: 15.625rem;
 }
-
 .search-icon {
     position: relative;
     top: 2px;
     right: 2.125rem;
     width: 0.875rem;
 }
-
 /*Vou adicionar este ícone quando configurar a caixa de pesquisa com javascript*/
 /* .clear-icon {
     position: relative;
@@ -123,15 +106,11 @@ nav {
     right: 3.188rem;
     width: 0.875rem;
 } */
-
-/* Links da barra de navegação */
 .navlinks {
-    vertical-align: middle;
+    vertical-align: middle;  /* Centra os links na barra de navegação */
 }
-
 .navlinks a {
-    height: 4vh;
-    /* 38px */
+    height: 4vh; /* 38px */
     display: inline-block;
     padding: 4px 5px;
     margin: 0px 6px;
@@ -152,13 +131,19 @@ nav {
     cursor: pointer;
 }
 
+#xatalogo:active,
+#notifs:active,
+#config:active,
+#logout:active {
+    fill: var(--color-active);
+    cursor: pointer;
+}
+
 /* ================= PERFIL DO UTILIZADOR (profile_header.php) ====================*/
 
 main.profile-container {
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
     align-items: center;
     align-content: stretch;
 }
@@ -166,10 +151,6 @@ main.profile-container {
 div.profile-cover {
     width: 100%;
     height: 18.75rem;
-    /*  display: flex; */
-    justify-content: flex-start;
-    align-items: center;
-    align-content: stretch;
     overflow: hidden;
     order: 0;
     z-index: -4;
@@ -179,10 +160,8 @@ div.profile-cover>img {
     width: 100%;
     background-color: var(--color-blank);
     position: relative;
-    top: 50%;
-    /* truque para centralizar a imagem. Dimensões exigidas: 850 x 400 ou proporcional */
-    margin-top: -20%;
-    /* truque para centralizar a imagem. Dimensões exigidas: 850 x 400 ou proporcional */
+    top: 50%;    /* truque para centralizar a imagem. Dimensões exigidas: 850 x 400 ou proporcional */
+    margin-top: -20%;    /* truque para centralizar a imagem. Dimensões exigidas: 850 x 400 ou proporcional */
     min-width: 43.5rem;
     min-height: 18.75rem;
     z-index: -3;
@@ -192,11 +171,11 @@ div.profile-content {
     width: 100%;
     margin: 0 auto;
     height: 5.4rem;
-    flex-direction: rows;
     display: flex;
+    flex-direction: rows;
     flex-wrap: nowrap;              /* Controla a posição global dos elementos */
-    justify-content: flex-start;
-    align-items: flex-start;
+/*     justify-content: flex-start;
+    align-items: flex-start; */
     align-content: stretch;
 }
 
@@ -250,81 +229,38 @@ span.profile-stats {
     display: flex;
     flex-wrap: nowrap;
 }
+span.stat {    
+    cursor: pointer;
+    margin-right: 1.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.438rem;
 
-        span.stats-posts {          /* Publicações */
-            cursor: pointer;
-            order: 0;
-            flex: 0 0 auto;
-            align-self: auto;
-            margin-left: 0;
-            padding-top: 0.75rem;
-            padding-bottom: 0.438rem;
-            border-bottom: 0.42rem solid var(--color-main);
-        }
-
-        span.stats-posts:hover {
-            border-bottom: 0.42rem solid var(--color-main);
-        }
-
-        span.stats-faves {          /* Favoritos */
-            cursor: pointer;
-            order: 0;
-            flex: 0 0 auto;
-            align-self: auto;
-            margin-left: 1.5rem;
-            padding-top: 0.75rem;
-            padding-bottom: 0.438rem;
-            border-bottom: 0.42rem solid transparent;
-        }
-
-        span.stats-faves:hover {
-            border-bottom: 0.42rem solid var(--color-main);
-        }
-
-        span.stats-following {      /* Seguindo */
-            cursor: pointer;
-            order: 0;
-            flex: 0 0 auto;
-            align-self: auto;
-            margin-left: 1.5rem;
-            padding-top: 0.75rem;
-            padding-bottom: 0.438rem;
-            border-bottom: 0.42rem solid transparent;
-        }
-
-        span.stats-following:hover {
-            border-bottom: 0.42rem solid var(--color-main);
-        }
-
-        span.stats-followers {      /* Seguidores */
-            cursor: pointer;
-            order: 0;
-            flex: 0 0 auto;
-            align-self: auto;
-            margin-left: 1.5rem;
-            padding-top: 0.75rem;
-            padding-bottom: 0.438rem;
-            border-bottom: 0.42rem solid transparent;
-        }
-
-span.stats-followers:hover {
+}
+span.posts {
     border-bottom: 0.42rem solid var(--color-main);
 }
-
+span.faves,
+span.flwing,
+span.flwrs {
+    border-bottom: 0.42rem solid transparent;
+}
+span.stat:hover {
+    border-bottom: 0.42rem solid var(--color-main);
+}
+span.stat:active{
+    background-color: #c0d0d7;
+}
 span.profile-stats h3 {
     font-size: 1.08em;
 }
-
 span.profile-btn-container {
     padding-top: 1.35rem;
     margin-left: 2.1rem;
     order: 0;
     align-items: flex-end;
-    flex: 1 0 auto;
-    /* flex-grow: 1  flex-shrink: 1  flex-basis: auto; */
+    flex: 1 0 auto;    /* flex-grow: 1  flex-shrink: 1  flex-basis: auto; */
     align-self: auto;
 }
-
 span.profile-name h4,
 h4.timestamp { 
     margin-top: -0.3vh;
@@ -332,7 +268,6 @@ h4.timestamp {
     font-weight: 300;
     color: var(--color-grey);
 }
-
 span.profile-stats a {
     font-size: 1.438rem;
     font-weight: 600;
@@ -347,23 +282,18 @@ span.profile-stats a:hover {
 
 /* ================= POSTS DO UTILIZADOR (profile_posts.php) ====================*/
 
-
 div.profile-main {
     margin-top: 1.5rem;
     background-color: transparent;
-    align-items: flex-start;
 }
-
 span.sidebar-col {
     margin-left: 3.125rem;
     min-width: 23.7rem;
     max-width: 29.45rem;
     order: 0;
     flex: 0 1 auto;
-    justify-content: flex-start;
     flex-wrap: nowrap;
 }
-
 div.sidebar-box {
     width: 100%;
     padding: 1.30rem 2rem;
@@ -393,10 +323,8 @@ div.sidebar-box img{
 /* div.sidebar-box img{
     border-radius: 1.4rem;
 } */
-
 span.posts-col {
     margin-left: 2rem;
-    /* min-width: 27.5rem; */
     max-width: 60rem;
     order: 0;
     flex: 1 1 auto;
@@ -406,7 +334,8 @@ span.posts-col {
 }
 div.post-box{
     min-width: 27.5rem;
-    padding-top: 1.5rem;
+    padding-top: 1.30rem;
+    padding-bottom: 1.30rem;
     display: flex;
     flex-wrap: nowrap;
     background-color: var(--color-basic);
@@ -443,7 +372,7 @@ span.post-frame p {
 .newpost_text {
     width: 100%;
     height: 5rem;
-    margin-top: 0.2rem;
+    margin: 0.3rem 0 0.8rem 0;
     padding: 0.75rem 1.25rem;
     font-size: 1.1rem;
     box-sizing: border-box;
@@ -454,9 +383,7 @@ span.post-frame p {
 
 .right {
     float: right;
-    margin: 0.7rem 0 1rem 0;
 }
-
 a.btn-edit-link{
     width: 3rem;
     height: 3rem;
@@ -470,38 +397,4 @@ a.btn-edit-link:hover{
 .btn-edit{
     display: block;
     margin: 0.85rem 0 0 1.36rem;
-}
-/*  h4{
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: var(--color-grey);
-    margin-bottom: 0.8rem;
-} */
-
-@media screen and (max-width: 1300px) {
-
-    .profile-btn-container button:first-child {
-        visibility: collapse;
-    }
-}
-
-@media screen and (max-width: 1075px) {
-    div.profile-info{
-        height: 10rem;
-    }
-    span.profile-stats{
-        margin-top: -2.7rem;
-        margin-left: 17.4rem;
-    }
-    div.profile-content {
-        flex-wrap: wrap;
-    }
-    span.posts-col{
-        max-width: 100%;
-        margin: 0 3.125rem;
-    }
-
-    span.sidebar-col {
-        order: 1;       /* a sidebar passa para baixo */
-    }
 }
