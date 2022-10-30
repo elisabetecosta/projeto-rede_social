@@ -15,10 +15,11 @@
             </span>
             <span class="profile-stats">
             <!-- Estatísticas do utilizador: número de posts, número de favoritos, número de pessoas que segue, número de seguidores -->
-                <span class="stat posts"><h3>Publicações</h3> <a href="../server/posts.php"><?php echo $posts; ?></a></span>
-                <span class="stat faves"><h3>Favoritos</h3> <a href="../server/favorites.php"><?php echo $faves; ?></a></span>
-                <span class="stat flwing"><h3>Seguindo</h3> <a href="../server/following.php"><?php echo $following; ?></a></span>
-                <span class="stat flwrs"><h3>Seguidores</h3> <a href="../server/followers.php"><?php echo $followers; ?></a></span>
+
+            <a href="../server/posts.php"><h3>Publicações</h3><span><?php echo $posts; ?></span></a>
+            <a href="../server/favorites.php"><h3>Favoritos</h3><span><?php echo $faves; ?></span></a>
+            <a href="../server/following.php"><h3>Seguindo</h3><span><?php echo $following; ?></span></a>
+            <a href="../server/followers.php"><h3>Seguidores</h3><span><?php echo $followers; ?></span></a>
             </span>
             <span class="profile-btn-container">
                 <button class="btn">Editar</button>

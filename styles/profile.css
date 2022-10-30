@@ -31,6 +31,9 @@ html {
 h1 {
     color: var(--color-default);
 }
+h2{
+    font-size: 1.5rem;
+}
 
 .btn {
     padding: 0.5rem 2.5rem;
@@ -170,7 +173,7 @@ div.profile-cover>img {
 div.profile-content {
     width: 100%;
     margin: 0 auto;
-    height: 5.4rem;
+    height: 5rem;
     display: flex;
     flex-direction: rows;
     flex-wrap: nowrap;              /* Controla a posição global dos elementos */
@@ -213,14 +216,13 @@ span.profile-avatar img {
 }
 
 span.profile-name {
-    padding-top: 0.6rem;
+    padding-top: 0.55rem;
     min-width: 15rem;
     order: 0;
     flex: 1 0 auto;     /* flex-grow: 1  flex-shrink: 0  flex-basis: auto; */
     align-self: auto;
     margin-left: 2.1rem;
 }
-
 span.profile-stats {
     margin-left: 2.1rem;
     order: 0;
@@ -229,30 +231,54 @@ span.profile-stats {
     display: flex;
     flex-wrap: nowrap;
 }
-span.stat {    
+span.profile-stats a{
+    padding-top: 0.65rem;
+    cursor: pointer;
+    margin-right: 1.5rem;
+    color: var(--color-main);
+    text-decoration: none;
+}
+span.profile-stats a:hover{
+    border-bottom: 0.42rem solid var(--color-main);
+}
+span.profile-stats a:active{
+    color: var(--color-active);
+    border-bottom: 0.42rem solid var(--color-active);
+}
+span.profile-stats h3{
+    color: var(--color-default);
+}
+span.profile-stats span{
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+/* span.stat {    
     cursor: pointer;
     margin-right: 1.5rem;
     padding-top: 0.75rem;
     padding-bottom: 0.438rem;
-
 }
-span.posts {
+span.stat a,
+span.stat span {
+    text-decoration: none;
+}
+ span.posts {
     border-bottom: 0.42rem solid var(--color-main);
 }
 span.faves,
 span.flwing,
 span.flwrs {
     border-bottom: 0.42rem solid transparent;
-}
+} */
+/*
 span.stat:hover {
     border-bottom: 0.42rem solid var(--color-main);
 }
 span.stat:active{
-    background-color: #c0d0d7;
-}
-span.profile-stats h3 {
-    font-size: 1.08em;
-}
+    background-color: var(--color-blank);
+} */
+
+
 span.profile-btn-container {
     padding-top: 1.35rem;
     margin-left: 2.1rem;
@@ -267,17 +293,6 @@ h4.timestamp {
     font-size: 0.95rem;
     font-weight: 300;
     color: var(--color-grey);
-}
-span.profile-stats a {
-    font-size: 1.438rem;
-    font-weight: 600;
-    color: var(--color-main);
-    cursor: pointer;
-    text-decoration: none;
-}
-
-span.profile-stats a:hover {
-    text-decoration: none;
 }
 
 /* ================= POSTS DO UTILIZADOR (profile_posts.php) ====================*/
