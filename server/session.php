@@ -103,7 +103,7 @@ include_once 'includes/connect_db.php';
 //Função que recebe um ID de utilizador e devolve um array com os seus 10 posts mais recentes
     function get_user_posts($uid){
         require 'includes/connect_db.php';
-        $getPosts =  $connection->prepare("SELECT text, date
+        $getPosts =  $connection->prepare("SELECT post_id, text, date
                                            FROM posts
                                            WHERE user_id = :uid AND status = 0 
                                            ORDER BY date DESC LIMIT 10");
@@ -114,6 +114,38 @@ include_once 'includes/connect_db.php';
             $a = $displayPosts;
         }
         return $a;
+    }
+
+//Função que mostra todos os favoritos de um utilizador
+//SELECT favs.user_id, favs.fav_id, profiles.name, profiles.avatar, favs.post_id, posts.text, posts.date, users.handle, favs.status FROM profiles JOIN posts ON profiles.user_id=posts.user_id JOIN users ON profiles.user_id=users.user_id JOIN favs ON posts.post_id=favs.post_id WHERE favs.user_id = 3 ORDER BY posts.post_id;
+function get_favorited_post($uid){
+    require 'includes/connect_db.php';
+    $getFaves =  $connection->prepare("SELECT profiles.name, profiles.avatar, favs.post_id,
+                                            posts.text, posts.date, users.handle
+                                            FROM profiles
+                                            JOIN posts ON profiles.user_id=posts.user_id
+                                            JOIN users ON profiles.user_id=users.user_id
+                                            JOIN favs ON posts.post_id=favs.post_id
+                                            WHERE favs.user_id = :uid ORDER BY posts.post_id DESC;");
+    $getFaves->bindParam(':uid', $uid);
+    $getFaves->execute();
+    $displayFavedPosts = $getFaves->fetchAll(PDO::FETCH_ASSOC);
+    return $displayFavedPosts;
+}
+// Nota para mim:
+// Para seleccionar todos os favoritos (sem filtro de utilizador), usar:
+// SELECT favs.fav_id, profiles.name, profiles.avatar, favs.post_id, posts.text, posts.date, users.handle, favs.status FROM profiles JOIN posts ON profiles.user_id=posts.user_id JOIN users ON profiles.user_id=users.user_id JOIN favs ON posts.post_id=favs.post_id WHERE posts.post_id ORDER BY posts.post_id;
+// Isto ajuda a ter noção do que estou a selecionar
+
+
+//Recebe o ID de um post e "apaga-o"
+    function deletesPost($post_id){
+        require 'includes/connect_db.php';
+        $deletesPost = $connection->prepare("UPDATE posts
+                                             SET status = 1
+                                             WHERE CONCAT(posts.post_id) = :post_id; ");
+        $deletesPost->bindParam(':post_id', $post_id);
+        $deletesPost->execute();
     }
 
 //Função que recebe a datahora armazenada no sistema e devolve uma string com o tempo relativo (exemplo: "há 5 segs")
@@ -182,8 +214,7 @@ $user_desc = $session['desc'];
 $gallerytitle = "Galeria";
 $displayMedia = get_user_gallery($_SESSION['user_id']);
 $displayPosts = get_user_posts($_SESSION['user_id']);
-//
+$displayFavedPosts = get_favorited_post($_SESSION['user_id']);
+
 
 ?>
-</body>
-</html>

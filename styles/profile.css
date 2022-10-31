@@ -233,52 +233,27 @@ span.profile-stats {
 }
 span.profile-stats a{
     padding-top: 0.65rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     cursor: pointer;
     margin-right: 1.5rem;
-    color: var(--color-main);
+    color: var(--color-default);
     text-decoration: none;
 }
 span.profile-stats a:hover{
-    border-bottom: 0.42rem solid var(--color-main);
+    color: var(--color-main);
 }
 span.profile-stats a:active{
-    color: var(--color-active);
-    border-bottom: 0.42rem solid var(--color-active);
+    background-color: var(--color-blank);
 }
-span.profile-stats h3{
-    color: var(--color-default);
+span.profile-stats a.focus {
+    border-bottom: 0.42rem solid var(--color-main);
 }
 span.profile-stats span{
-    font-size: 1.25rem;
+    color: var(--color-main);
+    font-size: 1.4rem;
     font-weight: 600;
 }
-/* span.stat {    
-    cursor: pointer;
-    margin-right: 1.5rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.438rem;
-}
-span.stat a,
-span.stat span {
-    text-decoration: none;
-}
- span.posts {
-    border-bottom: 0.42rem solid var(--color-main);
-}
-span.faves,
-span.flwing,
-span.flwrs {
-    border-bottom: 0.42rem solid transparent;
-} */
-/*
-span.stat:hover {
-    border-bottom: 0.42rem solid var(--color-main);
-}
-span.stat:active{
-    background-color: var(--color-blank);
-} */
-
-
 span.profile-btn-container {
     padding-top: 1.35rem;
     margin-left: 2.1rem;
@@ -399,17 +374,55 @@ span.post-frame p {
 .right {
     float: right;
 }
-a.btn-edit-link{
-    width: 3rem;
-    height: 3rem;
-    float: right;
-    border-radius: 1.5rem;
-    background-color: var(--color-basic);
+
+/* Opções dos posts: Editar, Afixar, Copiar URL, Eliminar  */
+.options {
+    margin: -0.2rem 0 0 -9.5rem;
+    background: var(--color-basic);
+    display: none; 
+    width: 12.5rem;
+    list-style: none;
+    border: 1px solid var(--color-main);
 }
-a.btn-edit-link:hover{
+input[type=button].li {
+    cursor: pointer;
+    border: none;
+    text-align: left;
+    display: block;
+    width: 100%;
+    font-size: 1.02rem;
+    color: var(--color-main);
+    background-color: var(--color-basic);
+    padding: 0.81rem 2rem 0.81rem 1rem;
+}
+input[type=button].li:hover {
+    color: var(--color-active);
     background-color: var(--color-blank);
 }
-.btn-edit{
+
+[type="checkbox"]:checked ~ .options {
     display: block;
-    margin: 0.85rem 0 0 1.36rem;
+    position: absolute;
+}
+[type="checkbox"]:not(:checked),
+  [type="checkbox"]:checked {
+    position: absolute;
+    left: -9999px;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+    position:sticky;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    padding-top: 0.7rem;
+    width: 2.7rem;
+    height: 2.7rem;
+    border-radius: 5rem;
+    background-color: var(--color-basic);
+    z-index: 1;
+}
+[type="checkbox"]:not(:checked) + label:hover,
+  [type="checkbox"]:checked + label:hover{
+    background-color: var(--color-blank);
 }
