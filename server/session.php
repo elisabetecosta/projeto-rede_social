@@ -178,7 +178,11 @@ function get_favorited_post($uid){
         return $string ? implode(', ', $string) : 'agora mesmo';
     }
 
-//
+//Função que recebe o ID de um post e conta todos os favoritos que recebeu
+//SELECT COUNT(fav_id) FROM favs WHERE post_id = :post_id AND status != 0;
+
+
+
 //============== O PERFIL DO UTILIZADOR COMEÇA AQUI =================
 
 //Links da barra de navegação superior [navbar.php]:
@@ -215,6 +219,5 @@ $gallerytitle = "Galeria";
 $displayMedia = get_user_gallery($_SESSION['user_id']);
 $displayPosts = get_user_posts($_SESSION['user_id']);
 $displayFavedPosts = get_favorited_post($_SESSION['user_id']);
-
 
 ?>

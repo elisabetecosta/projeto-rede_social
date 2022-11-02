@@ -22,6 +22,9 @@ body {
     font-family: var(--font-text);
     font-size: 1.07rem;
     color: var(--color-default);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 html {
@@ -142,13 +145,32 @@ nav {
     cursor: pointer;
 }
 
+#reply-icon,
+#fave-icon,
+#share-icon{
+    fill: var(--color-grey);
+}
+
+#reply-icon:hover,
+#fave-icon:hover,
+#share-icon:hover {
+    fill: var(--color-main);
+    cursor: pointer;
+}
+
+#reply-icon:active,
+#fave-icon:active,
+#share-icon:active {
+    fill: var(--color-active);
+    cursor: pointer;
+}
+
 /* ================= PERFIL DO UTILIZADOR (profile_header.php) ====================*/
 
 main.profile-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    align-content: stretch;
+    align-items: stretch;
 }
 
 div.profile-cover {
@@ -175,10 +197,8 @@ div.profile-content {
     margin: 0 auto;
     height: 5rem;
     display: flex;
-    flex-direction: rows;
+    flex-direction: column;
     flex-wrap: nowrap;              /* Controla a posição global dos elementos */
-/*     justify-content: flex-start;
-    align-items: flex-start; */
     align-content: stretch;
 }
 
@@ -274,7 +294,12 @@ h4.timestamp {
 
 div.profile-main {
     margin-top: 1.5rem;
+    height: auto;
     background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
 }
 span.sidebar-col {
     margin-left: 3.125rem;
@@ -370,9 +395,17 @@ span.post-frame p {
     border-radius: 1.5rem;
     resize: none;
 }
-
 .right {
     float: right;
+}
+
+div.post-interaction{
+    color: var(--color-grey);
+}
+
+.post-interaction span{
+    font-size: 1rem;
+    margin-right: 5rem;
 }
 
 /* Opções dos posts: Editar, Afixar, Copiar URL, Eliminar  */
@@ -425,4 +458,11 @@ input[type=button].li:hover {
 [type="checkbox"]:not(:checked) + label:hover,
   [type="checkbox"]:checked + label:hover{
     background-color: var(--color-blank);
+}
+footer {
+    margin-top: auto;
+    text-align: center;
+    font-size: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
 }
