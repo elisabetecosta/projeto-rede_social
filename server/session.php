@@ -126,7 +126,7 @@ function get_favorited_post($uid){
                                             JOIN posts ON profiles.user_id=posts.user_id
                                             JOIN users ON profiles.user_id=users.user_id
                                             JOIN favs ON posts.post_id=favs.post_id
-                                            WHERE favs.user_id = :uid ORDER BY posts.post_id DESC;");
+                                            WHERE favs.user_id = :uid AND favs.status = 1 ORDER BY posts.post_id DESC;");
     $getFaves->bindParam(':uid', $uid);
     $getFaves->execute();
     $displayFavedPosts = $getFaves->fetchAll(PDO::FETCH_ASSOC);
