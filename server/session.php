@@ -178,11 +178,30 @@ function get_favorited_post($uid){
         return $string ? implode(', ', $string) : 'agora mesmo';
     }
 
-//Função que recebe o ID de um post e conta todos os favoritos que recebeu
-//SELECT COUNT(fav_id) FROM favs WHERE post_id = :post_id AND status != 0;
+//Função que recebe o ID de um post e conta todos os favoritos que recebeu //SELECT COUNT(fav_id) FROM favs WHERE post_id = :post_id AND status != 0;
+    function count_post_faves($post_id) {
+        require 'includes/connect_db.php';
+        $countPostFaves =  $connection->prepare("SELECT COUNT(fav_id) AS postfaves
+                                                        FROM favs
+                                                        WHERE post_id = :post_id AND status = 1");
+        $countPostFaves->bindParam(':post_id', $post_id);
+        $countPostFaves->execute();
+        $totalPostFaves = $countPostFaves->fetch(PDO::FETCH_ASSOC);
+        return $totalPostFaves;
+    }
 
+    function count_post_comments($post_id) {
+        require 'includes/connect_db.php';
+        $countPostReplies =  $connection->prepare("SELECT COUNT(comment_id ) AS postreplies
+                                                        FROM comments
+                                                        WHERE post_id = :post_id AND status = 0");
+        $countPostReplies->bindParam(':post_id', $post_id);
+        $countPostReplies->execute();
+        $totalPostReplies = $countPostReplies->fetch(PDO::FETCH_ASSOC);
+        return $totalPostReplies;
+    }
 
-
+//
 //============== O PERFIL DO UTILIZADOR COMEÇA AQUI =================
 
 //Links da barra de navegação superior [navbar.php]:

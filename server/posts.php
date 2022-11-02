@@ -12,7 +12,6 @@
 ?>
 
 <script src="../scripts/posts_dropdown.js"></script>
-
 </body>
 </html>
  
