@@ -1,7 +1,6 @@
 <?php
     include 'includes/validate.php';
     include 'includes/connect_db.php';
-    //header('Content-Type: application/json');
 
     //Faz o refresh da página (espera 0 segundos) após a inserção do post da base de dados
     $goto = 'posts.php'; //redirecciona para a página posts.php

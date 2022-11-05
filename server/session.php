@@ -110,9 +110,7 @@ include_once 'includes/connect_db.php';
         $getPosts->bindParam(':uid', $uid);
         $getPosts->execute();
         $displayPosts = $getPosts->fetchAll(PDO::FETCH_ASSOC);
-        if(!empty($displayPosts)){
-            $a = $displayPosts;
-        }
+        $a = $displayPosts;
         return $a;
     }
 
@@ -190,6 +188,7 @@ function get_favorited_post($uid){
         return $totalPostFaves;
     }
 
+//Função que recebe o ID de um post e conta todos os comentários que recebeu
     function count_post_comments($post_id) {
         require 'includes/connect_db.php';
         $countPostReplies =  $connection->prepare("SELECT COUNT(comment_id ) AS postreplies
@@ -201,7 +200,20 @@ function get_favorited_post($uid){
         return $totalPostReplies;
     }
 
-//
+//Função que recebe o ID de um utilizador e devolve um array de strings com todas as contas que segue
+    function display_following($uid) {
+        require 'includes/connect_db.php';
+        $getFollowing =  $connection->prepare("SELECT users.handle, profiles.name, profiles.avatar, profiles.desc
+                                               FROM users
+                                               JOIN profiles ON users.user_id = profiles.user_id
+                                               JOIN follows ON users.user_id=follows.followed_id
+                                               WHERE follows.follower_id = :uid");
+        $getFollowing->bindParam(':uid', $uid);
+        $getFollowing->execute();
+        $displayFollowing = $getFollowing->fetchAll(PDO::FETCH_ASSOC);
+        return $displayFollowing;
+    }
+
 //============== O PERFIL DO UTILIZADOR COMEÇA AQUI =================
 
 //Links da barra de navegação superior [navbar.php]:
@@ -239,4 +251,5 @@ $displayMedia = get_user_gallery($_SESSION['user_id']);
 $displayPosts = get_user_posts($_SESSION['user_id']);
 $displayFavedPosts = get_favorited_post($_SESSION['user_id']);
 
+$displayFollowing = display_following($_SESSION['user_id']);
 ?>

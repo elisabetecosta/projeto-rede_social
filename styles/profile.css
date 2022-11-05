@@ -284,6 +284,7 @@ span.profile-btn-container {
 }
 span.profile-name h4,
 h4.timestamp { 
+    padding-right: 4rem;
     margin-top: -0.3vh;
     font-size: 0.95rem;
     font-weight: 300;
@@ -347,43 +348,54 @@ span.posts-col {
     flex-wrap: nowrap;
     margin-right: 3.125rem;
 }
-div.post-box{
+div.fixed-box{
     min-width: 27.5rem;
-    padding-top: 1.30rem;
-    padding-bottom: 1.30rem;
+    padding: 1.30rem 2rem 1.30rem 1.30rem;
     display: flex;
     flex-wrap: nowrap;
     background-color: var(--color-basic);
     margin-bottom: 1.5rem;
 }
+div.post-box,
+div.user-box{
+    min-width: 27.5rem;
+    padding: 1.30rem 0.5rem 1.30rem 1.20rem;
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: var(--color-basic);
+    margin-bottom: 1.5rem;
+    margin: 0 0.7rem 1.5rem 0.7rem;
+}
 span.user-frame {
-    width: 10.5rem;
     height: 7.375rem;
     flex: 0 0 auto;
     align-self: auto;
     float: left;
-    padding: 0 1rem 1rem 1.2rem;
 }
 img.avatar {
     width: 7rem;
     height: 7rem;
 }
-span.post-frame{
+span.post-frame,
+span.profile-frame{
     width: 100%;
     min-height: 9rem;
-    margin-right: 1.5rem;
     flex: 0 1 auto;
     align-self: auto;
+    margin-left: 1.6rem;
     display: inline-block;
 }
-span.post-frame h3 {
+span.post-frame h3,
+span.profile-frame h3 {
+    padding-right: 4rem;
     font-size: 1.375rem;
 }
-span.post-frame p {
+span.post-frame p,
+span.profile-frame p {
+    padding-right: 1.3rem;
     margin-top: 0.3rem;
     padding-bottom: 1rem;
 }
-
 .newpost_text {
     width: 100%;
     height: 5rem;
@@ -406,6 +418,23 @@ div.post-interaction{
 .post-interaction span{
     font-size: 1rem;
     margin-right: 5rem;
+}
+
+/* ================= USERS QUE SEGUEM O UTILIZADOR/ QUE O UTILIZADOR SEGUE (following.php) (followers.php) ====================*/
+
+div.users-col{
+    margin: 0 3.125rem 1rem 3.125rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: stretch;
+}
+
+div.users-row{
+    flex: 1 1 auto;
 }
 
 /* Opções dos posts: Editar, Afixar, Copiar URL, Eliminar  */
