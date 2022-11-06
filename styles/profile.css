@@ -356,16 +356,15 @@ div.fixed-box{
     background-color: var(--color-basic);
     margin-bottom: 1.5rem;
 }
-div.post-box,
-div.user-box{
+div.post-box{
     min-width: 27.5rem;
     padding: 1.30rem 0.5rem 1.30rem 1.20rem;
     display: flex;
     flex-wrap: nowrap;
     background-color: var(--color-basic);
     margin-bottom: 1.5rem;
-    margin: 0 0.7rem 1.5rem 0.7rem;
 }
+
 span.user-frame {
     height: 7.375rem;
     flex: 0 0 auto;
@@ -434,7 +433,25 @@ div.users-col{
 }
 
 div.users-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: stretch;
+}
+
+div.user-box{
+    width: 50%;
+    padding: 1.30rem 0.5rem 1.30rem 1.20rem;
+    display: flex;
     flex: 1 1 auto;
+    align-self: auto;
+    order: 0;
+    flex-wrap: nowrap;
+    background-color: var(--color-basic);
+    margin-bottom: 1.5rem;
+    margin: 0 0.7rem 1.5rem 0.7rem;
 }
 
 /* Opções dos posts: Editar, Afixar, Copiar URL, Eliminar  */

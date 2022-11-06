@@ -214,6 +214,20 @@ function get_favorited_post($uid){
         return $displayFollowing;
     }
 
+//Função que recebe o ID de um utilizador e devolve um array de strings com os seus seguidores 
+function display_followers($uid) {
+    require 'includes/connect_db.php';
+    $getFollowers =  $connection->prepare("SELECT users.handle, profiles.name, profiles.avatar, profiles.desc
+                                           FROM users
+                                           JOIN profiles ON users.user_id = profiles.user_id
+                                           JOIN follows ON users.user_id=follows.follower_id
+                                           WHERE follows.followed_id = :uid");
+    $getFollowers->bindParam(':uid', $uid);
+    $getFollowers->execute();
+    $displayFollowers = $getFollowers->fetchAll(PDO::FETCH_ASSOC);
+    return $displayFollowers;
+}
+
 //============== O PERFIL DO UTILIZADOR COMEÇA AQUI =================
 
 //Links da barra de navegação superior [navbar.php]:
@@ -252,4 +266,5 @@ $displayPosts = get_user_posts($_SESSION['user_id']);
 $displayFavedPosts = get_favorited_post($_SESSION['user_id']);
 
 $displayFollowing = display_following($_SESSION['user_id']);
+$displayFollowers = display_followers($_SESSION['user_id']);
 ?>
