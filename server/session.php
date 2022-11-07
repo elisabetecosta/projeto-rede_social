@@ -1,14 +1,14 @@
 <?php
 //Contém a session start e validação da sessão
-include 'includes/validate.php';
-
-//Estabelece a conexão com a base de dados
-include_once 'includes/connect_db.php';
+require 'includes/validate.php';
 
 //============== FUNÇÕES COM QUERIES PARA IR BUSCAR OS DADOS =================
 //Função que recebe um ID de utilizador e devolve um array de strings: handle, name, avatar, cover, title, desc
     function get_user_data($uid){
+        //Estabelece a conexão com a base de dados
         require 'includes/connect_db.php';
+
+
         $a = array();
         $profile = $connection->prepare('SELECT users.handle, profiles.name, profiles.avatar,
                                                 profiles.cover, profiles.title, profiles.desc
@@ -33,6 +33,7 @@ include_once 'includes/connect_db.php';
 
 //Função que recebe um ID de utilizador e devolve um array com o número de: posts, favoritos, seguindo e seguidores
     function get_user_stats($uid){
+        //Estabelece a conexão com a base de dados
         require 'includes/connect_db.php';
         $a = array();
         //Query que acede ao número total de Publicações deste utilizador
@@ -81,6 +82,7 @@ include_once 'includes/connect_db.php';
 
 //Função que recebe um ID de utilizador e devolve um array com a galeria do utilizador
     function get_user_gallery($uid){
+        //Estabelece a conexão com a base de dados
         require 'includes/connect_db.php';
         $a = array();
         //Carrega apenas as últimas 4 imagens publicadas por este utilizador (usamos a data de publicação/actualização da tabela posts)
@@ -102,6 +104,7 @@ include_once 'includes/connect_db.php';
 
 //Função que recebe um ID de utilizador e devolve um array com os seus 10 posts mais recentes
     function get_user_posts($uid){
+        //Estabelece a conexão com a base de dados
         require 'includes/connect_db.php';
         $getPosts =  $connection->prepare("SELECT post_id, text, date
                                            FROM posts
@@ -117,6 +120,7 @@ include_once 'includes/connect_db.php';
 //Função que mostra todos os favoritos de um utilizador
 //SELECT favs.user_id, favs.fav_id, profiles.name, profiles.avatar, favs.post_id, posts.text, posts.date, users.handle, favs.status FROM profiles JOIN posts ON profiles.user_id=posts.user_id JOIN users ON profiles.user_id=users.user_id JOIN favs ON posts.post_id=favs.post_id WHERE favs.user_id = 3 ORDER BY posts.post_id;
 function get_favorited_post($uid){
+    //Estabelece a conexão com a base de dados
     require 'includes/connect_db.php';
     $getFaves =  $connection->prepare("SELECT profiles.name, profiles.avatar, favs.post_id,
                                             posts.text, posts.date, users.handle
@@ -138,6 +142,7 @@ function get_favorited_post($uid){
 
 //Recebe o ID de um post e "apaga-o"
     function deletesPost($post_id){
+        //Estabelece a conexão com a base de dados
         require 'includes/connect_db.php';
         $deletesPost = $connection->prepare("UPDATE posts
                                              SET status = 1
@@ -178,6 +183,7 @@ function get_favorited_post($uid){
 
 //Função que recebe o ID de um post e conta todos os favoritos que recebeu //SELECT COUNT(fav_id) FROM favs WHERE post_id = :post_id AND status != 0;
     function count_post_faves($post_id) {
+        //Estabelece a conexão com a base de dados
         require 'includes/connect_db.php';
         $countPostFaves =  $connection->prepare("SELECT COUNT(fav_id) AS postfaves
                                                         FROM favs
@@ -190,6 +196,7 @@ function get_favorited_post($uid){
 
 //Função que recebe o ID de um post e conta todos os comentários que recebeu
     function count_post_comments($post_id) {
+        //Estabelece a conexão com a base de dados
         require 'includes/connect_db.php';
         $countPostReplies =  $connection->prepare("SELECT COUNT(comment_id ) AS postreplies
                                                         FROM comments
@@ -202,6 +209,7 @@ function get_favorited_post($uid){
 
 //Função que recebe o ID de um utilizador e devolve um array de strings com todas as contas que segue
     function display_following($uid) {
+        //Estabelece a conexão com a base de dados
         require 'includes/connect_db.php';
         $getFollowing =  $connection->prepare("SELECT users.handle, profiles.name, profiles.avatar, profiles.desc
                                                FROM users
@@ -216,6 +224,7 @@ function get_favorited_post($uid){
 
 //Função que recebe o ID de um utilizador e devolve um array de strings com os seus seguidores 
 function display_followers($uid) {
+    //Estabelece a conexão com a base de dados
     require 'includes/connect_db.php';
     $getFollowers =  $connection->prepare("SELECT users.handle, profiles.name, profiles.avatar, profiles.desc
                                            FROM users
@@ -228,7 +237,19 @@ function display_followers($uid) {
     return $displayFollowers;
 }
 
-//============== O PERFIL DO UTILIZADOR COMEÇA AQUI =================
+//Função que "apaga" um post pelo seu ID (na prática, coloca o status de 0 [visivel] para 1 [invisível])
+    function delete_post($post_id){
+        //Estabelece a conexão com a base de dados
+        require 'includes/connect_db.php';
+        $deletePost = $connection->prepare("UPDATE posts
+                                            SET status = 1
+                                            WHERE post_id = :post_id");
+        $deletePost->bindParam(':post_id', $post_iduid);
+        $deletePost->execute();
+        return;
+    }
+
+//============== SECÇÃO COM AS VARIÁVEIS NECESSÁRIAS PARA CONSTRUIR O HTML =================
 
 //Links da barra de navegação superior [navbar.php]:
 $homeURL = "main.php";                          //link do logotipo XATA
@@ -262,9 +283,17 @@ $user_title = $session['title'];
 $user_desc = $session['desc'];
 $gallerytitle = "Galeria";
 $displayMedia = get_user_gallery($_SESSION['user_id']);
+
+//Lista de Posts do utilizador [posts.php]
 $displayPosts = get_user_posts($_SESSION['user_id']);
+
+//Lista de Favoritos do utilizador [favorites.php]
 $displayFavedPosts = get_favorited_post($_SESSION['user_id']);
 
+//Lista de Perfis que o utilizador segue [following.php]
 $displayFollowing = display_following($_SESSION['user_id']);
+
+//Lista de Perfis que seguem o utilizador [followers.php]
 $displayFollowers = display_followers($_SESSION['user_id']);
+
 ?>
