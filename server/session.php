@@ -237,17 +237,7 @@ function display_followers($uid) {
     return $displayFollowers;
 }
 
-//Função que "apaga" um post pelo seu ID (na prática, coloca o status de 0 [visivel] para 1 [invisível])
-    function delete_post($post_id){
-        //Estabelece a conexão com a base de dados
-        require 'includes/connect_db.php';
-        $deletePost = $connection->prepare("UPDATE posts
-                                            SET status = 1
-                                            WHERE post_id = :post_id");
-        $deletePost->bindParam(':post_id', $post_iduid);
-        $deletePost->execute();
-        return;
-    }
+
 
 //============== SECÇÃO COM AS VARIÁVEIS NECESSÁRIAS PARA CONSTRUIR O HTML =================
 

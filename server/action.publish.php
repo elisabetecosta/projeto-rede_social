@@ -34,11 +34,10 @@
                 $publish->execute();
 
             } else {
-                return false;
+                header( "Location: posts.php" ); die;
             }
-        }
-
-        //Se o botão "publicar" for clicado
+        } else {
+            header( "Location: posts.php" ); die;
+        }  
     }
 
-?>
