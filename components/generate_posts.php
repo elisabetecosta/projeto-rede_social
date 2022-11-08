@@ -75,8 +75,8 @@
                         echo        "<span class='options dropdown-menu'>";
                         echo            "<input class='li' type='button' data-id='" . $row['post_id'] . "' value='Editar'>";
                         echo            "<input class='li' type='button' data-id='" . $row['post_id'] . "' value='Afixar'>";
-                        echo            "<input class='li' type='button' data-id='" . $row['post_id'] . "' value='Copiar'>";
-                        echo            "<input class='li' onclick='apagar()' type='button' data-id='" . $row['post_id'] . "' value='Eliminar'>";
+                        echo            "<input class='li' onclick='copyURL()' type='button' data-id='" . $row['post_id'] . "' value='Copiar'>";
+                        echo            "<input class='li' onclick='deletePost()' type='button' data-id='" . $row['post_id'] . "' value='Eliminar'>";
                         echo        "</span>";
                         echo    "</span>";
                         echo    "<h3>" . $name . "</h3>";
