@@ -1,9 +1,17 @@
+https://www.youtube.com/watch?v=hBbrGFCszU4
+
+https://www.w3schools.com/howto/howto_custom_select.asp
+em vez de display: none, o select original fica com
+position: absolute;
+left: -10000px;
+
+
 
 https://www.w3schools.com/css/css3_mediaqueries_ex.asp
 
         A adição da funçao de exibir password impede a validaçao em javascript da mesma por causa da div extra
 
-        imagem de cover do form de Login
+        
         rever video de criar form de registo pra resolver o bug do else no caso de erro no registo
         remover comentarios do codigo antigo
 
@@ -28,9 +36,9 @@ Registo
     - Validar formulário através de javascript e php para garantir a integridade dos dados (o utilizador pode desativar o javascript)
     - Adicionar logo
     - Estilizar com CSS
+	- Adicionar @ no campo do formulario 
 
     Por fazer:
-    - Adicionar @ no campo do formulario 
     - Dividir formulário em 2 partes (https://www.w3schools.com/howto/howto_js_form_steps.asp), aumentar padding dos inputs para 20px
 
     - Enviar e-mail com link de confirmação do registo (deixar pra mais tarde)

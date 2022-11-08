@@ -259,7 +259,6 @@
 
 
             <!--Secção 2 do formulário-->
-            
             <div class="form-control">
                 <label class="label" for="handle">Nome de utilizador </label>
                 <input class="input" type="text" size="20" maxlength="15" name="handle" id="handle" value="<?php echo $handle; ?>">

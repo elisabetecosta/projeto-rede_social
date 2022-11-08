@@ -6,7 +6,6 @@
     --color-basic: #ffffff;
     --color-grey: #808A99;
     --color-blank: #E8F0F6;
-    --font-title: 'Montserrat', sans-serif;
     --font-text: 'Poppins', sans-serif;
 }
 
@@ -71,33 +70,6 @@ h1 {
     width: 100%;
     padding: 15px;
 }
-
-/* .form-control.success input {
-    border: 3px solid #4ECA64;
-}
-
-.form-control.error input {
-    border: 3px solid #DB5A5A;
-} */
-
-/* .form-control i {
-    height: 10px;
-    width: 10px;
-    position: absolute;
-    top: 47px;
-    right: 25px;
-    visibility: hidden;
-}
-
-.form-control.error i.fa-circle-xmark {
-    visibility: visible;
-    color: #DB5A5A;
-}
-
-.form-control.success i.fa-circle-check {
-    visibility: visible;
-    color: #4ECA64;
-} */
 
 .form-control.error small {
     color: #DB5A5A;
