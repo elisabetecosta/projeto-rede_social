@@ -11,7 +11,9 @@
     include '../components/footer.php';
 ?>
 
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="../scripts/posts_dropdown.js"></script>
+
 </body>
 </html>
  
