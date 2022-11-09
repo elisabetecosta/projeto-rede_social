@@ -31,7 +31,7 @@
                 </div>
                 
 <!-- // POST-MODELO PARA AJUDAR A CRIAR O FOREACH ABAIXO // -->
-<!--                 <div class='post-box'>
+                <div class='post-box'>
                     <span class='user-frame'>
                         <a href='#'><img class='avatar' src='../users/rayana/avatar.png' /></a>
                     </span>
@@ -55,7 +55,7 @@
                         </div>
                     </span>
                 </div> 
- -->
+
             <?php
                 $i = 1; //Para ligar cada label à sua respectiva checkbox (dropdown-menu1, dropdown-menu2, dropdown-menu3...)
                 if(empty($displayPosts)){
