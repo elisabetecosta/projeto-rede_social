@@ -8,7 +8,7 @@
     <!--Importação do ficheiro css-->
     <link href="../styles/settings.css" rel="stylesheet" type="text/css">
     <!--Importação do ficheiro javascript-->
-    <script src="../scripts/" type="text/javascript" defer></script>
+    <script src="../scripts/settings.js" type="text/javascript" defer></script>
    
 
     <!--Importação das fontes-->
@@ -52,6 +52,7 @@
                 <h2>Opções de privacidade</h2>
                 <p>Controla quem tem acesso ao teu conteúdo</p>
                 <div class="wrapper">
+
                     <div class="content">
                         <div class="text">
                             <h3>O meu perfil é privado<i class="fa-solid fa-circle-info"></i></h3>
@@ -71,6 +72,17 @@
                         <div class="checkbox">
                             <input type="checkbox" id="mod">
                             <label for="mod"></label>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <div class="text">
+                            <h3>Receber notificações por e-mail</h3>
+                            <p>Recebe um e-mail quando tiveres novas notificações</p>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" id="notif">
+                            <label for="notif"></label>
                         </div>
                     </div>
                 </div>
@@ -106,10 +118,10 @@
                         <div class="dropdown">
                             <div class="select">
                                 <span class="selected">Perfil</span>
-                                <span class="arrow"><i class="fa-solid fa-sort-down"></i></span>
+                                <div class="arrow"><i class="fa-solid fa-sort-down"></i></div>
                             </div>
                             <ul class="menu">
-                                <li class="active">Perfil</li>
+                                <li>Perfil</li>
                                 <li>Timeline</li>
                             </ul>
                         </div>                            
