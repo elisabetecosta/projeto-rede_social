@@ -239,13 +239,13 @@ function display_followers($uid) {
 
 
 
-//============== SECÇÃO COM AS VARIÁVEIS NECESSÁRIAS PARA CONSTRUIR O HTML =================
+//============== SECÇÃO COM AS VARIÁVEIS NECESSÁRIAS PARA CONSTRUIR O HTML DO PROFILE.PHP =================
 
 //Links da barra de navegação superior [navbar.php]:
 $homeURL = "main.php";                          //link do logotipo XATA
 $profileURL = "../server/posts.php";            //link do avatar do user (avatar pequenino)
 $notifsURL = "notifications.php";               //link do icone de notificações (sineta)
-$configURL = "config.php";                      //link do ícone de configurações (roda dentada)
+$configURL = "settings.php";                      //link do ícone de configurações (roda dentada)
 $logoutURL = "logout.php";                      //link do botão de logout
 
 //Variáveis do Perfil do Utilizador [profile_header.php]:
