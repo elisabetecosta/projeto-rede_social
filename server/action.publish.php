@@ -1,6 +1,6 @@
 <?php
     //Verifica se o Utilizador tem sessão iniciada
-    include 'includes/validate.php';
+    include './includes/validate.php';
 
     //Faz o refresh da página (espera 0 segundos) após a inserção do post da base de dados
     $goto = 'posts.php'; //redirecciona para a página posts.php
@@ -25,7 +25,8 @@
             if(!empty($input) && (strlen($input) > 0) && (strlen($input) < 255)){
 
                 //Só acede à base de dados nesta instância, depois de passar pelas validações anteriores
-                include 'includes/connect_db.php';
+                require_once 'includes/connect_db.php';
+
                 //Query que insere os dados
                 $publish = $connection->prepare('INSERT INTO posts (user_id, text, date)
                                                             VALUES (:uid, :txt, NOW())');

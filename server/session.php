@@ -88,9 +88,8 @@ require 'includes/validate.php';
         //Carrega apenas as últimas 4 imagens publicadas por este utilizador (usamos a data de publicação/actualização da tabela posts)
         $getMedia = $connection->prepare("SELECT media.content, posts.post_id
                                           FROM media
-                                          JOIN posts
-                                          ON media.post_id=posts.post_id
-                                          WHERE posts.user_id = :uid AND posts.status=0 AND media.status=0
+                                          JOIN posts ON media.post_id=posts.post_id
+                                          WHERE posts.user_id = :uid AND posts.status=0 AND media.status=0 AND media.type = 'pic'
                                           ORDER BY media.content ASC LIMIT 4");
         $getMedia->bindParam(':uid', $uid);
         $getMedia->execute();
@@ -103,9 +102,11 @@ require 'includes/validate.php';
     }
 
 //Função que recebe um ID de utilizador e devolve um array com os seus 10 posts mais recentes
-    function get_user_posts($uid){
+/*     function get_user_posts($uid){
         //Estabelece a conexão com a base de dados
         require 'includes/connect_db.php';
+
+        //Query que recebe: id do post, texto e data de publicação
         $getPosts =  $connection->prepare("SELECT post_id, text, date
                                            FROM posts
                                            WHERE user_id = :uid AND status = 0 
@@ -113,7 +114,38 @@ require 'includes/validate.php';
         $getPosts->bindParam(':uid', $uid);
         $getPosts->execute();
         $displayPosts = $getPosts->fetchAll(PDO::FETCH_ASSOC);
+
         $a = $displayPosts;
+        return $a;
+    }  */   
+
+//Função que recebe um ID de utilizador e devolve um array com os seus 10 posts mais recentes + se contém média
+    function get_user_posts($uid){
+        //Estabelece a conexão com a base de dados
+        require 'includes/connect_db.php';
+
+        //Query que recebe os dados dos posts: post_id, texto, data de publicação, e média anexada (se não tiver, é null)
+        $getPosts =  $connection->prepare("SELECT posts.post_id, posts.text, posts.date, media.type, media.content
+                                           FROM posts
+                                           LEFT JOIN media ON media.post_id=posts.post_id
+                                           WHERE posts.user_id = :uid AND posts.status = 0 
+                                           ORDER BY posts.date DESC LIMIT 10");
+        $getPosts->bindParam(':uid', $uid);
+        $getPosts->execute();
+        $displayPosts = $getPosts->fetchAll(PDO::FETCH_ASSOC);
+        $a = $displayPosts;
+        return $a;
+    }    
+
+//Função que recebe o ID do post e devolve o array de imagens (exemplo.png)
+    function get_post_images($post_id){
+        //Estabelece a conexão com a base de dados
+        require 'includes/connect_db.php';
+        $getImages =  $connection->prepare("SELECT content FROM media WHERE post_id = :post_id");
+        $getImages->bindParam(':post_id', $post_id);
+        $getImages->execute();
+        $displayImages = $getImages->fetchAll(PDO::FETCH_ASSOC);
+        $a = $displayImages;
         return $a;
     }
 
@@ -138,18 +170,6 @@ function get_favorited_post($uid){
 // Para seleccionar todos os favoritos (sem filtro de utilizador), usar:
 // SELECT favs.fav_id, profiles.name, profiles.avatar, favs.post_id, posts.text, posts.date, users.handle, favs.status FROM profiles JOIN posts ON profiles.user_id=posts.user_id JOIN users ON profiles.user_id=users.user_id JOIN favs ON posts.post_id=favs.post_id WHERE posts.post_id ORDER BY posts.post_id;
 // Isto ajuda a ter noção do que estou a selecionar
-
-
-//Recebe o ID de um post e "apaga-o"
-    function deletesPost($post_id){
-        //Estabelece a conexão com a base de dados
-        require 'includes/connect_db.php';
-        $deletesPost = $connection->prepare("UPDATE posts
-                                             SET status = 1
-                                             WHERE CONCAT(posts.post_id) = :post_id; ");
-        $deletesPost->bindParam(':post_id', $post_id);
-        $deletesPost->execute();
-    }
 
 //Função que recebe a datahora armazenada no sistema e devolve uma string com o tempo relativo (exemplo: "há 5 segs")
     function time_elapsed_string($datetime, $full = false) {
@@ -237,7 +257,10 @@ function display_followers($uid) {
     return $displayFollowers;
 }
 
-
+/* function convertYoutube($youtubeURL) {
+    $youtubePattern = "/\s*[a-zA-Z\/\/:\.]*youtu(be.com\/watch\?v=|.be\/)([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i";
+    
+} */
 
 //============== SECÇÃO COM AS VARIÁVEIS NECESSÁRIAS PARA CONSTRUIR O HTML DO PROFILE.PHP =================
 
