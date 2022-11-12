@@ -31,6 +31,10 @@ html {
     scroll-behavior: smooth;
 }
 
+a {
+    text-decoration: none;
+}
+
 .container {
     display: flex;
     flex-direction: row;
@@ -62,7 +66,6 @@ html {
 }
 
 .links a {
-    text-decoration: none;
     color: var(--font-text);
     font-weight: bold;
     display: block;
@@ -73,7 +76,8 @@ html {
     color: var(--color-main);
 }
 
-.links a:focus {
+.links a:hover,
+.active {
     border-left: 0.42rem solid var(--color-main);
 }
 
@@ -177,7 +181,12 @@ p {
 
 #handle,
 .select,
-#password-current {
+#password-current,
+#password-new,
+#password-confirm,
+#email,
+#email-confirm,
+#password-current-two {
     height: 2.375rem;
     border-radius: 1.18rem;
     border: 1px solid var(--color-main);
@@ -264,7 +273,7 @@ select {
 }
 
 /* Estilos adicionados em javascript */
-.active {
+.option-active {
     background-color: var(--color-main);
     color: var(--color-basic);
 }
@@ -272,4 +281,29 @@ select {
 .menu-open {
     display: block;
     opacity: 1;
+}
+
+.extra {
+    display: flex;
+    flex-direction: column;
+}
+
+.extra span {
+    padding-left: 15px;
+}
+
+.extra span a {
+    font-size: 0.8rem;
+    color: var(--color-main);
+}
+
+.account-delete span a,
+.fa-regular.fa-triangle-exclamation {
+    color: #DB5A5A;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.fa-regular.fa-triangle-exclamation {
+    padding-left: 5px;
 }

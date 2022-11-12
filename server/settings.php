@@ -139,13 +139,83 @@
                             <p>Insere a tua palavra-passe atual</p>
                         </div>
                         <div class="password-input">
-                            <label for="password-current"></label>
-                            <input type="password" id="password-current" placeholder="********">
+                            <div class="extra">
+                                <label for="password-current"></label>
+                                <input type="password" id="password-current" placeholder="********">
+                                <span><a href="#">Esqueci-me da palavra-passe</a></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <div class="text">
+                            <h3>Nova palavra-passe</h3>
+                            <p>Insere a tua nova palavra-passe</p>
+                        </div>
+                        <div class="password-input">
+                            <label for="password-new"></label>
+                            <input type="password" id="password-new" placeholder="********">
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <div class="text">
+                            <h3>Confirmar palavra-passe</h3>
+                            <p>Insere novamente a tua nova palavra-passe para confirmar a alteração</p>
+                        </div>
+                        <div class="password-input">
+                            <label for="password-confirm"></label>
+                            <input type="password" id="password-confirm" placeholder="********">
                         </div>
                     </div>
             </section>
 
-            <section class="section"></section>
+            <section class="section" id="section-four">
+                <h2>A minha conta</h2>
+                <p>Mantém o e-mail de acesso à tua conta atualizado</p>
+                <div class="wrapper">
+                    <div class="content">
+                        <div class="text">
+                            <h3>Endereço de e-mail</h3>
+                            <p>Insere o e-mail de acesso à conta</p>
+                        </div>
+                        <div class="text-input">
+                            <label for="email"></label>
+                            <input type="text" size="20" maxlength="50" id="email" placeholder="123@email.pt">
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <div class="text">
+                            <h3>Confirmar e-mail</h3>
+                            <p>Insere novamente o teu e-mail para confirmar a alteração</p>
+                        </div>
+                        <div class="text-input">
+                            <label for="email-confirm"></label>
+                            <input type="text" size="20" maxlength="50" id="email-confirm" placeholder="123@email.pt">
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <div class="text">
+                            <h3>Palavra-passe atual</h3>
+                            <p>Insere a tua palavra-passe atual para confirmar a alteração</p>
+                        </div>
+                        <div class="password-input">
+                            <div class="extra">
+                                <label for="password-current-two"></label>
+                                <input type="password" id="password-current-two" placeholder="********">
+                                <span><a href="#">Esqueci-me da palavra-passe</a></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <div class="account-delete">
+                            <span><a href="#">Excluir conta<i class="fa-regular fa-triangle-exclamation"></i></a></span>
+                        </div>
+                    </div>
+            </section>
 
             <div class="buttons">
                 

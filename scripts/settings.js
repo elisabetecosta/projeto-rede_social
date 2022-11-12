@@ -1,6 +1,43 @@
+//======================== SIDEBAR/MAIN =======================
+const links = document.querySelectorAll('.links a');
+const sections = document.querySelectorAll('.wrapper');
+
+//Itera por todos os links da sidebar
+links.forEach(link => {
+
+    //Adiciona um evento 'click' ao link clicado
+    link.addEventListener('click', () => {
+
+        //Remove a classe active de todos os links
+        links.forEach(link => {
+            link.classList.remove('active');
+        });
+
+        //Adiciona a classe active ao elemento link clicado
+        link.classList.add('active');
+    });
+});
+
+
+//Itera por todas as secções
+sections.forEach(section => {
+
+    //Adiciona um evento 'focus' à secção atual
+    section.addEventListener('click', () => {
+
+        //Remove a classe active de todas as secções
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
+
+        //Adiciona a classe active à secção atual
+        section.classList.add('active');
+    });
+});
+
+//======================== SELECT =======================
 //Seleciona todos os dropdowns do documento
 const dropdowns = document.querySelectorAll('.dropdown');
-
 
 //Itera por todos os elementos do dropdown
 dropdowns.forEach(dropdown => {
@@ -32,11 +69,11 @@ dropdowns.forEach(dropdown => {
 
             //Remove a classe active de todos os elementos option
             options.forEach(option => {
-                option.classList.remove('active');
+                option.classList.remove('option-active');
             });
 
             //Adiciona a classe active ao elemento option clicado
-            option.classList.add('active');
+            option.classList.add('option-active');
         });
     });
 
