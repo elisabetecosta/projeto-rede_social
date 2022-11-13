@@ -60,3 +60,18 @@ const copyURL = async () => {
         console.error('Failed to copy: ', err);
     }
 }
+
+
+// Função que copia o URL direto para o post
+const copyFave = async () => {
+    var url = window.location.href;
+    let postId = event.target.getAttribute("data-id");
+
+    try {
+        window.location.href = '../server/favorites.php' + "#" + postId;
+        await navigator.clipboard.writeText(window.location.href);
+        alert('URL copiada com sucesso!');
+    } catch (err) {
+        console.error('Failed to copy: ', err);
+    }
+}

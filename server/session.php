@@ -142,7 +142,7 @@ require 'includes/validate.php';
     function get_post_images($post_id){
         //Estabelece a conexão com a base de dados
         require 'includes/connect_db.php';
-        $getImages =  $connection->prepare("SELECT content FROM media WHERE post_id = :post_id");
+        $getImages =  $connection->prepare("SELECT content FROM media WHERE post_id = :post_id AND status = 0");
         $getImages->bindParam(':post_id', $post_id);
         $getImages->execute();
         $displayImages = $getImages->fetchAll(PDO::FETCH_ASSOC);

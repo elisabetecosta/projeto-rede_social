@@ -81,6 +81,8 @@ h2{
     cursor: pointer;
 }
 
+
+
 /* ================= PERFIL DO UTILIZADOR (profile_header.php) ====================*/
 
 main.profile-container {
@@ -449,6 +451,23 @@ div.player iframe {
     height: 100%;
   }
 
+/* ============= Posts: Snippets de código =========== */
+pre {
+    max-width: 47.8rem;
+    height: auto;
+    overflow: auto;
+    margin-top: 1rem;
+    padding: 1.5rem;
+    color: var(--color-basic);
+    margin-right: 2.3rem;
+    background-color: var(--color-default);
+    tab-size: 8;
+    border-radius: 1.2rem;
+    word-break: normal;
+    word-wrap: normal;
+    white-space: pre;
+}
+
 /* ================= USERS QUE SEGUEM O UTILIZADOR/ QUE O UTILIZADOR SEGUE (following.php) (followers.php) ====================*/
 
 div.users-col{
@@ -492,6 +511,7 @@ div.user-box{
     width: 12.5rem;
     list-style: none;
     border: 1px solid var(--color-main);
+    z-index: 1;
 }
 input[type=button].li {
     cursor: pointer;
