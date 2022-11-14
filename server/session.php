@@ -129,6 +129,7 @@ require 'includes/validate.php';
                                            FROM posts
                                            LEFT JOIN media ON media.post_id=posts.post_id
                                            WHERE posts.user_id = :uid AND posts.status = 0 
+                                           GROUP BY posts.post_id
                                            ORDER BY posts.date DESC LIMIT 10");
         $getPosts->bindParam(':uid', $uid);
         $getPosts->execute();
@@ -141,7 +142,7 @@ require 'includes/validate.php';
     function get_post_images($post_id){
         //Estabelece a conexão com a base de dados
         require 'includes/connect_db.php';
-        $getImages =  $connection->prepare("SELECT content FROM media WHERE post_id = :post_id");
+        $getImages =  $connection->prepare("SELECT content FROM media WHERE post_id = :post_id AND status = 0");
         $getImages->bindParam(':post_id', $post_id);
         $getImages->execute();
         $displayImages = $getImages->fetchAll(PDO::FETCH_ASSOC);
@@ -257,10 +258,19 @@ function display_followers($uid) {
     return $displayFollowers;
 }
 
-/* function convertYoutube($youtubeURL) {
-    $youtubePattern = "/\s*[a-zA-Z\/\/:\.]*youtu(be.com\/watch\?v=|.be\/)([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i";
-    
-} */
+function convertYoutube($youtubeURL) {
+    $shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_-]+)\??/i';
+    $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))([a-zA-Z0-9_-]+)/i';
+
+   if (preg_match($longUrlRegex, $youtubeURL, $matches)) {
+       $youtube_id = $matches[count($matches) - 1];
+   }
+
+   if (preg_match($shortUrlRegex, $youtubeURL, $matches)) {
+       $youtube_id = $matches[count($matches) - 1];
+   }
+   return 'https://www.youtube.com/embed/' . $youtube_id ;
+}
 
 //============== SECÇÃO COM AS VARIÁVEIS NECESSÁRIAS PARA CONSTRUIR O HTML DO PROFILE.PHP =================
 

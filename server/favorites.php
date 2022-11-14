@@ -16,7 +16,7 @@
     include '../components/footer.php';             //Roda-pé com links     <footer>
 ?>
  
-<script src="../scripts/posts_dropdown.js"></script>
+<script src="../scripts/posts_dropdown.js"></script> 
 </body>
 </html>
  

@@ -81,6 +81,8 @@ h2{
     cursor: pointer;
 }
 
+
+
 /* ================= PERFIL DO UTILIZADOR (profile_header.php) ====================*/
 
 main.profile-container {
@@ -307,9 +309,9 @@ span.profile-frame h3 {
 }
 span.post-frame p,
 span.profile-frame p {
-    padding-right: 1.3rem;
+    padding-right: 2.3rem;
     margin-top: 0.3rem;
-    padding-bottom: 1rem;
+   /*  padding-bottom: 1rem; */
 }
 .newpost_text {
     width: 100%;
@@ -327,12 +329,143 @@ span.profile-frame p {
 }
 
 div.post-interaction{
+    padding-top:1rem;
+    height: 1.5rem;
     color: var(--color-grey);
+    display: inline-block;
 }
 
 .post-interaction span{
     font-size: 1rem;
     margin-right: 5rem;
+}
+
+
+/* ============= Posts: Caixas de imagens =========== */
+div.picturebox{
+    margin-right: 2.5rem;
+    margin-top: 1rem;
+    gap: 1px;
+}
+
+/* ==== Uma imagem ==== */
+.pics1 img{
+    width:100%;
+    max-height:26rem;
+    object-fit: cover;
+    border-radius: 1.2rem;
+}
+/* ==== Duas imagens ==== */
+.pics2 {
+    display: flex;
+}
+.pics2 span{
+    width: 100%;
+    gap: 1px;
+}
+.pics2 img{
+    width: 100%;
+    max-height:26rem;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+.pics2 img.first{
+    border-radius: 1.2rem 0 0 1.2rem;
+}
+.pics2 img.second{
+    border-radius: 0 1.2rem 1.2rem 0;
+}
+/* ==== Três imagens ==== */
+.pics3 {
+    display: flex;
+}
+.pics3 span{
+    width: 100%;
+    gap: 1px;
+}
+.pics3 img{
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+.pics3 img.first{
+    height:26rem;
+    border-radius: 1.2rem 0 0 1.2rem;
+}
+.pics3 img.second{
+    vertical-align: bottom;
+    margin-bottom: 1px;
+    height:12.95rem;
+    border-radius: 0 1.2rem 0 0;
+}
+.pics3 img.third{
+    height:12.95rem;
+    border-radius: 0 0 1.2rem 0;
+}
+/* ==== Quatro imagens ==== */
+.pics4{
+    display: flex;
+    flex-direction: column;
+}
+.pics4 span{
+    width:100%;
+    max-height:13rem;
+    min-height:5rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+}
+.pics4 img{
+    max-width:50%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+.pics4 img.first{
+    border-radius: 1.2rem 0 0 0;
+}
+.pics4 img.second{
+    border-radius: 0 1.2rem 0 0;
+}
+.pics4 img.third{
+    border-radius: 0 0 0 1.2rem;
+}
+.pics4 img.fourth{
+    border-radius: 0 0 1.2rem 0;
+}
+
+/* ============= Posts: Video do youtube =========== */
+div.player{
+    margin-top: 1rem;
+    margin-right: 2.5rem;
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    border-radius: 1.2rem;
+    overflow: hidden;
+}
+div.player iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+/* ============= Posts: Snippets de código =========== */
+pre {
+    max-width: 47.8rem;
+    height: auto;
+    overflow: auto;
+    margin-top: 1rem;
+    padding: 1.5rem;
+    color: var(--color-basic);
+    margin-right: 2.3rem;
+    background-color: var(--color-default);
+    tab-size: 8;
+    border-radius: 1.2rem;
+    word-break: normal;
+    word-wrap: normal;
+    white-space: pre;
 }
 
 /* ================= USERS QUE SEGUEM O UTILIZADOR/ QUE O UTILIZADOR SEGUE (following.php) (followers.php) ====================*/
@@ -378,6 +511,7 @@ div.user-box{
     width: 12.5rem;
     list-style: none;
     border: 1px solid var(--color-main);
+    z-index: 1;
 }
 input[type=button].li {
     cursor: pointer;
