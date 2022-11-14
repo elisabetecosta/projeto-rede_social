@@ -212,13 +212,13 @@
 
                     <div class="content">
                         <div class="account-delete">
-                            <span><a href="#">Excluir conta<i class="fa-regular fa-triangle-exclamation"></i></a></span>
+                            <span><a href="#">Excluir conta<i class="fa-solid fa-triangle-exclamation"></i></a></span>
                         </div>
                     </div>
             </section>
 
             <div class="buttons">
-                
+                <button type="submit" name="submitBtn" id="submitBtn" value="Submeter">Submeter</button>
             </div>
         </div>
     </div>

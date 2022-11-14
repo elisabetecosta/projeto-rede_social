@@ -57,10 +57,8 @@ Settings (https://www.w3schools.com/howto/howto_custom_select.asp)
         - Animação do menu da sidebar
 
     Por fazer:
-        - Fazer a div dos buttons
-        - BUG_1 - Toggle buttons estão com o mesmo z-index que a navbar e sobrepõem a mesma ao fazer scroll
+        - BUG_1 - Toggle buttons estão com o mesmo z-index que a navbar e sobrepõem a mesma ao fazer scroll (FIXED?)
         - BUG_2 - Descobrir forma de selecionar a secção correspondente ao link clicado
-        - BUG_3 - Icone de exclusão de conta não é exibido, incluir font-awesome localmente
 
         - Adição dos requisitos dos campos com base no formulário de registo (size, maxlength, etc)
         - Validações dos campos em javascript e php

@@ -27,7 +27,7 @@ header {
     align-content: stretch;
     background-color: var(--color-basic);
     overflow: hidden;
-    z-index: 2;         /*é 2 porque o avatar é 1*/
+    z-index: 100;         /*elementos com valores maiores sobrepõem elementos com valores menores*/
 }
 
 nav {
