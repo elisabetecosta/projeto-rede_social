@@ -219,6 +219,7 @@
 
             <div class="buttons">
                 <button type="submit" name="submitBtn" id="submitBtn" value="Submeter">Submeter</button>
+                <button onclick="window.history.go(-1)">Cancelar</button>
             </div>
         </div>
     </div>

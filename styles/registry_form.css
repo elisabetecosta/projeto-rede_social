@@ -173,7 +173,6 @@ h1 {
     color: var(--color-main);
     background-color: var(--color-basic);
     border-color: var(--color-main);
-    transition: 0.3s;
 }
 
 span {
