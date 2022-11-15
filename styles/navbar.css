@@ -23,7 +23,8 @@ header {
     height: 3.6rem;
     display: flex;
     justify-content: flex-start;
-    position: fixed;    /*acompanha o scroll down*/
+    position: sticky;      /*acompanha o scroll down*/
+    top:0;
     align-content: stretch;
     background-color: var(--color-basic);
     overflow: hidden;
@@ -32,7 +33,7 @@ header {
 
 nav {
     width: inherit;
-    max-width: 100rem;  /*posiciona os links*/
+    max-width: 100rem;   /*posiciona os links*/
     margin: 0 auto;
     height: inherit;
     display: flex;

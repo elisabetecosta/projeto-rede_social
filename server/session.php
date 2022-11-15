@@ -8,14 +8,13 @@ require 'includes/validate.php';
         //Estabelece a conexão com a base de dados
         require 'includes/connect_db.php';
 
-
         $a = array();
         $profile = $connection->prepare('SELECT users.handle, profiles.name, profiles.avatar,
                                                 profiles.cover, profiles.title, profiles.desc
-                                            FROM users
-                                            JOIN profiles
-                                            ON users.user_id = profiles.user_id
-                                            WHERE users.user_id = :uid');
+                                         FROM users
+                                         JOIN profiles
+                                         ON users.user_id = profiles.user_id
+                                         WHERE users.user_id = :uid');
         $profile->bindParam(':uid', $uid);
         $profile->execute();
         $data = $profile->fetch(PDO::FETCH_ASSOC);
