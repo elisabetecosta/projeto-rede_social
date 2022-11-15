@@ -1,16 +1,7 @@
-<!-- Substituir o código abaixo por incluir o head.php  -->
-<link rel="stylesheet" href="../styles/navbar.css">
-<!--Importação das fontes-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<!--Importação da biblioteca de ícones font awesome-->
-<script src="https://kit.fontawesome.com/4489f75108.js" crossorigin="anonymous" defer></script>
-
 <header> 
     <nav class="navbar">
         <section> <!-- Esta <section> aqui é a navbar:firstchild que permite indentar o logotipo  -->
-            <a href="<?php echo ($homeURL); ?>">
+            <a href="<?=$userSettings->homeURL; ?>">
                 <img src="../images/logo.svg" alt="logo" id="logo">
             </a>
         </section>
@@ -22,10 +13,10 @@
             </span>
             <!-- Ícones de navegação: [Avatar] [Notificações] [Configurações] e [Terminar Sessão] -->
             <span class="navlinks">
-                <a alt="Profile" href="<?php echo ($profileURL); ?>"><img height="30px" src="../users/<?php echo "{$session['handle']}"; ?>/<?php echo "{$session['avatar']}"; ?>" /></a>
-                <a alt="Notifications" href="<?php echo ($notifsURL); ?>"><i class="fa-solid fa-bell"></i></a>
-                <a alt="Settings" href="<?php echo ($configURL); ?>"><i class="fa-solid fa-gear"></i></a>
-                <a alt="Logout" href="<?php echo ($logoutURL); ?>"><i class="fa-solid fa-power-off"></i></a>
+                <a alt="Profile" href="<?=$userSettings->profileURL?>"><img height="30px" src="../users/<?=$userProfile->userData['handle']?>/<?=$userProfile->userData['avatar']?>" /></a>
+                <a alt="Notifications" href="<?=$userSettings->notifsURL?>"><i class="fa-solid fa-bell"></i></a>
+                <a alt="Settings" href="<?=$userSettings->configURL?>"><i class="fa-solid fa-gear"></i></a>
+                <a alt="Logout" href="<?=$userSettings->logoutURL?>"><i class="fa-solid fa-power-off"></i></a>
             </span>
         </div>    
     </nav>  

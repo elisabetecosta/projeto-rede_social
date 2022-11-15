@@ -220,6 +220,7 @@ div.profile-main {
     align-items: stretch;
 
 }
+/* Coluna da esquerda do perfil */
 span.sidebar-col {
     margin-left: 3.125rem;
     min-width: 23.7rem;
@@ -228,6 +229,7 @@ span.sidebar-col {
     flex: 0 1 auto;
     flex-wrap: nowrap;
 }
+/*Caixas de conteúdo na coluna esquerda*/
 div.sidebar-box {
     width: 100%;
     padding: 1.30rem 2rem;
@@ -248,15 +250,21 @@ div.sidebar-box p{
 div.sidebar-box:first-child{
     margin-bottom: 1.5rem;
 }
-div.sidebar-box img{
+/* Galeria do utilizador */
+div.gallery img{
     width: 100%;
     aspect-ratio: 1;
     max-width: 25%;
     object-fit: cover;
+    /* transition: .2s ease; */
 }
-/* div.sidebar-box img{
-    border-radius: 1.4rem;
-} */
+div.gallery img:first-child{
+    border-radius: 1rem 0 0 1rem;
+}
+div.gallery img:last-child{
+    border-radius: 0 1rem 1rem 0;
+}
+/* Coluna direita dos posts*/
 span.posts-col {
     margin-left: 2rem;
     max-width: 60rem;
@@ -341,11 +349,13 @@ div.post-interaction{
 }
 
 
+
+
 /* ============= Posts: Caixas de imagens =========== */
 div.picturebox{
     margin-right: 2.5rem;
     margin-top: 1rem;
-    gap: 1px;
+    gap: 8px;
 }
 
 /* ==== Uma imagem ==== */
@@ -361,19 +371,14 @@ div.picturebox{
 }
 .pics2 span{
     width: 100%;
-    gap: 1px;
+    gap: 8px;
 }
 .pics2 img{
     width: 100%;
     max-height:26rem;
     aspect-ratio: 1;
     object-fit: cover;
-}
-.pics2 img.first{
-    border-radius: 1.2rem 0 0 1.2rem;
-}
-.pics2 img.second{
-    border-radius: 0 1.2rem 1.2rem 0;
+    border-radius: 1.2rem;
 }
 /* ==== Três imagens ==== */
 .pics3 {
@@ -381,26 +386,24 @@ div.picturebox{
 }
 .pics3 span{
     width: 100%;
-    gap: 1px;
+    gap: 8px;
 }
 .pics3 img{
     width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
+    border-radius: 1.2rem;
 }
 .pics3 img.first{
     height:26rem;
-    border-radius: 1.2rem 0 0 1.2rem;
 }
 .pics3 img.second{
     vertical-align: bottom;
     margin-bottom: 1px;
     height:12.95rem;
-    border-radius: 0 1.2rem 0 0;
 }
 .pics3 img.third{
     height:12.95rem;
-    border-radius: 0 0 1.2rem 0;
 }
 /* ==== Quatro imagens ==== */
 .pics4{
@@ -413,24 +416,13 @@ div.picturebox{
     min-height:5rem;
     display: flex;
     flex-direction: row;
-    gap: 1px;
+    gap: 8px;
 }
 .pics4 img{
     max-width:50%;
     aspect-ratio: 1;
     object-fit: cover;
-}
-.pics4 img.first{
-    border-radius: 1.2rem 0 0 0;
-}
-.pics4 img.second{
-    border-radius: 0 1.2rem 0 0;
-}
-.pics4 img.third{
-    border-radius: 0 0 0 1.2rem;
-}
-.pics4 img.fourth{
-    border-radius: 0 0 1.2rem 0;
+    border-radius: 1.2rem;
 }
 
 /* ============= Posts: Video do youtube =========== */
@@ -457,15 +449,26 @@ pre {
     height: auto;
     overflow: auto;
     margin-top: 1rem;
+    margin-right: 2.3rem;
     padding: 1.5rem;
     color: var(--color-basic);
-    margin-right: 2.3rem;
     background-color: var(--color-default);
     tab-size: 8;
     border-radius: 1.2rem;
     word-break: normal;
     word-wrap: normal;
     white-space: pre;
+}
+
+/* ============= Posts: Links partilhados =========== */
+div.linkbox{
+    padding: 1rem;
+    max-width: 47.8rem;
+    min-height: 7rem;
+    margin-top: 1rem;
+    margin-right: 2.3rem;
+    border-radius: 1.2rem;
+    border: 1px solid #D4D4D4;
 }
 
 /* ================= USERS QUE SEGUEM O UTILIZADOR/ QUE O UTILIZADOR SEGUE (following.php) (followers.php) ====================*/
@@ -549,7 +552,7 @@ input[type=button].li:hover {
     height: 2.7rem;
     border-radius: 5rem;
     background-color: var(--color-basic);
-    z-index: 1;
+    z-index: 3;
 }
 [type="checkbox"]:not(:checked) + label:hover,
   [type="checkbox"]:checked + label:hover{
