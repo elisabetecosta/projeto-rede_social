@@ -15,10 +15,10 @@
             </span>
             <span class="profile-stats">
             <!-- Estatísticas do utilizador: número de posts, número de favoritos, número de pessoas que segue, número de seguidores -->
-            <a <?php echo $focusposts ?> href="./posts.php"><h3>Publicações</h3><span><?php echo "{$userProfile->userData['posts']}"; ?></span></a>
-            <a <?php echo $focusfave ?> href="./favorites.php"><h3>Favoritos</h3><span><?php echo "{$userProfile->userData['faves']}"; ?></span></a>
-            <a <?php echo $focusflwing ?> href="./following.php"><h3>Seguindo</h3><span><?php echo "{$userProfile->userData['following']}"; ?></span></a>
-            <a <?php echo $focusflwers ?> href="./followers.php"><h3>Seguidores</h3><span><?php echo "{$userProfile->userData['followers']}"; ?></span></a>
+            <a <?php echo $focusposts ?> href="./posts"><h3>Publicações</h3><span><?php echo "{$userProfile->userData['posts']}"; ?></span></a>
+            <a <?php echo $focusfave ?> href="./favorites"><h3>Favoritos</h3><span><?php echo "{$userProfile->userData['faves']}"; ?></span></a>
+            <a <?php echo $focusflwing ?> href="./following"><h3>Seguindo</h3><span><?php echo "{$userProfile->userData['following']}"; ?></span></a>
+            <a <?php echo $focusflwers ?> href="./followers"><h3>Seguidores</h3><span><?php echo "{$userProfile->userData['followers']}"; ?></span></a>
             </span>
             <span class="profile-btn-container">
                 <button class="btn">Editar</button>

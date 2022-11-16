@@ -180,8 +180,8 @@
             //Destrói as variáveis para impedir registos duplicados acidentais
             unset($data);
 
-            //Redireciona para a página de Login
-            header("Location: index.php");
+            //Redireciona para a página de Login (usar /index.php ou /login)
+            header("Location: ../login");
         }
     }
 
@@ -192,7 +192,7 @@
     //     echo "Erro: Registo não foi efetuado com sucesso!";
     //     var_dump($data);
 
-    //     //Redireciona para a página de Login
+    //     //Redireciona para a página de Login (usar /index.php ou /login)
     //     //header("Location: index.php");
     // }
 ?>
@@ -300,7 +300,7 @@
             </div>
 
             <button type="submit" name="submitBtn" id="submitBtn" value="Criar conta">Criar conta</button>
-            <span>Já tens uma conta? Inicia sessão <a href="../index.php">aqui</a>.</span>
+            <span>Já tens uma conta? Inicia sessão <a href="../login">aqui</a>.</span>
         </form>
     </div>
 </body>

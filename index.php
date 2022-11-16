@@ -55,7 +55,7 @@ if (!empty($data['submitBtn'])) {
     } else {
 
         //Cria a instrução SQL que seleciona o utilizador correspondente ao inserido no formulário
-        $user_query = "SELECT user_id, email, password 
+        $user_query = "SELECT user_id, email, handle, password 
             FROM users 
             WHERE email = :email 
             LIMIT 1";
@@ -81,7 +81,8 @@ if (!empty($data['submitBtn'])) {
             if ($data['password'] == $user_row['password']) {
                 $_SESSION['user_id'] = $user_row['user_id'];
                 $_SESSION['name'] = $user_row['name'];
-                header("Location: server/posts.php");
+                $_SESSION['handle'] = $user_row['handle'];
+                header("Location: ".$_SESSION['handle']."/");
                 //echo "Utilizador com sessão iniciada!";
             } else {
                 $errors['password'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>E-mail ou palavra-passe inválidos!</p>";
@@ -155,7 +156,7 @@ if (!empty($data['submitBtn'])) {
                     </div>
 
                     <button type="submit" name="submitBtn" id="submitBtn" value="Iniciar sessão">Iniciar sessão</button>
-                    <span>Ainda não tens uma conta? Regista-te <a href="server/register.php">aqui</a>.</span>
+                    <span>Ainda não tens uma conta? Regista-te <a href="profile/register">aqui</a>.</span>
                 </form>
             </div>
         </div>
