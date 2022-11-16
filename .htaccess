@@ -5,9 +5,3 @@ RewriteRule ^([^\.]+)/([^\.]+)$ /projeto-rede_social/server/$2.php?profile=$1
 RewriteRule ^([^\.]+)/$ /projeto-rede_social/server/posts.php
 RewriteRule ^login$ /projeto-rede_social/index.php
 RewriteRule ^([^\.]+)$ /projeto-rede_social/$1.php
-
-# PARA UTILIZAR ESTE FICHEIRO COM O APACHE DO XAMPP SEM PROBLEMAS
-# 1 Colocar este ficheiro .htaccess na pasta "projeto-rede_social"
-# 2 Abrir o ficheiro index.php que está na pasta "htdocs" do XAMPP (é gerado por default após a instalação do XAMPP)
-# 3 É preciso editá-lo e comentar as linhas de php que lá estão a estorvar e a obstruir as regras definidas pelo htaccess
-# 4 O Apache considera que o root do servidor é SEMPRE a pasta "htdocs" Por isso é preciso incluir o dir /projeto-rede_social/ na regra.
