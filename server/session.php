@@ -333,7 +333,7 @@ class Posts {
 class Settings {
     //Links da barra de navegação superior [navbar.php]:
     var $homeURL = "posts.php";                         //link do logotipo XATA
-    var $profileURL = "../server/posts.php";            //link do avatar do user (avatar pequenino)
+    var $profileURL = "./posts.php";            //link do avatar do user (avatar pequenino)
     var $notifsURL = "notifications.php";               //link do icone de notificações (sineta)
     var $configURL = "settings.php";                    //link do ícone de configurações (roda dentada)
     var $logoutURL = "logout.php";                      //link do botão de logout
