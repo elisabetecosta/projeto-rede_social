@@ -1,0 +1,26 @@
+/*Estilos gerais comuns a todo o site como tamanhos e tipos de letra, cores, etc*/
+:root {
+    --color-main: #0092ca;
+    --color-default: #222831;
+    --color-hover: #393e46;
+    --color-basic: #ffffff;
+    --color-grey: #808A99;
+    --color-blank: #E8F0F6;
+    --font-title: 'Montserrat', sans-serif;
+    --font-text: 'Poppins', sans-serif;
+}
+
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+footer {
+    margin-top: auto;
+    text-align: center;
+    font-size: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
