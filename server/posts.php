@@ -1,17 +1,17 @@
 <?php
 //============= PÁGINA DOS POSTS DO UTILIZADOR ========================
 
-    //Ficheiro PHP com as classes e funções      
-    include 'session.php';
+//Ficheiro PHP com as classes e funções      
+include 'session.php';
 
-    //Variáveis deste documento:
-    $focusposts = "class='focus'";  //Aba dos posts: acrescentamos a classe ".focus" à respectiva <a> âncora
-    $focusfave = "";                //Aba dos favorites: sem classe
-    $focusflwing = "";              //Aba dos following: sem classe
-    $focusflwers =  "";             //Aba dos followers: sem classe
-    //Resultado: a aba dos posts aparece sublinhada a azul
-    
-    //Título da página
+//Variáveis deste documento:
+$focusposts = "class='focus'";  //Aba dos posts: acrescentamos a classe ".focus" à respectiva <a> âncora
+$focusfave = "";                //Aba dos favorites: sem classe
+$focusflwing = "";              //Aba dos following: sem classe
+$focusflwers =  "";             //Aba dos followers: sem classe
+//Resultado: a aba dos posts aparece sublinhada a azul           
+               
+    //Título da página do SESSION['user_id']
     $title = htmlentities("{$userProfile->userData['name']} (@{$userProfile->userData['handle']})");
 
     //Ficheiro CSS da página
@@ -32,6 +32,17 @@
     include '../components/profile.header.php';     //Cabeçalho do perfil:  <main>
     include '../components/profile.posts.php';      //Conteúdo: POSTS       </main>
     include '../components/footer.php';              //Roda-pé com links     <footer>
+
+//Se o perfil a que se está a tentar aceder for o mesmo da sessão iniciada pelo utilizador
+/* if((isset($_GET['profile']) == true) && $_GET['profile'] == $_SESSION['handle']){
+
+} else if(isset($_GET['profile']) && $_GET['profile'] != $_SESSION['handle']){
+
+
+} else {
+    header("Location: ../server/logout");
+} */
+    
 ?>
 
 </body>

@@ -11,7 +11,7 @@
                             echo        "<a href='#'><img class='avatar' src='../users/". $row['handle'] ."/". $row['avatar'] ."' /></a>";
                             echo    "</span>";
                             echo    "<span class='profile-frame'>";
-                            echo    "<h3>". $row['name'] ."</h3>";
+                            echo    "<h3><a href='../". $row['handle'] ."/'>". $row['name'] ."</a></h3>";
                             echo    "<h4 class='timestamp'> @". $row['handle'] ."</h4>";
                             echo    "<p>". $row['desc'] ."</p>";
                             echo    "</span>";
