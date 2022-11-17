@@ -2,6 +2,7 @@ RewriteEngine on
 Options +FollowSymlinks
 
 RewriteRule ^([^\.]+)/([^\.]+)$ /projeto-rede_social/server/$2.php?profile=$1
+RewriteRule ^([^\.]+)/$ /projeto-rede_social/server/?profile=$1
 RewriteRule ^([^\.]+)/$ /projeto-rede_social/server/posts.php
 RewriteRule ^login$ /projeto-rede_social/index.php
 RewriteRule ^([^\.]+)$ /projeto-rede_social/$1.php

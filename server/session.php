@@ -11,6 +11,22 @@ class User {
     var $userFavorites = null;     //Vai conter: Os últimos 10 posts favoritos do utilizador
     var $userFollowings = null;    //Vai conter: Lista das 10 últimos contas que se segue
     var $userFollowers = null;     //Vai conter: Lista dos 10 últimos seguidores
+    /* var $user; */
+    
+/*     public function get_this_user_id($handle){
+        //Estabelece a conexão com a base de dados
+        require 'includes/connect_db.php';
+
+        //Prepara e executa a query 
+        $query = $connection->prepare('SELECT users.user_id
+                                            FROM users
+                                            WHERE users.handle = :handle');
+        $query->bindParam(':handle', $handle);
+        $query->execute();
+        $getId = $query->fetch(PDO::FETCH_ASSOC);
+        $this->user['user_id'] = $getId;
+    }
+ */
 
     //Função que recebe um ID de utilizador e inicializa o array $userData com os dados do mesmo: Handle, Nome, Avatar, Título e Descrição
     public function get_user_data($uid){
