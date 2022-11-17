@@ -237,6 +237,8 @@
         </div>
     </div>
 
-
+    <?php 
+        include '../components/footer.php';              //Roda-pé com links     <footer>
+    ?>
 </body>
 </html>

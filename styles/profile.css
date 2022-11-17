@@ -558,10 +558,3 @@ input[type=button].li:hover {
   [type="checkbox"]:checked + label:hover{
     background-color: var(--color-blank);
 }
-footer {
-    margin-top: auto;
-    text-align: center;
-    font-size: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 2rem;
-}

@@ -40,7 +40,7 @@ a {
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-evenly;
-    margin: 30px 50px 50px 50px;
+    margin: 2rem;
     border-radius: 5px;
     max-width: 100%;
 }
@@ -195,20 +195,6 @@ p {
     width: 15.625rem;
     font-size: 14px;
     font-family: var(--font-text);
-    color: var(--color-default);
-}
-
-/* Altera a cor dos placeholders */
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: var(--color-default);
-    opacity: 1; /* Firefox */
-}
-
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: var(--color-default);
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
     color: var(--color-default);
 }
 
