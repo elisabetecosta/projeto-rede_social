@@ -1,7 +1,7 @@
 <header> 
     <nav class="navbar">
         <section> <!-- Esta <section> aqui é a navbar:firstchild que permite indentar o logotipo  -->
-            <a href="<?=$userSettings->homeURL; ?>">
+            <a href="../<?=$_SESSION['handle']?>/<?=$userSettings->homeURL; ?>">
                 <img src="../images/logo.svg" alt="logo" id="logo">
             </a>
         </section>
@@ -13,10 +13,10 @@
             </span>
             <!-- Ícones de navegação: [Avatar] [Notificações] [Configurações] e [Terminar Sessão] -->
             <span class="navlinks">
-                <a alt="Profile" href="<?=$userSettings->profileURL?>"><img height="30px" src="../users/<?=$userProfile->userData['handle']?>/<?=$userProfile->userData['avatar']?>" /></a>
-                <a alt="Notifications" href="<?=$userSettings->notifsURL?>"><i class="fa-solid fa-bell"></i></a>
-                <a alt="Settings" href="<?=$userSettings->configURL?>"><i class="fa-solid fa-gear"></i></a>
-                <a alt="Logout" href="<?=$userSettings->logoutURL?>"><i class="fa-solid fa-power-off"></i></a>
+                <a alt="Profile" href="../<?=$_SESSION['handle']?>/<?=$userSettings->profileURL?>"><img height="30px" src="../users/<?=$userProfile->userData['handle']?>/<?=$userProfile->userData['avatar']?>" /></a>
+                <a alt="Notifications" href="../<?=$_SESSION['handle']?>/<?=$userSettings->notifsURL?>"><i class="fa-solid fa-bell"></i></a>
+                <a alt="Settings" href="../<?=$_SESSION['handle']?>/<?=$userSettings->configURL?>"><i class="fa-solid fa-gear"></i></a>
+                <a alt="Logout" href="../<?=$_SESSION['handle']?>/<?=$userSettings->logoutURL?>"><i class="fa-solid fa-power-off"></i></a>
             </span>
         </div>    
     </nav>  

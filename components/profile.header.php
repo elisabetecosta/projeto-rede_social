@@ -6,7 +6,7 @@
     <div class="profile-content profile-info">
         <div class="profile-wrapper">
             <span class="profile-avatar">
-                <a href="posts.php"><img src='../users/<?php echo "{$userProfile->userData['handle']}"; ?>/<?php echo "{$userProfile->userData['avatar']}"; ?>' /></a></span>
+                <a href="posts"><img src='../users/<?php echo "{$userProfile->userData['handle']}"; ?>/<?php echo "{$userProfile->userData['avatar']}"; ?>' /></a></span>
             <span class="profile-name">
                 <!-- Nome do Utilizador -->
                 <h2><?php echo "{$userProfile->userData['name']}"; ?></a></h2>
