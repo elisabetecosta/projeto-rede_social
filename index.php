@@ -166,7 +166,8 @@ if (!empty($data['submitBtn'])) {
         </div>
     </div>
 
-     
+    <?php 
+        include './components/footer.php';              //Rodapé com links     <footer>
+    ?>
 </body>
-
 </html>

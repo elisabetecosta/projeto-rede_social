@@ -45,6 +45,7 @@ Login
         - Estilizar com CSS
 
     Por fazer:
+        - BUG - O footer não alinha ao centro como nas restantes páginas
         - Implementar validação do lembrar-me
         - Adicionar link para recuperação da palavra-passe
 

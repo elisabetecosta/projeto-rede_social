@@ -17,8 +17,6 @@
     <!--Importação da biblioteca de ícones font awesome-->
     <!-- <script src="https://kit.fontawesome.com/4489f75108.js" crossorigin="anonymous" defer></script> -->
 <!-- </head> -->
-<!-- <body> -->
-    
 
 <?php
     //Ficheiro PHP com as classes e funções      
@@ -38,11 +36,9 @@
     include '../components/navbar.php';             //Barra de navegação:   <header> <nav>
 ?>
 
-
+<body>
     <div class="container">
         <div class="sidebar">
-
-                
         <div class="sidebar-header">
             <i class="fa-solid fa-gear"></i>
             <div class="sidebar-desc">
@@ -238,7 +234,7 @@
     </div>
 
     <?php 
-        include '../components/footer.php';              //Roda-pé com links     <footer>
+        include '../components/footer.php';              //Rodapé com links     <footer>
     ?>
 </body>
 </html>

@@ -303,5 +303,9 @@
             <span>Já tens uma conta? Inicia sessão <a href="../login">aqui</a>.</span>
         </form>
     </div>
+
+    <?php 
+        include '../components/footer.php';              //Rodapé com links     <footer>
+    ?>
 </body>
 </html>

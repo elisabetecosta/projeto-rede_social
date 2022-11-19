@@ -21,6 +21,7 @@ footer {
     margin-top: auto;
     text-align: center;
     font-size: 1rem;
+    color: var(--color-default);
     padding-top: 1rem;
     padding-bottom: 2rem;
 }
