@@ -26,10 +26,10 @@
     $title = htmlentities("Configurações");
 
     //Ficheiro CSS da página
-    $cssFile = htmlentities("settings.css");
+    $cssFile = htmlentities("../styles/settings.css");
 
     //Ficheiro Javascript da página
-    $jsFile = htmlentities("settings.js");
+    $jsFile = htmlentities("../scripts/settings.js");
 
     //Componentes html
     include '../components/head.php';               //Cabeçalho do HTML:    <doctype>, <head>, <body>, <link>, <styles defer>

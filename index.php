@@ -97,27 +97,20 @@ if (!empty($data['submitBtn'])) {
 ?>
 
 
-<!DOCTYPE html>
-<html lang="pt">
+<?php
+    //Título da página
+    $title = htmlentities("Login");
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <!--Importação do ficheiro css-->
-    <link href="./styles/login_form.css" rel="stylesheet" type="text/css">
-    <!--Importação do ficheiro javascript-->
-    <script src="./scripts/login_form.js" type="text/javascript" defer></script>
-   
+    //Ficheiro CSS da página
+    $cssFile = htmlentities("./styles/login_form.css");
 
-    <!--Importação das fontes-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <!--Importação da biblioteca de ícones font awesome-->
-    <script src="https://kit.fontawesome.com/4489f75108.js" crossorigin="anonymous" defer></script>
-</head>
+    //Ficheiro Javascript da página
+    $jsFile = htmlentities("./scripts/login_form.js");
+
+    //Componentes html
+    include './components/head.php';               //Cabeçalho do HTML:    <doctype>, <head>, <body>, <link>, <styles defer>
+?>
+
 
 <body>
     <div class="header">
