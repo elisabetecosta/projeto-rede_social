@@ -1,22 +1,97 @@
-<!-- <!DOCTYPE html> -->
-<!-- <html lang="pt"> -->
-<!-- <head> -->
-  <!--   <meta charset="UTF-8"> -->
-   <!--  <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <!-- <title>Configurações</title> -->
-    <!--Importação do ficheiro css-->
-    <!-- <link href="../styles/settings.css" rel="stylesheet" type="text/css"> -->
-    <!--Importação do ficheiro javascript-->
-    <!-- <script src="../scripts/settings.js" type="text/javascript" defer></script> -->
-   
-    <!--Importação das fontes-->
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
-    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"> -->
-    <!--Importação da biblioteca de ícones font awesome-->
-    <!-- <script src="https://kit.fontawesome.com/4489f75108.js" crossorigin="anonymous" defer></script> -->
-<!-- </head> -->
+<?php
+    //Estabelece a conexão à base de dados
+    include_once 'includes/connect_db.php';
+
+    //Recebe os dados do formulário
+    $data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+    // var_dump($data);
+
+    //Inicializa as variáveis antes do formulário ser submetido para que os dados inseridos pelo utilizador não sejam perdidos na submissão se ocorrer um erro
+    $email = $handle = $profileName = $birthdate = $terms = '';
+
+    //Se o formulário for submetido através do método POST, testa os dados introduzidos
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $private = test_input($data['email']);
+    }
+
+    //Função que testa os dados removendo espaços e barras e convertendo caracteres especiais em entidades html para evitar injeção de código malicioso
+    function test_input($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+    //Cria um array de erros
+    $errors = array('email' => '', 'password' => '', 'passwordTwo' => '', 'handle' => '', 'profileName' => '', 'birthdate' => '', 'terms' => '');
+
+
+    //Verifica se o utilizador clicou no botão de submissão do formulário
+    if (!empty($data['submitBtn'])) {
+
+        //Faz as validações dos campos
+
+        if (empty($data['email'])) {
+            $errors['email'] = "<p style='margin-top: 5px; font-size: 14px; color: #DB5A5A;'>Este campo não pode ficar vazio!</p>";
+        } 
+
+
+        if (isset($data['private'])) {
+            //o perfil deverá ser definido como privado
+        }
+
+
+        //Caso não sejam encontrados erros, executa o processo de registo 
+        else {
+            //Cria a instrução sql que insere um novo registo na tabela users
+            $user_query = "INSERT INTO users 
+                (handle, email, password, regis_date) VALUES 
+                (:handle, :email, :password, NOW())";
+
+            //Faz a ligação entre os dados inseridos no formulário e os campos da tabela 
+            $user_reg = $connection->prepare($user_query);
+            $user_reg->bindParam(':handle', $data['handle'], PDO::PARAM_STR);
+            $user_reg->bindParam(':email', $data['email'], PDO::PARAM_STR);
+            $user_reg->bindParam(':password', $data['password'], PDO::PARAM_STR);
+
+            //Executa a query
+            $user_reg->execute();
+
+            //Variável que armazena o último id inserido
+            $user_id = $connection->lastInsertId();
+
+
+            //Repete o processo anterior, desta vez para a tabela profiles
+            $profile_query = "INSERT INTO profiles 
+                (user_id, name, birthdate, last_updated) VALUES 
+                (:user_id, :name, :birthdate, NOW())";
+
+            $profile_reg = $connection->prepare($profile_query);
+            $profile_reg->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+            $profile_reg->bindParam(':name', $data['profileName'], PDO::PARAM_STR);
+            $profile_reg->bindParam(':birthdate', $data['birthdate'], PDO::PARAM_STR);
+            $profile_reg->execute();
+
+            //Destrói as variáveis para impedir registos duplicados acidentais
+            unset($data);
+
+            //Redireciona para a página de Login (usar /index.php ou /login)
+            header("Location: ../login");
+        }
+    }
+
+    
+    //====> se descomentar o código abaixo a mensagem de erro fica visivel sempre que a página é visitada
+    // //Caso o registo não funcione, executa o que está dentro do else
+    // else {
+    //     echo "Erro: Registo não foi efetuado com sucesso!";
+    //     var_dump($data);
+
+    //     //Redireciona para a página de Login (usar /index.php ou /login)
+    //     //header("Location: index.php");
+    // }
+?>
 
 <?php
     //Ficheiro PHP com as classes e funções      
@@ -55,7 +130,7 @@
             </div>
         </div>
 
-        <div class="main">
+        <form class="main" id="settingsForm" name="settingsForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return checkInputs()">
             <!-- Secção de opções de privacidade -->
             <section class="section" id="section-one">
                 <h2>Opções de privacidade</h2>
@@ -64,7 +139,7 @@
 
                     <div class="content">
                         <div class="text">
-                            <h3>O meu perfil é privado<i class="fa-solid fa-circle-info"></i></h3>
+                            <h3>Perfil privado<i class="fa-solid fa-circle-info"></i></h3>
                             <p>Apenas os teus seguidores poderão ver o teu perfil e publicações</p>
                         </div>
                         <div class="checkbox">
@@ -108,8 +183,8 @@
                             <p>Este é o nome que vai aparecer no teu perfil</p>
                         </div>
                         <div class="text-input">
-                            <label for="handle"></label>
-                            <input type="text" id="handle" placeholder="Nome de perfil">
+                            <label for="profileName"></label>
+                            <input type="text" id="profileName" placeholder="Nome de perfil">
                         </div>
                     </div>
 
@@ -135,6 +210,31 @@
                             </ul>
                         </div>                            
                     </div>
+
+                    <div class="content">
+                        <div class="text">
+                            <h3>Língua</h3>
+                            <p>dgsdgsdgsd</p>
+                        </div>
+
+                        <select>
+                            <option value="0">Perfil</option>
+                            <option value="1">Timeline</option>
+                        </select>
+
+                        <div class="dropdown">
+                            <div class="select">
+                                <span class="selected">Português</span>
+                                <div class="arrow"><i class="fa-solid fa-sort-down"></i></div>
+                            </div>
+                            <ul class="menu">
+                                <li>Português</li>
+                                <li>English</li>
+                                <li>Español</li>
+                                <li>Français</li>
+                            </ul>
+                        </div>                            
+                    </div>
                 </div>
             </section>
 
@@ -149,8 +249,8 @@
                         </div>
                         <div class="password-input">
                             <div class="extra">
-                                <label for="password-current"></label>
-                                <input type="password" id="password-current" placeholder="********">
+                                <label for="passwordCurrent"></label>
+                                <input type="password" id="passwordCurrent" placeholder="********">
                                 <span><a href="#">Esqueci-me da palavra-passe</a></span>
                             </div>
                         </div>
@@ -162,8 +262,8 @@
                             <p>Insere a tua nova palavra-passe</p>
                         </div>
                         <div class="password-input">
-                            <label for="password-new"></label>
-                            <input type="password" id="password-new" placeholder="********">
+                            <label for="passwordNew"></label>
+                            <input type="password" id="passwordNew" placeholder="********">
                         </div>
                     </div>
 
@@ -172,9 +272,13 @@
                             <h3>Confirmar palavra-passe</h3>
                             <p>Insere novamente a tua nova palavra-passe para confirmar a alteração</p>
                         </div>
-                        <div class="password-input">
-                            <label for="password-confirm"></label>
-                            <input type="password" id="password-confirm" placeholder="********">
+                        <div class="form-control password-input">
+                            <label class="label" for="passwordConfirm"></label>
+                            <input class="input" type="password" id="passwordConfirm" placeholder="********">
+
+                            <i class="fa-solid fa-circle-check"></i>
+                            <i class="fa-solid fa-circle-xmark"></i>
+                            <small>Error message</small>
                         </div>
                     </div>
             </section>
@@ -200,8 +304,8 @@
                             <p>Insere novamente o teu e-mail para confirmar a alteração</p>
                         </div>
                         <div class="text-input">
-                            <label for="email-confirm"></label>
-                            <input type="text" size="20" maxlength="50" id="email-confirm" placeholder="123@email.pt">
+                            <label for="emailConfirm"></label>
+                            <input type="text" size="20" maxlength="50" id="emailConfirm" placeholder="123@email.pt">
                         </div>
                     </div>
 
@@ -212,15 +316,15 @@
                         </div>
                         <div class="password-input">
                             <div class="extra">
-                                <label for="password-current-two"></label>
-                                <input type="password" id="password-current-two" placeholder="********">
+                                <label for="passwordCurrentTwo"></label>
+                                <input type="password" id="passwordCurrentTwo" placeholder="********">
                                 <span><a href="#">Esqueci-me da palavra-passe</a></span>
                             </div>
                         </div>
                     </div>
 
                     <div class="content">
-                        <div class="account-delete">
+                        <div class="accountDelete">
                             <span><a href="#">Excluir conta<i class="fa-solid fa-triangle-exclamation"></i></a></span>
                         </div>
                     </div>
