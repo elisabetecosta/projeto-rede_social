@@ -15,10 +15,10 @@ $focusflwers =  "";             //Aba dos followers: sem classe
     $title = htmlentities("{$userProfile->userData['name']} (@{$userProfile->userData['handle']})");
 
     //Ficheiro CSS da página
-    $cssFile = htmlentities("profile.css");
+    $cssFile = htmlentities("../styles/profile.css");
 
     //Ficheiro Javascript da página
-    $jsFile = htmlentities("posts_dropdown.js");
+    $jsFile = htmlentities("../scripts/posts_dropdown.js");
 
     //Chamadas de classes e funções 
     $userProfile->get_user_stats($_SESSION['user_id']);         //Chama a função que vai buscar as estatísticas do utilizador
