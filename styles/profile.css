@@ -348,9 +348,16 @@ div.post-interaction{
     margin-right: 5rem;
 }
 
-label {
-    padding: 0 0.3rem;
-    opacity: 0.5;
+input[type="file"] {
+    display: none;
+}
+.file_upload {
+    cursor: pointer;
+}
+
+/*   label {
+    cursor: pointer;
+    opacity: 1;
 }
 
 .media_options{
@@ -360,19 +367,12 @@ label {
 
 input[type="radio"] {
     cursor: pointer;
-    width: 43px;
-    height: 43px;
+    width: 44px;
+    height: 44px;
 	opacity: 0;
     z-index: 3;
-}
+} */ */
 
-input[type="radio"]:checked + label {
-    opacity: 1;
-}
-
-.media_frame{
-    padding-bottom: 1rem;
-}
 
 /* ============= Posts: Caixas de imagens =========== */
 div.picturebox{
