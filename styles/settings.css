@@ -80,13 +80,14 @@ a {
 .active {
     border-left: 0.42rem solid var(--color-main);
 }
-
+  
 .main {
     flex-basis: 70%;
 }
 
 .section {
     margin-bottom: 30px;
+    scroll-margin-top: 85px; /* evita que os títulos fiquem escondidos pela sidebar */
 }
 
 .wrapper {
@@ -200,13 +201,6 @@ p {
     color: var(--color-default);
 }
 
-/* Esconde o select original mas mantém o elemento para que seja lido pelo browser */
-select {
-    position: relative;
-    left: -10000px;
-    width: 0;
-}
-
 .dropdown {
     position: relative;
 }
@@ -302,7 +296,8 @@ select {
     align-items: center;
 }
 
-.buttons button {
+.buttons button,
+#scrollTopBtn {
     padding: 0.5rem 2.5rem;
     font-family: var(--font-text);
     font-size: 0.938rem;
@@ -315,7 +310,8 @@ select {
     border-color: var(--color-main);
 }
 
-.buttons button:hover {
+.buttons button:hover,
+#scrollTopBtn:hover {
     cursor: pointer;
     font-weight: 600;
     color: var(--color-main);
@@ -325,6 +321,16 @@ select {
 
 #submitBtn {
     margin-right: 20px;
+}
+
+/* Scroll-back-to-the-top */
+#scrollTopBtn {
+    /* display: none; */
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    padding: 0.5rem 0.9rem;
 }
 
 /*======================== VALIDAÇÕES =======================*/

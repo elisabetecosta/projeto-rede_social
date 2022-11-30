@@ -123,54 +123,7 @@ function checkInputs() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-//======================== SIDEBAR/MAIN =======================
-const links = document.querySelectorAll('.links a');
-const sections = document.querySelectorAll('.wrapper');
-
-//Itera por todos os links da sidebar
-links.forEach(link => {
-
-    //Adiciona um evento 'click' ao link clicado
-    link.addEventListener('click', () => {
-
-        //Remove a classe active de todos os links
-        links.forEach(link => {
-            link.classList.remove('active');
-        });
-
-        //Adiciona a classe active ao elemento link clicado
-        link.classList.add('active');
-    });
-});
-
-
-//Itera por todas as secções
-sections.forEach(section => {
-
-    //Adiciona um evento 'focus' à secção atual
-    section.addEventListener('click', () => {
-
-        //Remove a classe active de todas as secções
-        sections.forEach(section => {
-            section.classList.remove('active');
-        });
-
-        //Adiciona a classe active à secção atual
-        section.classList.add('active');
-    });
-});
-
-//======================== SELECT =======================
+//======================== FORM SELECTS =======================
 //Seleciona todos os dropdowns do documento
 const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -222,3 +175,70 @@ dropdowns.forEach(dropdown => {
         }
     });
 });
+
+
+
+
+//======================== SIDEBAR/SECTION ANIMATIONS =======================
+const links = document.querySelectorAll('.links a');
+const sections = document.querySelectorAll('.wrapper');
+
+//Itera por todos os links da sidebar
+links.forEach(link => {
+
+    //Adiciona um evento 'click' ao link clicado
+    link.addEventListener('click', () => {
+
+        //Remove a classe active de todos os links
+        links.forEach(link => {
+            link.classList.remove('active');
+        });
+
+        //Adiciona a classe active ao elemento link clicado
+        link.classList.add('active');
+    });
+});
+
+
+//Função que adiciona a classe active à secção passada como parâmetro
+function selectSection(section) {
+
+    //Remove a classe active de todas as secções
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+
+    //Adiciona a classe active à secção atual
+    section.classList.add('active');
+}
+
+//Variáveis que selecionam os links da sidebar
+const linkOne = document.getElementById('linkOne');
+const linkTwo = document.getElementById('linkTwo');
+const linkThree = document.getElementById('linkThree');
+const linkFour = document.getElementById('linkFour');
+
+//Eventos que chamam a função selectSection
+linkOne.addEventListener('click', () => {
+    const sectionOne = document.getElementById('wrapperOne');
+    selectSection(sectionOne);
+});
+
+linkTwo.addEventListener('click', () => {
+    const sectionTwo = document.getElementById('wrapperTwo');
+    selectSection(sectionTwo);
+});
+
+linkThree.addEventListener('click', () => {
+    const sectionThree = document.getElementById('wrapperThree');
+    selectSection(sectionThree);
+});
+
+linkFour.addEventListener('click', () => {
+    const sectionFour = document.getElementById('wrapperFour');
+    selectSection(sectionFour);
+});
+
+
+//======================== SCROLL-TO-TOP BUTTON =======================
+// https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
