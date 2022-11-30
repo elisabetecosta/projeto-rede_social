@@ -123,19 +123,19 @@
         </div>
             
             <div class="links">
-                <a href="#section-one">Opções de privacidade</a>
-                <a href="#section-two">Preferências</a>
-                <a href="#section-three">Palavra-passe</a>
-                <a href="#section-four">A minha conta</a>
+                <a id="linkOne" href="#sectionOne">Opções de privacidade</a>
+                <a id="linkTwo" href="#sectionTwo">Preferências</a>
+                <a id="linkThree" href="#sectionThree">Palavra-passe</a>
+                <a id="linkFour" href="#sectionFour">A minha conta</a>
             </div>
         </div>
 
         <form class="main" id="settingsForm" name="settingsForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return checkInputs()">
             <!-- Secção de opções de privacidade -->
-            <section class="section" id="section-one">
+            <section class="section" id="sectionOne">
                 <h2>Opções de privacidade</h2>
                 <p>Controla quem tem acesso ao teu conteúdo</p>
-                <div class="wrapper">
+                <div id="wrapperOne" class="wrapper">
 
                     <div class="content">
                         <div class="text">
@@ -173,10 +173,10 @@
             </section>
 
             <!-- Secção de preferências -->
-            <section class="section" id="section-two">
+            <section class="section" id="sectionTwo">
                 <h2>Preferências</h2>
                 <p>Personaliza e controla a tua experiência</p>
-                <div class="wrapper">
+                <div id="wrapperTwo" class="wrapper">
                     <div class="content">
                         <div class="text">
                             <h3>Nome de perfil</h3>
@@ -193,11 +193,6 @@
                             <h3>Homepage</h3>
                             <p>Página para a qual serás redirecionado ao iniciar sessão</p>
                         </div>
-
-                        <select>
-                            <option value="0">Perfil</option>
-                            <option value="1">Timeline</option>
-                        </select>
 
                         <div class="dropdown">
                             <div class="select">
@@ -217,11 +212,6 @@
                             <p>dgsdgsdgsd</p>
                         </div>
 
-                        <select>
-                            <option value="0">Perfil</option>
-                            <option value="1">Timeline</option>
-                        </select>
-
                         <div class="dropdown">
                             <div class="select">
                                 <span class="selected">Português</span>
@@ -238,10 +228,10 @@
                 </div>
             </section>
 
-            <section class="section" id="section-three">
+            <section class="section" id="sectionThree">
                 <h2>Palavra-passe</h2>
                 <p>Altera a tua palavra-passe</p>
-                <div class="wrapper">
+                <div id="wrapperThree" class="wrapper">
                     <div class="content">
                         <div class="text">
                             <h3>Palavra-passe atual</h3>
@@ -283,10 +273,10 @@
                     </div>
             </section>
 
-            <section class="section" id="section-four">
+            <section class="section" id="sectionFour">
                 <h2>A minha conta</h2>
                 <p>Mantém o e-mail de acesso à tua conta atualizado</p>
-                <div class="wrapper">
+                <div id="wrapperFour" class="wrapper">
                     <div class="content">
                         <div class="text">
                             <h3>Endereço de e-mail</h3>
@@ -334,7 +324,9 @@
                 <button type="submit" name="submitBtn" id="submitBtn" value="Submeter">Submeter</button>
                 <button onclick="window.history.go(-1)">Cancelar</button>
             </div>
-        </div>
+        </form>
+
+        <button id="scrollTopBtn" title="Top"><i class="fa-solid fa-arrow-up"></i></button>
     </div>
 
     <?php 
