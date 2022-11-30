@@ -234,6 +234,7 @@ class Posts {
     var $favourites;
     var $replies;
     var $pictures;
+    var $shares;
 
     //Função que recebe um ID de utilizador e devolve um array com os seus 10 posts mais recentes + indicação se contém média
     public function get_user_posts($uid){
@@ -302,6 +303,29 @@ class Posts {
         } else {
             $this->replies = 0;
         }
+    }
+
+    //Função que recebe o ID de um post e conta todos os shares que recebeu
+    public function count_post_shares($post_id) {
+
+        //Estabelece a conexão com a base de dados
+        require 'includes/connect_db.php';
+
+        //Query que vai buscar o número de partilhas de um post através do seu ID
+        $countPostShares =  $connection->prepare("SELECT COUNT(*) AS postshares
+                                                        FROM shares
+                                                        WHERE post_id = :post_id"); //falta o status do post ser 0
+        $countPostShares->bindParam(':post_id', $post_id);
+        $countPostShares->execute();
+        $totalPostShares = $countPostShares->fetch(PDO::FETCH_ASSOC);
+
+        //Inicializa o array $shares com o resultado da query   
+        if(!empty($totalPostShares)){
+            $this->shares = $totalPostShares;
+        } else {
+            $this->shares = 0;
+        }
+
     }
 
     //Função que recebe o ID do post e devolve o array de imagens (exemplo.png)

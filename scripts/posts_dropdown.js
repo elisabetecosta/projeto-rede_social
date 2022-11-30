@@ -75,3 +75,4 @@ const copyFave = async () => {
         console.error('Failed to copy: ', err);
     }
 }
+
