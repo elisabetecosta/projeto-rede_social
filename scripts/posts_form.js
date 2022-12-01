@@ -76,3 +76,19 @@ const copyFave = async () => {
     }
 }
 
+//Função que permite ter uma preview da Média upada
+function previewMedia(input) {
+    const preview_media = document.querySelector('.preview_media');
+
+    //Se for imagens
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#preview').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        preview_media.style.display = 'block';      //Passa a div escondida para visivel
+        preview_media.classList.add('pics1');       //Acrescenta a classe '.pics1' para mostrar uma imagem
+    }
+}

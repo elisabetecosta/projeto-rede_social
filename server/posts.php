@@ -18,7 +18,7 @@ $focusflwers =  "";             //Aba dos followers: sem classe
     $cssFile = htmlentities("../styles/profile.css");
 
     //Ficheiro Javascript da página
-    $jsFile = htmlentities("../scripts/posts_dropdown.js");
+    $jsFile = htmlentities("../scripts/posts_form.js");
 
     //Chamadas de classes e funções 
     $userProfile->get_user_stats($_SESSION['user_id']);         //Chama a função que vai buscar as estatísticas do utilizador
@@ -33,18 +33,7 @@ $focusflwers =  "";             //Aba dos followers: sem classe
     include '../components/profile.posts.php';       //Conteúdo: POSTS       </main>
     include '../components/footer.php';              //Roda-pé com links     <footer>
 
-//Se o perfil a que se está a tentar aceder for o mesmo da sessão iniciada pelo utilizador
-/* if((isset($_GET['profile']) == true) && $_GET['profile'] == $_SESSION['handle']){
-
-} else if(isset($_GET['profile']) && $_GET['profile'] != $_SESSION['handle']){
-
-
-} else {
-    header("Location: ../server/logout");
-} */
-    
 ?>
-
 </body>
 </html>
  

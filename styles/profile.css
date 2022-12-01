@@ -354,6 +354,28 @@ input[type="file"] {
 .file_upload {
     cursor: pointer;
 }
+/* .fa-solid.fa-image{
+    color: var(--color-main);
+} */
+/* .iconWrapper{
+    display: inline-flex;
+
+    justify-content: center;
+    align-items: center;
+    
+    width: 50px; height: 50px; 
+    background-color: none;
+    overflow: hidden;
+    border: 3px solid var(--color-main);
+    border-radius: 50%;
+}
+ */
+.pic-icon{
+    width: 42px;
+    height: 42px;
+    fill: var(--color-main);
+}
+
 
 /*   label {
     cursor: pointer;
@@ -371,7 +393,7 @@ input[type="radio"] {
     height: 44px;
 	opacity: 0;
     z-index: 3;
-} */ */
+} */ 
 
 
 /* ============= Posts: Caixas de imagens =========== */
@@ -580,4 +602,9 @@ input[type=button].li:hover {
 [type="checkbox"]:not(:checked) + label:hover,
   [type="checkbox"]:checked + label:hover{
     background-color: var(--color-blank);
+}
+
+.preview_media {
+    display: none;
+    padding-bottom: 0.8rem;
 }
