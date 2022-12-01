@@ -83,7 +83,6 @@ function previewMedia(input) {
     //Se for imagens
     if (input.files && input.files[0]) {
         var reader = new FileReader();
-
         reader.onload = function (e) {
             $('#preview').attr('src', e.target.result);
         }
@@ -91,4 +90,6 @@ function previewMedia(input) {
         preview_media.style.display = 'block';      //Passa a div escondida para visivel
         preview_media.classList.add('pics1');       //Acrescenta a classe '.pics1' para mostrar uma imagem
     }
-}
+} 
+//Ver amanhã como fazer isto para 4 imagens:
+//https://stackoverflow.com/questions/39439760/preview-images-before-upload

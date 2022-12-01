@@ -1,5 +1,5 @@
 <!DOCTYPE html>
 <head>
-    <meta http-equiv="refresh" content="0;url=<?php echo $goto ?>" />
+    <meta http-equiv="refresh" content="300;url=<?php echo $goto ?>" />
 </head>
 
