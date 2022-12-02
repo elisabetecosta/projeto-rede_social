@@ -77,7 +77,7 @@ const copyFave = async () => {
 }
 
 //Função que permite ter uma preview da Média upada
-function previewMedia(input) {
+/* function previewMedia(input) {
     const preview_media = document.querySelector('.preview_media');
 
     //Se for imagens
@@ -90,6 +90,60 @@ function previewMedia(input) {
         preview_media.style.display = 'block';      //Passa a div escondida para visivel
         preview_media.classList.add('pics1');       //Acrescenta a classe '.pics1' para mostrar uma imagem
     }
-} 
-//Ver amanhã como fazer isto para 4 imagens:
-//https://stackoverflow.com/questions/39439760/preview-images-before-upload
+}  */
+
+const preview = (file) => {
+    const fr = new FileReader();
+    const preview_media = document.querySelector('.preview_media');
+
+    fr.onload = () => {
+      const img = document.createElement('img');
+      const span = document.createElement('span');
+      img.src = fr.result;  // String Base64 
+      img.alt = file.name;
+      preview_media.style.removeProperty( 'display' );
+      preview_media.style.paddingBottom = '8px';
+
+      if (preview_media.classList.contains('pics0')){
+            preview_media.classList.remove('pics0');
+            preview_media.classList.add('pics1');
+            span.setAttribute('class', 'pv1');
+            img.setAttribute('class', 'first');
+            document.querySelector('.preview_media').append(span);
+            document.querySelector('.pv1').append(img);
+
+      } else if (preview_media.classList.contains('pics1')){
+            preview_media.classList.remove('pics1');
+            preview_media.classList.add('pics2');
+            img.setAttribute('class', 'second');
+            span.setAttribute('class', 'pv2');
+            document.querySelector('.preview_media').append(span);
+            document.querySelector('.pv2').append(img);
+            
+      } else if (preview_media.classList.contains('pics2')){
+            preview_media.classList.remove('pics2');
+            preview_media.classList.add('pics3');
+            img.setAttribute('class', 'third');
+            document.querySelector('.pv2').append(img);
+
+      } else if (preview_media.classList.contains('pics3')){
+            preview_media.classList.remove('pics3');
+            preview_media.classList.add('pics4');
+            img.setAttribute('class', 'fourth');
+
+            let tmp = document.querySelector('.second');
+            document.querySelector('.pv1').append(tmp);
+            document.querySelector('.pv2').append(img);
+      } else {
+        alert('Só podes adicionar até 4 imagens!');
+      }
+
+    };
+    fr.readAsDataURL(file);
+  };
+  
+  document.querySelector("#files").addEventListener("change", (ev) => {
+    if (!ev.target.files) return; // Do nothing.
+    [...ev.target.files].forEach(preview);
+
+  });

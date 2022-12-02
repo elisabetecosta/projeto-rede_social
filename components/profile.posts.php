@@ -34,16 +34,15 @@
                             <textarea name="newpost-text" class="newpost_text" id="newpost_text"></textarea>
 
                         <!-- Mostra uma previsão do como ficará o post -->
-                        <div class='picturebox preview_media'>
-                            <img id='preview' class='first' src="#" alt='A carregar...' />
+                        <div class='picturebox preview_media pics0'>
                         </div>
 
                         <!-- Botões para adicionar média ao post -->
                         <div class="media_submit">
-                            <label for="uploaded_image[]" class="file_upload" title="Adicionar imagem">
+                            <label for="files" class="file_upload" title="Adicionar imagem">
                                 <svg class="pic-icon" viewBox="0 0 11.167 11.167" xmlns="http://www.w3.org/2000/svg"><g style="display:inline" stroke="none"><g style="display:inline;stroke-width:1.57999;stroke-dasharray:none" transform="matrix(.25389 0 0 .25389 -1.376 -1.15)"><circle style="display:inline;fill:none;fill-opacity:1;stroke:#0092ca;stroke-width:1.57999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" cx="27.411" cy="26.524" r="21.202"/><path style="display:inline;fill:#0092ca;fill-opacity:1;stroke-width:1.57999;stroke-dasharray:none" d="M22.747 13.456a3.422 3.422 0 0 0-3.422 3.423 3.422 3.422 0 0 0 3.422 3.422 3.422 3.422 0 0 0 3.423-3.422 3.422 3.422 0 0 0-3.423-3.423zM36.76 23.891a1.574 1.574 0 0 0-.367.076c-.655.196-1.939 1.096-3.685 2.584-.829.706-1.762 1.422-2.075 1.592l-.567.31-.634-.22c-.348-.121-.888-.356-1.198-.523-1.095-.586-2.146-.503-3.163.25-.237.175-1.387 1.59-2.556 3.143a397.478 397.478 0 0 1-3.983 5.197 266.19 266.19 0 0 0-3.994 5.27l-.893 1.214a21.133 21.133 0 0 0 13.614 4.988 21.133 21.133 0 0 0 20.3-15.3c-1.005-.36-1.753-.867-3.103-2.019-.906-.774-2.575-2.348-3.708-3.5-2.387-2.424-2.645-2.648-3.36-2.922-.28-.106-.447-.15-.628-.14zm-21.382 4.041c-1.048.01-1.256.12-3.179 1.692-2.671 2.183-3.917 3.114-5.012 3.59a21.133 21.133 0 0 0 5.7 8.918c.228-.3.473-.628.731-.98 1.701-2.318 3.65-4.853 6.276-8.165.72-.906 1.291-1.701 1.27-1.766-.055-.173-3.558-2.581-4.315-2.966-.533-.272-.792-.329-1.471-.323z"/></g></g></svg>
                             </label>
-                            <input id="uploaded_image[]" accept="image/png, image/jpg, image/gif, image/jpeg" type="file" onchange="previewMedia(this);" multiple/>
+                            <input id="files" name="files[]" accept="image/png, image/jpg, image/gif, image/jpeg" type="file" multiple/> <!--onchange="previewMedia(this);" -->
                              <!--   
                              <label> 
                             <input type="button" alt="Adicionar vídeo" name="media_options" class="media_options" value="vid" />
