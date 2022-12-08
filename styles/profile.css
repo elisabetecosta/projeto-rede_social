@@ -38,6 +38,16 @@ h1 {
 h2{
     font-size: 1.5rem;
 }
+h3 a{
+    text-decoration: none;
+    color: var(--color-default);
+}
+h3 a:hover{
+    color: var(--color-main);
+}
+h3 a:active{
+    color: var(--color-active);
+}
 
 .btn {
     padding: 0.5rem 2.5rem;
@@ -330,16 +340,6 @@ span.profile-frame p {
     padding-right: 2.3rem;
     margin-top: 0.3rem;
    /*  padding-bottom: 1rem; */
-}
-span.profile-frame h3 a{
-    text-decoration: none;
-    color: var(--color-default);
-}
-span.profile-frame h3 a:hover{
-    color: var(--color-main);
-}
-span.profile-frame h3 a:active{
-    color: var(--color-active);
 }
 .newpost_text {
     width: 100%;
