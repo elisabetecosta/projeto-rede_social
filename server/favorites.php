@@ -20,14 +20,6 @@
     //Ficheiro Javascript da página
     $jsFile = htmlentities("../scripts/posts_form.js");
 
-    //Chamadas de classes e funções 
-    $userProfile->get_user_stats($_SESSION['user_id']);         //Chama a função que vai buscar as estatísticas do utilizador
-    $userProfile->get_user_gallery($_SESSION['user_id']);       //Chama a função que vai buscar a Galeria do utilizador   
-    $userProfile->get_favorited_posts($_SESSION['user_id']);    //Chama a função que vai buscar os Posts Favoritos do utilizador   
-    $userProfile->display_followings($_SESSION['user_id']);     //Chama a função que vai buscar as contas que utilizador segue
-    $userPosts = new Posts();
-    $userPosts->get_user_posts($_SESSION['user_id']);           //Chama a função que vai buscar os Posts do utilizador
-
     //Componentes html
     include '../components/head.php';               //Cabeçalho do HTML:    <doctype>, <head>, <body>, <link>, <styles defer>
     include '../components/navbar.php';             //Barra de navegação:   <header> <nav>

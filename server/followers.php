@@ -20,10 +20,6 @@
     //Ficheiro Javascript da página
     $jsFile = htmlentities("../scripts/posts_form.js");
 
-    //Chamadas de classes e funções 
-    $userProfile->get_user_stats($_SESSION['user_id']);
-    $userProfile->display_followers($_SESSION['user_id']);
-
     //Componentes html
     include '../components/head.php';               //Cabeçalho do HTML:    <doctype>, <head>, <body>, <link>, <styles defer>
     include '../components/navbar.php';             //Barra de navegação:   <header> <nav>

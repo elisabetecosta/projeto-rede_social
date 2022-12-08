@@ -22,8 +22,10 @@
 
             </span>
 
-            <!-- Criar Novo Post -->
             <span class="posts-col">
+
+            <!-- Criar Novo Post -->
+            <?php if (isset($_GET['profile']) && $_GET['profile'] == $_SESSION['handle']) { ?>
                 <div class="fixed-box">
                     <span class="user-frame">
                         <a href="#"><img class="avatar" src='../users/<?=htmlentities("{$userProfile->userData['handle']}");?>/<?=htmlentities("{$userProfile->userData['avatar']}");?>' /></a>
@@ -69,9 +71,9 @@
                         </form>
                     <span>
                 </div>
+            <?php } ?>
 
-
-             <!-- Últimos 10 posts) -->
+             <!-- Últimos 10 posts -->
             <?php
                 $index = 1; //Para ligar cada label à sua respectiva checkbox (dropdown-menu1, dropdown-menu2, dropdown-menu3...)
                 if(!empty($userPosts->posts)){
@@ -90,10 +92,15 @@
                         echo        "<input class='target' id='dropdown-menu". $index ."' type='checkbox'>";
                         echo        "<label onclick='dropdown()' class='btn-dropdown-menu right' for='dropdown-menu". $index ."'><svg width='4.856' height='20.892' viewBox='0 0 1.285 5.528' xml:space='preserve' xmlns='http://www.w3.org/2000/svg'><path style='fill:#808a99;fill-opacity:1;stroke-width:.0672245;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill' d='M1.285.642a.642.642 0 0 1-.643.643A.642.642 0 0 1 0 .642.642.642 0 0 1 .642 0a.642.642 0 0 1 .643.642zM1.285 2.764a.642.642 0 0 1-.643.642A.642.642 0 0 1 0 2.764a.642.642 0 0 1 .642-.643.642.642 0 0 1 .643.643zM1.285 4.885a.642.642 0 0 1-.643.643A.642.642 0 0 1 0 4.885a.642.642 0 0 1 .642-.642.642.642 0 0 1 .643.642z'/></svg></label>";
                         echo        "<span class='options dropdown-menu'>";
+                        if(isset($_GET['profile']) && $_GET['profile'] == $_SESSION['handle']) {
                         echo            "<input class='li' type='button' data-id='" . $row['post_id'] . "' value='Editar'>";
                         echo            "<input class='li' type='button' data-id='" . $row['post_id'] . "' value='Afixar'>";
-                        echo            "<input class='li' onclick='copyURL()' type='button' data-id='" . $row['post_id'] . "' value='Copiar'>";
+                        echo            "<input class='li' onclick='copyURL()' type='button' data-id='" . $row['post_id'] . "' value='Copiar URL'>";
                         echo            "<input class='li' onclick='deletePost()' type='button' data-id='" . $row['post_id'] . "' value='Eliminar'>";
+                        } else if(isset($_GET['profile']) && $_GET['profile'] != $_SESSION['handle']) {
+                        echo            "<input class='li' onclick='copyURL()' type='button' data-id='" . $row['post_id'] . "' value='Copiar URL'>";
+                        echo            "<input class='li' onclick='deletePost()' type='button' data-id='" . $row['post_id'] . "' value='Denunciar'>";
+                        }
                         echo        "</span>";
                         echo    "</span>";
                         echo    "<h3>{$userProfile->userData['name']}</h3>";

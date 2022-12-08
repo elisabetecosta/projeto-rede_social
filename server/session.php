@@ -11,9 +11,9 @@ class User {
     var $userFavorites = null;     //Vai conter: Os últimos 10 posts favoritos do utilizador
     var $userFollowings = null;    //Vai conter: Lista das 10 últimos contas que se segue
     var $userFollowers = null;     //Vai conter: Lista dos 10 últimos seguidores
-    /* var $user; */
+    var $userId;
     
-/*     public function get_this_user_id($handle){
+    public function get_this_user_id($handle){
         //Estabelece a conexão com a base de dados
         require 'includes/connect_db.php';
 
@@ -24,9 +24,9 @@ class User {
         $query->bindParam(':handle', $handle);
         $query->execute();
         $getId = $query->fetch(PDO::FETCH_ASSOC);
-        $this->user['user_id'] = $getId;
+        $this->userId = $getId;
     }
- */
+
 
     //Função que recebe um ID de utilizador e inicializa o array $userData com os dados do mesmo: Handle, Nome, Avatar, Título e Descrição
     public function get_user_data($uid){
@@ -418,10 +418,35 @@ function time_elapsed_string($datetime, $full = false) {
 //Crio um objecto para preencher o corpo do HTML de acordo com as preferências do utilizador //Para imprimir as variáveis desta classe, usar: echo $userSettings->homeURL;
 $userSettings = new Settings();                         //Inicializa as variáveis do head.php            
 
-//Crio um objecto User para o utilizador que iniciou sessão //Para imprimir as variáveis destas funções, usar: echo $userProfile->userData['handle'];
-$userProfile = new User();                              
-$userProfile->get_user_data($_SESSION['user_id']);      //Inicializa as variáveis do navbar.php
+//Inicializa as variáveis do navbar.php
+$userSession = new User();                              
+$userSession->get_user_data($_SESSION['user_id']);      //Inicializa as variáveis do navbar.php
 
+//Inicializa as variáveis do Perfil
+    $userProfile = new User();    
+
+        if(isset($_GET['profile']) && $_GET['profile'] == $_SESSION['handle']){              //Se for o perfil do Utilizador autenticado (sessão iniciada)
+            $uid = $_SESSION['user_id'];
+        } else if (isset($_GET['profile']) && $_GET['profile'] != $_SESSION['handle']) {     //Se for outro perfil (visitante)
+            $userProfile->get_this_user_id($_GET['profile']);
+            $uid = (int)$userProfile->userId['user_id'];
+        }
+    //posts.php
+    $userProfile->get_user_data($uid);
+    $userProfile->get_user_stats($uid);
+    $userProfile->get_user_gallery($uid);
+    $userPosts = new Posts();
+    $userPosts->get_user_posts($uid);
+
+    //favorites.php  
+    $userProfile->get_favorited_posts($uid);    //Chama a função que vai buscar os Posts Favoritos do utilizador   
+    $userProfile->display_followings($uid);     //Chama a função que vai buscar as contas que utilizador segue
+
+    //followers.php
+    $userProfile->display_followers($uid);
+
+    //following.php 
+    $userProfile->display_followings($uid);
 
 //Para fazer DEBUG, removo todo o html e executo apenas a variável que quero testar:
 /*  echo "<pre>";
