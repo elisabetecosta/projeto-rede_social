@@ -24,9 +24,9 @@
                             echo                "<input class='li' type='button' data-id='123' value='Bloquear'>";
                             echo                "<input class='li' type='button' data-id='123' value='Denunciar'>";
                             } else if(isset($_GET['profile']) && $_GET['profile'] != $_SESSION['handle']) {
-                                echo                "<input class='li' type='button' data-id='123' value='Seguir'>";
-                                echo                "<input class='li' type='button' data-id='123' value='Bloquear'>";
-                                echo                "<input class='li' type='button' data-id='123' value='Denunciar'>";
+                            echo                "<input class='li' type='button' data-id='123' value='Seguir'>";
+                            echo                "<input class='li' type='button' data-id='123' value='Bloquear'>";
+                            echo                "<input class='li' type='button' data-id='123' value='Denunciar'>";
                             }
                             echo            "</span>";
                             echo        "</span>";
