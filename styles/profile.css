@@ -161,6 +161,16 @@ span.profile-name {
     align-self: auto;
     margin-left: 2.1rem;
 }
+span.profile-name h2 a{
+    text-decoration: none;
+    color: var(--color-default);
+}
+span.profile-name h2 a:hover{
+    color: var(--color-main);
+}
+span.profile-name h2 a:active{
+    color: var(--color-active);
+}
 span.profile-stats {
     margin-left: 2.1rem;
     order: 0;
@@ -320,6 +330,16 @@ span.profile-frame p {
     padding-right: 2.3rem;
     margin-top: 0.3rem;
    /*  padding-bottom: 1rem; */
+}
+span.profile-frame h3 a{
+    text-decoration: none;
+    color: var(--color-default);
+}
+span.profile-frame h3 a:hover{
+    color: var(--color-main);
+}
+span.profile-frame h3 a:active{
+    color: var(--color-active);
 }
 .newpost_text {
     width: 100%;

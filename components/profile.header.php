@@ -9,7 +9,7 @@
                 <a href="posts"><img src='../users/<?php echo "{$userProfile->userData['handle']}"; ?>/<?php echo "{$userProfile->userData['avatar']}"; ?>' /></a></span>
             <span class="profile-name">
                 <!-- Nome do Utilizador -->
-                <h2><?php echo "{$userProfile->userData['name']}"; ?></a></h2>
+                <h2><a href="posts"><?php echo "{$userProfile->userData['name']}"; ?></a></h2>
                 <!-- @handle do utilizador -->
                 <h4>@<?php echo "{$userProfile->userData['handle']}"; ?></h4>
             </span>
