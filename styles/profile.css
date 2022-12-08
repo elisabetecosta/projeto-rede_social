@@ -517,6 +517,7 @@ div.users-col{
 }
 
 div.users-row{
+    min-width: 50%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
