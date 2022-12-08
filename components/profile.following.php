@@ -8,7 +8,7 @@
                         foreach($userProfile->userFollowings as $row){
                             echo "<div class='user-box'>";
                             echo    "<span class='user-frame'>";
-                            echo        "<a href='../". $row['handle'] ."/posts.php'><img class='avatar' src='../users/". $row['handle'] ."/". $row['avatar'] ."' /></a>";
+                            echo        "<a href='../". $row['handle'] ."/'><img class='avatar' src='../users/". $row['handle'] ."/". $row['avatar'] ."' /></a>";
                             echo    "</span>";
                             echo    "<span class='profile-frame'>";
                             echo    "<h3><a href='../". $row['handle'] ."/'>". $row['name'] ."</a></h3>";
