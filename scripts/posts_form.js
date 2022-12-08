@@ -53,7 +53,7 @@ const copyURL = async () => {
     let postId = event.target.getAttribute("data-id");
 
     try {
-        window.location.href = '../server/posts.php' + "#" + postId;
+        window.location.href = './' + "#" + postId;
         await navigator.clipboard.writeText(window.location.href);
         alert('URL copiada com sucesso!');
     } catch (err) {
