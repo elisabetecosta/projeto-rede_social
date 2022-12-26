@@ -1,0 +1,173 @@
+/*Estilos gerais comuns a todo o site como tamanhos e tipos de letra, cores, etc*/
+:root {
+    --color-main: #0092ca;
+    --color-default: #222831;
+    --color-hover: #393e46;
+    --color-basic: #ffffff;
+    --color-grey: #808A99;
+    --color-blank: #E8F0F6;
+    --font-title: 'Montserrat', sans-serif;
+    --font-text: 'Poppins', sans-serif;
+    --red: hsl(1, 90%, 64%);
+}
+
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-blank);
+    font-family: var(--font-text);
+    font-size: 1.07rem;
+    color: var(--color-default);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.container {
+    width: 900px;
+    max-width: 100%;
+    background-color: var(--color-basic);
+    margin: 2rem;
+    padding: 1.5rem 1rem;
+    border-radius: 5px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.1rem;
+}
+
+p {
+    font-size: 0.95rem;
+    color: var(--color-grey);
+}
+
+.container header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.fa-solid.fa-bell {
+    margin-right: 0.5rem;
+}
+
+.notif_box {
+    display: flex;
+    align-items: center;
+}
+
+#notifes {
+    background-color: var(--color-main);
+    margin-left: 0.5rem;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    color: var(--color-basic);
+    font-weight: 800;
+    border-radius: 0.5rem;
+}
+
+#mark_all {
+    cursor: pointer;
+}
+
+#mark_all:hover {
+    color: var(--color-hover);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.notif_card {
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+main img {
+    width: 100px;
+    border-radius: 0.5rem;
+}
+
+.description {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+strong {
+    color: var(--color-default);
+    cursor: pointer;
+}
+
+strong:hover {
+    color: var(--color-grey);
+}
+
+.unread {
+    background-color: var(--color-blank) !important;
+}
+
+.unread p:first-of-type::after {
+    content: " ";
+    background-color: var(--red);
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.message_card {
+    display: flex;
+    align-items: center;
+}
+
+.message {
+    padding: 1rem;
+    border: 1px solid var(--color-blank);
+    border-radius: .3rem;
+    cursor: pointer;
+    margin: 0 0 0 5rem;
+}
+
+.message:hover {
+    background-color: var(--color-blank);
+}
+
+.random_img {
+    margin-left: auto;
+}
+
+@media screen and (max-width:550px) {
+    .container {
+        margin: 0;
+    }
+}

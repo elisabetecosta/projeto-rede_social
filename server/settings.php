@@ -182,9 +182,13 @@
                             <h3>Nome de perfil</h3>
                             <p>Este é o nome que vai aparecer no teu perfil</p>
                         </div>
-                        <div class="text-input">
+                        <div class="form-control text-input">
                             <label for="profileName"></label>
                             <input type="text" id="profileName" placeholder="Nome de perfil">
+
+                            <i class="fa-solid fa-circle-check"></i>
+                            <i class="fa-solid fa-circle-xmark"></i>
+                            <small>Error message</small>
                         </div>
                     </div>
 
@@ -208,8 +212,8 @@
 
                     <div class="content">
                         <div class="text">
-                            <h3>Língua</h3>
-                            <p>dgsdgsdgsd</p>
+                            <h3>Idioma</h3>
+                            <p>Idioma no qual o site será exibido</p>
                         </div>
 
                         <div class="dropdown">
@@ -237,11 +241,15 @@
                             <h3>Palavra-passe atual</h3>
                             <p>Insere a tua palavra-passe atual</p>
                         </div>
-                        <div class="password-input">
+                        <div class="form-control password-input">
                             <div class="extra">
                                 <label for="passwordCurrent"></label>
                                 <input type="password" id="passwordCurrent" placeholder="********">
                                 <span><a href="#">Esqueci-me da palavra-passe</a></span>
+
+                                <i class="fa-solid fa-circle-check"></i>
+                                <i class="fa-solid fa-circle-xmark"></i>
+                                <small>Error message</small>
                             </div>
                         </div>
                     </div>
@@ -251,9 +259,13 @@
                             <h3>Nova palavra-passe</h3>
                             <p>Insere a tua nova palavra-passe</p>
                         </div>
-                        <div class="password-input">
+                        <div class="form-control password-input">
                             <label for="passwordNew"></label>
                             <input type="password" id="passwordNew" placeholder="********">
+
+                            <i class="fa-solid fa-circle-check"></i>
+                            <i class="fa-solid fa-circle-xmark"></i>
+                            <small>Error message</small>
                         </div>
                     </div>
 
@@ -282,9 +294,13 @@
                             <h3>Endereço de e-mail</h3>
                             <p>Insere o e-mail de acesso à conta</p>
                         </div>
-                        <div class="text-input">
+                        <div class="form-control text-input">
                             <label for="email"></label>
                             <input type="text" size="20" maxlength="50" id="email" placeholder="123@email.pt">
+
+                            <i class="fa-solid fa-circle-check"></i>
+                            <i class="fa-solid fa-circle-xmark"></i>
+                            <small>Error message</small>
                         </div>
                     </div>
 
@@ -293,22 +309,30 @@
                             <h3>Confirmar e-mail</h3>
                             <p>Insere novamente o teu e-mail para confirmar a alteração</p>
                         </div>
-                        <div class="text-input">
+                        <div class="form-control text-input">
                             <label for="emailConfirm"></label>
                             <input type="text" size="20" maxlength="50" id="emailConfirm" placeholder="123@email.pt">
+
+                            <i class="fa-solid fa-circle-check"></i>
+                            <i class="fa-solid fa-circle-xmark"></i>
+                            <small>Error message</small>
                         </div>
                     </div>
 
                     <div class="content">
                         <div class="text">
                             <h3>Palavra-passe atual</h3>
-                            <p>Insere a tua palavra-passe atual para confirmar a alteração</p>
+                            <p>Insere a tua palavra-passe atual para confirmar todas as alterações</p>
                         </div>
-                        <div class="password-input">
+                        <div class="form-control password-input">
                             <div class="extra">
                                 <label for="passwordCurrentTwo"></label>
                                 <input type="password" id="passwordCurrentTwo" placeholder="********">
                                 <span><a href="#">Esqueci-me da palavra-passe</a></span>
+
+                                <i class="fa-solid fa-circle-check"></i>
+                                <i class="fa-solid fa-circle-xmark"></i>
+                                <small>Error message</small>
                             </div>
                         </div>
                     </div>
@@ -333,4 +357,3 @@
         include '../components/footer.php';              //Rodapé com links     <footer>
     ?>
 </body>
-</html>

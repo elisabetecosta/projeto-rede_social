@@ -1,3 +1,151 @@
+//======================== FORM SELECTS =======================
+
+//Seleciona todos os dropdowns do documento
+const dropdowns = document.querySelectorAll('.dropdown');
+
+//Itera por todos os elementos do dropdown
+dropdowns.forEach(dropdown => {
+
+    //Seleciona os elementos que fazem parte de cada dropdown
+    const select = dropdown.querySelector('.select');
+    const menu = dropdown.querySelector('.menu');
+    const options = dropdown.querySelectorAll('.menu li');
+    const selected = dropdown.querySelector('.selected');
+
+    //Adiciona um evento 'click' ao elemento selecionado
+    select.addEventListener('click', () => {
+
+        //Adiciona os estilos de menu-open ao elemento menu
+        menu.classList.toggle('menu-open');
+    });
+
+    //Itera por todos os elementos option
+    options.forEach(option => {
+
+        //Adiciona um evento 'click' ao elemento option
+        option.addEventListener('click', () => {
+
+            //Altera o texto de selecionado para clicado
+            selected.innerText = option.innerText;
+
+            //Remove os estilos de menu-open do elemento menu
+            menu.classList.remove('menu-open');
+
+            //Remove a classe active de todos os elementos option
+            options.forEach(option => {
+                option.classList.remove('option-active');
+            });
+
+            //Adiciona a classe active ao elemento option clicado
+            option.classList.add('option-active');
+        });
+    });
+
+    //Fecha o menu se o utilizador clicar fora do menu
+    window.addEventListener('click', (e) => {
+
+        //Se o utilizador clicar numa área que não pertença ao select enquanto o menu estiver aberto, o menu é fechado
+        if (!e.target.matches('.select') && menu.classList.contains('menu-open')) {
+
+            menu.classList.remove('menu-open');
+        }
+    });
+});
+
+
+
+//======================== SIDEBAR/SECTION ANIMATIONS =======================
+
+const links = document.querySelectorAll('.links a');
+const sections = document.querySelectorAll('.wrapper');
+
+//Itera por todos os links da sidebar
+links.forEach(link => {
+
+    //Adiciona um evento 'click' ao link clicado
+    link.addEventListener('click', () => {
+
+        //Remove a classe active de todos os links
+        links.forEach(link => {
+            link.classList.remove('active');
+        });
+
+        //Adiciona a classe active ao elemento link clicado
+        link.classList.add('active');
+    });
+});
+
+
+//Função que adiciona a classe active à secção passada como parâmetro
+function selectSection(section) {
+
+    //Remove a classe active de todas as secções
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+
+    //Adiciona a classe active à secção atual
+    section.classList.add('active');
+}
+
+//Variáveis que selecionam os links da sidebar
+const linkOne = document.getElementById('linkOne');
+const linkTwo = document.getElementById('linkTwo');
+const linkThree = document.getElementById('linkThree');
+const linkFour = document.getElementById('linkFour');
+
+//Eventos que chamam a função selectSection
+linkOne.addEventListener('click', () => {
+    const sectionOne = document.getElementById('wrapperOne');
+    selectSection(sectionOne);
+});
+
+linkTwo.addEventListener('click', () => {
+    const sectionTwo = document.getElementById('wrapperTwo');
+    selectSection(sectionTwo);
+});
+
+linkThree.addEventListener('click', () => {
+    const sectionThree = document.getElementById('wrapperThree');
+    selectSection(sectionThree);
+});
+
+linkFour.addEventListener('click', () => {
+    const sectionFour = document.getElementById('wrapperFour');
+    selectSection(sectionFour);
+});
+
+
+
+//======================== SCROLL-TO-TOP BUTTON =======================
+
+const scrollButton = document.getElementById('scrollTopBtn');
+
+scrollButton.addEventListener('click', () => {
+    goTop();
+});
+
+
+//Exibe o botão de scroll quando o utilizador passa os 200px de scroll desde o topo da página
+window.onscroll = function() {scrollTop()};
+
+function scrollTop() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    scrollButton.style.display = "block";
+  } else {
+    scrollButton.style.display = "none";
+  }
+}
+
+
+//Volta ao topo da página quando o utilizador clica no botão
+function goTop() {
+  document.documentElement.scrollTop = 0; // Chrome, Firefox, IE e Opera
+  document.body.scrollTop = 0; // Safari
+}
+
+
+
 //======================== VALIDAÇÕES =======================
 
 //Variáveis relativas aos campos do formulário
@@ -111,134 +259,3 @@ function checkInputs() {
 
     return true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-//======================== FORM SELECTS =======================
-//Seleciona todos os dropdowns do documento
-const dropdowns = document.querySelectorAll('.dropdown');
-
-//Itera por todos os elementos do dropdown
-dropdowns.forEach(dropdown => {
-
-    //Seleciona os elementos que fazem parte de cada dropdown
-    const select = dropdown.querySelector('.select');
-    const menu = dropdown.querySelector('.menu');
-    const options = dropdown.querySelectorAll('.menu li');
-    const selected = dropdown.querySelector('.selected');
-
-    //Adiciona um evento 'click' ao elemento selecionado
-    select.addEventListener('click', () => {
-
-        //Adiciona os estilos de menu-open ao elemento menu
-        menu.classList.toggle('menu-open');
-    });
-
-    //Itera por todos os elementos option
-    options.forEach(option => {
-
-        //Adiciona um evento 'click' ao elemento option
-        option.addEventListener('click', () => {
-
-            //Altera o texto de selecionado para clicado
-            selected.innerText = option.innerText;
-
-            //Remove os estilos de menu-open do elemento menu
-            menu.classList.remove('menu-open');
-
-            //Remove a classe active de todos os elementos option
-            options.forEach(option => {
-                option.classList.remove('option-active');
-            });
-
-            //Adiciona a classe active ao elemento option clicado
-            option.classList.add('option-active');
-        });
-    });
-
-    //Fecha o menu se o utilizador clicar fora do menu
-    window.addEventListener('click', (e) => {
-
-        //Se o utilizador clicar numa área que não pertença ao select enquanto o menu estiver aberto, o menu é fechado
-        if (!e.target.matches('.select') && menu.classList.contains('menu-open')) {
-
-            menu.classList.remove('menu-open');
-        }
-    });
-});
-
-
-
-
-//======================== SIDEBAR/SECTION ANIMATIONS =======================
-const links = document.querySelectorAll('.links a');
-const sections = document.querySelectorAll('.wrapper');
-
-//Itera por todos os links da sidebar
-links.forEach(link => {
-
-    //Adiciona um evento 'click' ao link clicado
-    link.addEventListener('click', () => {
-
-        //Remove a classe active de todos os links
-        links.forEach(link => {
-            link.classList.remove('active');
-        });
-
-        //Adiciona a classe active ao elemento link clicado
-        link.classList.add('active');
-    });
-});
-
-
-//Função que adiciona a classe active à secção passada como parâmetro
-function selectSection(section) {
-
-    //Remove a classe active de todas as secções
-    sections.forEach(section => {
-        section.classList.remove('active');
-    });
-
-    //Adiciona a classe active à secção atual
-    section.classList.add('active');
-}
-
-//Variáveis que selecionam os links da sidebar
-const linkOne = document.getElementById('linkOne');
-const linkTwo = document.getElementById('linkTwo');
-const linkThree = document.getElementById('linkThree');
-const linkFour = document.getElementById('linkFour');
-
-//Eventos que chamam a função selectSection
-linkOne.addEventListener('click', () => {
-    const sectionOne = document.getElementById('wrapperOne');
-    selectSection(sectionOne);
-});
-
-linkTwo.addEventListener('click', () => {
-    const sectionTwo = document.getElementById('wrapperTwo');
-    selectSection(sectionTwo);
-});
-
-linkThree.addEventListener('click', () => {
-    const sectionThree = document.getElementById('wrapperThree');
-    selectSection(sectionThree);
-});
-
-linkFour.addEventListener('click', () => {
-    const sectionFour = document.getElementById('wrapperFour');
-    selectSection(sectionFour);
-});
-
-
-//======================== SCROLL-TO-TOP BUTTON =======================
-// https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
