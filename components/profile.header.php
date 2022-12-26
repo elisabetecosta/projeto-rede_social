@@ -9,7 +9,7 @@
                 <a href="posts"><img src='../users/<?php echo "{$userProfile->userData['handle']}"; ?>/<?php echo "{$userProfile->userData['avatar']}"; ?>' /></a></span>
             <span class="profile-name">
                 <!-- Nome do Utilizador -->
-                <h2><?php echo "{$userProfile->userData['name']}"; ?></a></h2>
+                <h2><a href="posts"><?php echo "{$userProfile->userData['name']}"; ?></a></h2>
                 <!-- @handle do utilizador -->
                 <h4>@<?php echo "{$userProfile->userData['handle']}"; ?></h4>
             </span>
@@ -21,7 +21,13 @@
             <a <?php echo $focusflwers ?> href="./followers"><h3>Seguidores</h3><span><?php echo "{$userProfile->userData['followers']}"; ?></span></a>
             </span>
             <span class="profile-btn-container">
-                <button class="btn">Editar</button>
+                <?php
+                    if (isset($_GET['profile']) && $_GET['profile'] == $_SESSION['handle']) {     //Se for o perfil do Utilizador autenticado (sessão iniciada)
+                        echo '<button class="btn">Editar</button>';
+                    } else if (isset($_GET['profile']) && $_GET['profile'] != $_SESSION['handle']) {     //Se for outro perfil (visitante)
+                        echo '<button class="btn">Seguir</button>';
+                    }
+                ?>
             </span>
         </div>
     </div>

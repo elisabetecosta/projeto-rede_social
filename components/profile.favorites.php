@@ -30,7 +30,7 @@
                         $userPosts->count_post_comments($row['post_id']);
                         echo "<div class='post-box' id='".$row['post_id']."'>";
                         echo "<span class='user-frame'>";
-                        echo    "<a href='#'><img class='avatar' src='../users/" . $row["handle"] . "/" . $row["avatar"] . "' /></a>";
+                        echo    "<a href='../". $row['handle'] ."/'><img class='avatar' src='../users/" . $row["handle"] . "/" . $row["avatar"] . "' /></a>";
                         echo "</span>";
                         echo "<span class='post-frame'>";
                         echo    "<span class='right'>";
@@ -41,7 +41,7 @@
                         echo            "<input class='li' type='button' data-id='" . $row['post_id'] . "' value='Denunciar'>";
                         echo        "</span>";
                         echo    "</span>";
-                        echo    "<h3>" . $row['name'] . "</h3>";
+                        echo    "<h3><a href='../". $row['handle'] ."/'>" . $row['name'] . "</a></h3>";
                         echo    "<h4 class='timestamp'>@" . $row["handle"] . " &bull; " . time_elapsed_string($row['date']) . "</h4>";
                         echo    "<p>" . $row['text'] . "</p>";
                         echo "<div class='post-interaction'>";

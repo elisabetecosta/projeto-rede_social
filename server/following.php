@@ -18,11 +18,7 @@
     $cssFile = htmlentities("../styles/profile.css");
 
     //Ficheiro Javascript da página
-    $jsFile = htmlentities("../scripts/posts_dropdown.js");
-
-    //Chamadas de classes e funções 
-    $userProfile->get_user_stats($_SESSION['user_id']);
-    $userProfile->display_followings($_SESSION['user_id']);
+    $jsFile = htmlentities("../scripts/posts_form.js");
 
     //Componentes html
     include '../components/head.php';               //Cabeçalho do HTML:    <doctype>, <head>, <body>, <link>, <styles defer>

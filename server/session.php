@@ -11,9 +11,9 @@ class User {
     var $userFavorites = null;     //Vai conter: Os últimos 10 posts favoritos do utilizador
     var $userFollowings = null;    //Vai conter: Lista das 10 últimos contas que se segue
     var $userFollowers = null;     //Vai conter: Lista dos 10 últimos seguidores
-    /* var $user; */
+    var $userId;
     
-/*     public function get_this_user_id($handle){
+    public function get_this_user_id($handle){
         //Estabelece a conexão com a base de dados
         require 'includes/connect_db.php';
 
@@ -24,9 +24,9 @@ class User {
         $query->bindParam(':handle', $handle);
         $query->execute();
         $getId = $query->fetch(PDO::FETCH_ASSOC);
-        $this->user['user_id'] = $getId;
+        $this->userId = $getId;
     }
- */
+
 
     //Função que recebe um ID de utilizador e inicializa o array $userData com os dados do mesmo: Handle, Nome, Avatar, Título e Descrição
     public function get_user_data($uid){
@@ -234,6 +234,7 @@ class Posts {
     var $favourites;
     var $replies;
     var $pictures;
+    var $shares;
 
     //Função que recebe um ID de utilizador e devolve um array com os seus 10 posts mais recentes + indicação se contém média
     public function get_user_posts($uid){
@@ -302,6 +303,29 @@ class Posts {
         } else {
             $this->replies = 0;
         }
+    }
+
+    //Função que recebe o ID de um post e conta todos os shares que recebeu
+    public function count_post_shares($post_id) {
+
+        //Estabelece a conexão com a base de dados
+        require 'includes/connect_db.php';
+
+        //Query que vai buscar o número de partilhas de um post através do seu ID
+        $countPostShares =  $connection->prepare("SELECT COUNT(*) AS postshares
+                                                        FROM shares
+                                                        WHERE post_id = :post_id"); //falta o status do post ser 0
+        $countPostShares->bindParam(':post_id', $post_id);
+        $countPostShares->execute();
+        $totalPostShares = $countPostShares->fetch(PDO::FETCH_ASSOC);
+
+        //Inicializa o array $shares com o resultado da query   
+        if(!empty($totalPostShares)){
+            $this->shares = $totalPostShares;
+        } else {
+            $this->shares = 0;
+        }
+
     }
 
     //Função que recebe o ID do post e devolve o array de imagens (exemplo.png)
@@ -394,10 +418,35 @@ function time_elapsed_string($datetime, $full = false) {
 //Crio um objecto para preencher o corpo do HTML de acordo com as preferências do utilizador //Para imprimir as variáveis desta classe, usar: echo $userSettings->homeURL;
 $userSettings = new Settings();                         //Inicializa as variáveis do head.php            
 
-//Crio um objecto User para o utilizador que iniciou sessão //Para imprimir as variáveis destas funções, usar: echo $userProfile->userData['handle'];
-$userProfile = new User();                              
-$userProfile->get_user_data($_SESSION['user_id']);      //Inicializa as variáveis do navbar.php
+//Inicializa as variáveis do navbar.php
+$userSession = new User();                              
+$userSession->get_user_data($_SESSION['user_id']);      //Inicializa as variáveis do navbar.php
 
+//Inicializa as variáveis do Perfil
+    $userProfile = new User();    
+
+        if(isset($_GET['profile']) && $_GET['profile'] == $_SESSION['handle']){              //Se for o perfil do Utilizador autenticado (sessão iniciada)
+            $uid = $_SESSION['user_id'];
+        } else if (isset($_GET['profile']) && $_GET['profile'] != $_SESSION['handle']) {     //Se for outro perfil (visitante)
+            $userProfile->get_this_user_id($_GET['profile']);
+            $uid = (int)$userProfile->userId['user_id'];
+        }
+    //posts.php
+    $userProfile->get_user_data($uid);
+    $userProfile->get_user_stats($uid);
+    $userProfile->get_user_gallery($uid);
+    $userPosts = new Posts();
+    $userPosts->get_user_posts($uid);
+
+    //favorites.php  
+    $userProfile->get_favorited_posts($uid);    //Chama a função que vai buscar os Posts Favoritos do utilizador   
+    $userProfile->display_followings($uid);     //Chama a função que vai buscar as contas que utilizador segue
+
+    //followers.php
+    $userProfile->display_followers($uid);
+
+    //following.php 
+    $userProfile->display_followings($uid);
 
 //Para fazer DEBUG, removo todo o html e executo apenas a variável que quero testar:
 /*  echo "<pre>";
