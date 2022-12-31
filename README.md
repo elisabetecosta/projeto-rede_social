@@ -7,6 +7,8 @@ A partilha de dados pessoais é desencorajada, ao contrário do que é praticado
 
 NOTA: O projeto encontra-se em desenvolvimento, não estando ainda completamente funcional.
 
+:earth_asia: [Website](http://xata.infinityfreeapp.com/)
+
 
 ## Tecnologias
 
@@ -23,9 +25,12 @@ NOTA: O projeto encontra-se em desenvolvimento, não estando ainda completamente
 
 
 ## Funcionalidades
-- Sistema de registo e login
-- Perfil público/privado
-- Publicação de texto, fotos, vídeos, etc.
-- Página de configurações
-- Sistema de notificações
-- ...
+- [x] Sistema de registo e login
+- [x] Perfil público/privado
+- [x] Publicação de texto, fotos, vídeos, etc.
+- [x] Página de configurações
+- [ ] Sistema de notificações
+- [ ] Timeline
+- [ ] Pesquisa avançada
+- [ ] Chat
+- [ ] ...
