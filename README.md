@@ -5,9 +5,7 @@ Projeto desenvolvido em contexto académico com o objetivo de colocar em prátic
 Xata é uma rede social que permite aos utilizadores criar uma conta e ter um perfil onde o mesmo pode publicar vários tipos de conteúdo. 
 A partilha de dados pessoais é desencorajada, ao contrário do que é praticado pelas tradicionais redes sociais, e apenas maiores de 18 anos poderão criar uma conta.
 
-NOTA: O projeto encontra-se em desenvolvimento, não estando ainda completamente funcional.
-
-:earth_asia: [Website](http://xata.infinityfreeapp.com/)
+NOTA: O projeto foi abandonado por incompatibilidade de horários dos autores.
 
 
 ## Tecnologias
